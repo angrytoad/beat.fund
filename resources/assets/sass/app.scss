@@ -7,3 +7,24 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+body{
+  background:#007BFF;
+}
+
+#app{
+  display:table;
+  height:100%;
+  width:100%;
+  position: absolute;
+
+  #welcome-container{
+    display:table-cell;
+    vertical-align: middle;
+    text-align: center;
+
+    #title,#subtitle{
+      color:white;
+    }
+  }
+}
