@@ -1,0 +1,23 @@
+.navbar{
+  background:$blue;
+
+  .open > a, .open > a:hover, .open > a:focus{
+    background-color:$blue_hover;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    color:$text_light;
+  }
+
+  a{
+    color:$text_light;
+  }
+
+  li{
+
+
+    a:hover, a:focus{
+      background-color:$blue_hover;
+    }
+  }
+}

@@ -16,4 +16,6 @@
     $.cloudinary.config({ cloud_name: '{{ env('CLOUDINARY_CLOUD_NAME') }}' });
 </script>
 
+<script src="{{ asset('js/app.js') }}"></script>
+
 @yield('scripts')

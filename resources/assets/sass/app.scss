@@ -1,6 +1,6 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700");
 
 // Variables
 @import "variables";
@@ -8,23 +8,15 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Structure
+@import "layout/navbar";
+
+// Page Imports
+@import "pages/welcome";
+
 body{
-  background:#007BFF;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 #app{
-  display:table;
-  height:100%;
-  width:100%;
-  position: absolute;
-
-  #welcome-container{
-    display:table-cell;
-    vertical-align: middle;
-    text-align: center;
-
-    #title,#subtitle{
-      color:white;
-    }
-  }
 }
