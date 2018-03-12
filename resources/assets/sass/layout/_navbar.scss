@@ -20,4 +20,18 @@
       background-color:$blue_hover;
     }
   }
+
+  .navbar-toggle .icon-bar{
+    border:1px solid $blue_lighter_1;
+  }
+
+  .navbar-toggle.collapsed .icon-bar{
+    border:1px solid white;
+  }
+}
+
+@media screen and (max-width:767px){
+  .dropdown-menu > li > a{
+    color:$text_light;
+  }
 }

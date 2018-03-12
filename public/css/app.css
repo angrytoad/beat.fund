@@ -8374,6 +8374,20 @@ button.close {
   background-color: #0067D6;
 }
 
+.navbar .navbar-toggle .icon-bar {
+  border: 1px solid #429DFF;
+}
+
+.navbar .navbar-toggle.collapsed .icon-bar {
+  border: 1px solid white;
+}
+
+@media screen and (max-width: 767px) {
+  .dropdown-menu > li > a {
+    color: #fff;
+  }
+}
+
 #welcome-container {
   display: table;
   top: 0;
