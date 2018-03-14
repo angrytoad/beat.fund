@@ -23,6 +23,10 @@ Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVer
 
 Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
     Route::get('/', 'Account\AccountController@show')->name('account');
+    Route::get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
+    Route::post('/update-email', 'Account\AccountEmailController@postUpdate');
+    Route::get('/change-password', 'Account\AccountPasswordController@show')->name('account.change_password');
+    Route::get('/add-mobile-number', 'Account\AccountMobileController@show')->name('account.add_mobile_number');
 });
 
 Route::get('/me', 'Home\HomeController@index')->name('home');

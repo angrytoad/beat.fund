@@ -31,6 +31,10 @@
             padding:1rem;
         }
 
+        .highlight{
+            color:#007BFF;
+        }
+
         .content{
             width:100%;
             max-width:650px;
@@ -72,6 +76,7 @@
             border-left:1px solid #f4f4f4;
             border-right:1px solid #e1e1e1;
         }
+
     </style>
     @yield('styling')
 </head>

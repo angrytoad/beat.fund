@@ -5,6 +5,9 @@
 // Variables
 @import "variables";
 
+// Mixings
+@import "mixins";
+
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -19,4 +22,13 @@ body{
 }
 
 #app{
+}
+
+
+
+summary{
+  @include noselect;
+  &:hover{
+    cursor:pointer;
+  }
 }
