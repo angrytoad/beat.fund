@@ -49,7 +49,7 @@ class AccountMobileController extends Controller
         $mobileNumberVerification->save();
 
         try{
-            Twilio::message($phoneString, $mobileNumberVerification->token.' - Here is your mobile verification token.');
+            Twilio::message($phoneString, 'Beat.fund - '.$mobileNumberVerification->token.' is your mobile verification token.');
         }catch (\Services_Twilio_RestException $e ){
             return back()->withErrors([
                 'message' => $e->getMessage()
