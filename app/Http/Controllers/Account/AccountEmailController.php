@@ -25,7 +25,7 @@ class AccountEmailController extends Controller
 
     public function show()
     {
-        return view('account.update_email');
+        return view('account.email.update_email');
     }
 
     public function postUpdate(Request $request)

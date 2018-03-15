@@ -63,7 +63,6 @@
                             <summary>Click to show email</summary>
                             <p><strong>{{ Auth::user()->email }}</strong></p>
                         </details>
-
                     </div>
                 </div>
             </div>

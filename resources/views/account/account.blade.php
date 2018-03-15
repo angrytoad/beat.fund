@@ -25,7 +25,7 @@
                         <ul class="list-group">
                             <a href="{{ route('account.update_email') }}" class="list-group-item list-group-item-action">Update Email</a>
                             <a href="{{ route('account.change_password') }}" class="list-group-item list-group-item-action">Change Password</a>
-                            <a href="{{ route('account.add_mobile_number') }}" class="list-group-item list-group-item-action">Add a Mobile Number</a>
+                            <a href="{{ route('account.add_mobile_number') }}" class="list-group-item list-group-item-action">Add/Change a Mobile Number</a>
                         </ul>
                     </div>
                 </div>

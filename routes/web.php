@@ -27,6 +27,9 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
     Route::post('/update-email', 'Account\AccountEmailController@postUpdate');
     Route::get('/change-password', 'Account\AccountPasswordController@show')->name('account.change_password');
     Route::get('/add-mobile-number', 'Account\AccountMobileController@show')->name('account.add_mobile_number');
+    Route::post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
+    Route::get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
+    Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
 });
 
 Route::get('/me', 'Home\HomeController@index')->name('home');

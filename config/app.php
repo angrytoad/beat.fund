@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        'Aloha\Twilio\Support\Laravel\ServiceProvider',
 
         /*
          * Application Service Providers...
@@ -226,7 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
-
+        'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
     ],
 
 ];
