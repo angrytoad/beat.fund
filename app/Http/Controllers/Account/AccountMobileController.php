@@ -45,11 +45,11 @@ class AccountMobileController extends Controller
         $mobileNumberVerification = new MobileNumberVerification();
         $mobileNumberVerification->user_id = Auth::user()->id;
         $mobileNumberVerification->mobile_number = $phoneString;
-        $mobileNumberVerification->token = str_random(6);
+        $mobileNumberVerification->token = mt_rand(100000, 999999);
         $mobileNumberVerification->save();
 
         try{
-            Twilio::message($phoneString, 'Beat.fund - '.$mobileNumberVerification->token.' is your mobile verification token.');
+            Twilio::message($phoneString, 'Your Beat Fund code is '.$mobileNumberVerification->token);
         }catch (\Services_Twilio_RestException $e ){
             return back()->withErrors([
                 'message' => $e->getMessage()
