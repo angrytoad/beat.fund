@@ -8411,6 +8411,22 @@ button.close {
   }
 }
 
+@media screen and (max-width: 767px) {
+  #internal_account_menu .dropdown-menu > li > a,
+  #internal_menu .dropdown-menu > li > a {
+    color: #333333;
+  }
+
+  #internal_account_menu .dropdown-menu > .active > a,
+  #internal_account_menu .dropdown-menu > .active > a:hover,
+  #internal_account_menu .dropdown-menu > .active > a:focus,
+  #internal_menu .dropdown-menu > .active > a,
+  #internal_menu .dropdown-menu > .active > a:hover,
+  #internal_menu .dropdown-menu > .active > a:focus {
+    color: #fff;
+  }
+}
+
 #welcome-container {
   display: table;
   top: 0;

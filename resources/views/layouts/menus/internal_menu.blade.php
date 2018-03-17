@@ -1,4 +1,4 @@
-<ul class="list-group">
+<ul id="internal_menu" class="list-group">
     <li class="list-group-item {{ Helper::isActiveRoute('home') }}">
         <a class="list-group-item-heading" href="{{ route('home') }}">Home</a>
     </li>
@@ -11,7 +11,7 @@
         </ul>
     </li>
 </ul>
-<ul class="list-group">
+<ul id="internal_account_menu" class="list-group">
     <li class="list-group-item dropdown {{ Helper::areActiveRoutes(['account','account.update_email','account.change_password','account.add_mobile_number']) }}">
         <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
             {{ Auth::user()->first_name }} <span class="caret"></span>
