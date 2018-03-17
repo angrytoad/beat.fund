@@ -4,7 +4,10 @@
     <div class="container" id="verification_required">
         @include('layouts.flash_message')
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-3">
+                @include('layouts.menus.internal_menu')
+            </div>
+            <div class="col-md-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Add/Change your mobile number
