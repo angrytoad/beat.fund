@@ -32,4 +32,18 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
     Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
 });
 
-Route::get('/me', 'Home\HomeController@index')->name('home');
+Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
+    
+    Route::get('/', 'Home\HomeController@index')->name('home');
+    
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
+        Route::post('create', 'Profile\ProfileCreationController@create');
+        
+        Route::group(['middleware' => ['user.has_profile']], function () {
+            Route::get('/', 'Profile\ProfileController@show')->name('profile');
+        });
+    });
+});
+
+
