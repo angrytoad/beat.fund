@@ -6,7 +6,20 @@
 <div class="container">
     @include('layouts.flash_message')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-3">
+            @include('layouts.menus.internal_menu')
+            <div class="panel panel-info">
+                <div class="panel-heading">Did you know?</div>
+                <div class="panel-body">
+                    <p>
+                        Beat Fund only takes <strong>{{ env('BEATFUND_SALES_SHARE') }}%</strong> of revenue from any of your sales after fees, that's
+                        33% less than <a href="https://bandcamp.com/pricing" rel="nofollow" target="_blank">Band Camp</a> and
+                        66% less than <a href="https://play.google.com/artists/" rel="nofollow" target="_blank">Google Play.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">Beat Fund Revenue Sharing Policy</div>
                 <div class="panel-body">
@@ -18,7 +31,7 @@
                     <div class="jumbotron">
                         <p>
                             Our revenue share policy is aimed to be plain and simple. Beat Fund gives you <strong>{{ 100 - env('BEATFUND_SALES_SHARE') }}%</strong> of
-                            all your music sales (after purchase/payout fees) for you to do with as you please.
+                            all your music sales (after payment/payout fees) for you to do with as you please.
                         </p>
                     </div>
                     <p>
@@ -56,18 +69,6 @@
                             you, and Beat Fund gets <strong>£2.89.</strong>
                         </p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-info">
-                <div class="panel-heading">Did you know?</div>
-                <div class="panel-body">
-                    <p>
-                        Beat Fund only takes <strong>{{ env('BEATFUND_SALES_SHARE') }}%</strong> of revenue from any of your sales after fees, that's
-                        33% less than <a href="https://bandcamp.com/pricing" rel="nofollow" target="_blank">Band Camp</a> and
-                        66% less than <a href="https://play.google.com/artists/" rel="nofollow" target="_blank">Google Play.</a>
-                    </p>
                 </div>
             </div>
         </div>
