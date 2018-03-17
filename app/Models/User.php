@@ -35,4 +35,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\EmailVerification');
     }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
+
+    public function hasProfile()
+    {
+        return $this->profile !== null;
+    }
 }
