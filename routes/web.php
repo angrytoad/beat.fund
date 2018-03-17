@@ -46,6 +46,15 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
             Route::get('/', 'Profile\ProfileController@show')->name('profile');
         });
     });
+
+    Route::group(['prefix' => 'store'], function () {
+        Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
+        Route::post('create', 'Store\StoreCreationController@create');
+
+        Route::group(['middleware' => ['user.has_store']], function () {
+            Route::get('/', 'Store\StoreController@show')->name('store');
+        });
+    });
 });
 
 
