@@ -49,7 +49,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="create_profile_checkbox" id="create_profile_checkbox">
                             <label class="form-check-label" for="create_profile_checkbox">
-                                I understand that by clicking "Create Profile" I am aware that I am an Artist/Band.
+                                I understand that by clicking "Create a Profile" I am aware that I am an Artist/Band.
                             </label>
                         </div>
                         <button type="submit" class="btn btn-primary">Create a Profile</button>
