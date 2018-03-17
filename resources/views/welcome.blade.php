@@ -3,7 +3,7 @@
 @section('title', 'Welcome')
 
 @section('content')
-    <div id="welcome-container">
+    <div id="welcome-container" class="container">
         <div id="welcome-container-child">
             @include('layouts.flash_message')
             <h1 id="title">Beat Fund</h1>
