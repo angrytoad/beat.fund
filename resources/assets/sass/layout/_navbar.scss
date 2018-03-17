@@ -1,6 +1,26 @@
 .navbar{
   background:$blue;
 
+  .navbar-brand{
+    color:$blue_lighter_3;
+    font-size:23px;
+
+    .beat{
+      font-weight: 700;
+      color:$text_light;
+    }
+
+    .fund{
+
+    }
+
+    .small{
+      font-size:15px;
+      line-height: 23px;
+      vertical-align: top;
+    }
+  }
+
   .open > a, .open > a:hover, .open > a:focus{
     background-color:$blue_hover;
   }
@@ -33,5 +53,13 @@
 @media screen and (max-width:767px){
   .dropdown-menu > li > a{
     color:$text_light;
+  }
+}
+
+@media screen and (max-width:500px){
+  .navbar-brand{
+    .divider,.small{
+      display:none;
+    }
   }
 }

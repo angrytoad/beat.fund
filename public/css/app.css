@@ -8354,6 +8354,22 @@ button.close {
   background: #007BFF;
 }
 
+.navbar .navbar-brand {
+  color: #84BFFF;
+  font-size: 23px;
+}
+
+.navbar .navbar-brand .beat {
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar .navbar-brand .small {
+  font-size: 15px;
+  line-height: 23px;
+  vertical-align: top;
+}
+
 .navbar .open > a,
 .navbar .open > a:hover,
 .navbar .open > a:focus {
@@ -8385,6 +8401,13 @@ button.close {
 @media screen and (max-width: 767px) {
   .dropdown-menu > li > a {
     color: #fff;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar-brand .divider,
+  .navbar-brand .small {
+    display: none;
   }
 }
 
