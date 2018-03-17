@@ -228,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
+        'Helper' => App\Helpers\Helper::class,
     ],
 
 ];
