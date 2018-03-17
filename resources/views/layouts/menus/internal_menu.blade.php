@@ -2,7 +2,7 @@
     <li class="list-group-item {{ Helper::isActiveRoute('home') }}">
         <a class="list-group-item-heading" href="{{ route('home') }}">Home</a>
     </li>
-    <li class="list-group-item {{ Helper::areActiveRoutes(['profile']) }}">
+    <li class="list-group-item {{ Helper::areActiveRoutes(['profile','profile.create']) }}">
         <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
             Profile <span class="caret"></span>
         </a>
