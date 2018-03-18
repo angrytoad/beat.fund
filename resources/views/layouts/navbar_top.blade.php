@@ -40,6 +40,13 @@
                                     Home
                                 </a>
                             </li>
+                            @if(Auth::user()->profile)
+                                <li>
+                                    <a href="{{ route('profile') }}">
+                                        Profile
+                                    </a>
+                                </li>
+                            @endif
                             <hr />
                             <li>
                                 <a href="{{ route('account') }}">
