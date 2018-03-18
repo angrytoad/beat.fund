@@ -51,7 +51,7 @@ class Profile extends Model
             $completion_percentage += 20;
         }
 
-        if(count($this->profile_links) > 0){
+        if($this->artist_website !== null){
             $completion_percentage += 20;
         }
 

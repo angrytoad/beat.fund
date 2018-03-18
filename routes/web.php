@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
         
         Route::group(['middleware' => ['user.has_profile']], function () {
             Route::get('/', 'Profile\ProfileController@show')->name('profile');
+            Route::post('/', 'Profile\ProfileController@update');
         });
     });
 

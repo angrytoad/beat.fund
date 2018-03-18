@@ -8,6 +8,10 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProfileLink;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -22,6 +26,64 @@ class ProfileController extends Controller
 
     public function show()
     {
-        return view('profile.profile');
+        return view('profile.profile')->with([
+            'profile' => Auth::user()->profile
+        ]);
+    }
+    
+    public function update(Request $request)
+    {
+        $profile = Auth::user()->profile;
+
+        $request->validate([
+            'artist_website' => 'url',
+            'business_email' => 'email'
+        ]);
+
+        $profile->artist_name = $request->get('artist_name');
+        $profile->artist_bio = $request->get('artist_bio');
+        $profile->favourite_genre = $request->get('favourite_genre');
+        $profile->artist_website = $request->get('artist_website');
+        $profile->business_email = $request->get('business_email');
+
+        $error_bag = [];
+
+        if($request->has('social_link')){
+            foreach($request->get('social_link') as $social_link){
+                $validate = Validator::make($social_link, [
+                    'type' => 'required|max:255',
+                    'link' => 'required|url',
+                ]);
+
+                if($validate->fails()) {
+                    $error_bag[] = 'Your ' . $social_link['type'] . ' link must have a valid url';
+                }
+            }
+        }
+
+        if(count($error_bag) > 0){
+            $request->flash();
+            return back()->withErrors($error_bag);
+        }else{
+            $profile->profile_links()->delete();
+
+            if($request->has('social_link')){
+                foreach($request->get('social_link') as $social_link){
+                    $profile_link = new ProfileLink();
+                    $profile_link->profile_id = $profile->id;
+                    $profile_link->type = $social_link['type'];
+                    $profile_link->link = $social_link['link'];
+                    $profile_link->save();
+                }
+            }
+
+        }
+
+        $profile->save();
+
+        return back()->with([
+            'alert-success' => 'Profile successfully updated.'
+        ]);
+
     }
 }
