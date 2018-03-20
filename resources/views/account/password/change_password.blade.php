@@ -23,9 +23,9 @@
 
                             <div class="form-group{{ $errors->has('confirm') ? ' has-error' : '' }}">
                                 <label for="confirm">Confirm Password</label>
-                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm new password">
-                                @if ($errors->has('confirm'))
-                                    <small class="form-text text-muted">{{ $errors->first('confirm') }}</small>
+                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm new password">
+                                @if ($errors->has('password_confirmation'))
+                                    <small class="form-text text-muted">{{ $errors->first('password_confirmation') }}</small>
                                 @endif
                             </div>
 
