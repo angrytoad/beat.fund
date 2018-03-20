@@ -3,6 +3,11 @@
         <li class="list-group-item {{ Helper::isActiveRoute('home') }}">
             <a class="list-group-item-heading" href="{{ route('home') }}">Home</a>
         </li>
+        @if(Auth::user()->store)
+            <li class="list-group-item {{ Helper::isActiveRoute('store') }}">
+                <a class="list-group-item-heading" href="{{ route('store') }}">My Store</a>
+            </li>
+        @endif
         <li class="list-group-item {{ Helper::areActiveRoutes(['profile','profile.create','store.create']) }}">
             <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
                 Profile <span class="caret"></span>

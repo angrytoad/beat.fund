@@ -34,12 +34,41 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $profile = Auth::user()->profile;
+        $user = Auth::user();
 
+        /**
+         * We need to make srue that the website and email are the right format if not null.
+         */
         $request->validate([
-            'artist_website' => 'url',
-            'business_email' => 'email'
+            'artist_website' => 'nullable|url',
+            'business_email' => 'nullable|email'
         ]);
 
+        /**
+         * If the user has a store and it is live, we need to make sure they can't empty critical information we require 
+         * for the store.
+         */
+        if($user->store && $user->store->live){
+            $rules = [
+                'artist_name' => 'required',
+                'artist_bio' => 'required',
+                'favourite_genre' => 'required',
+                'artist_website' => 'required',
+                'business_email' => 'required'
+            ];
+
+            $messages = [
+                'artist_name.required' => 'You cannot clear the Artist Name field whilst you\'re store is live, please turn disable it first.',
+                'artist_bio.required' => 'You cannot clear the Artist Bio field whilst you\'re store is live, please turn disable it first.',
+                'favourite_genre.required' => 'You cannot clear the Favourite Genre field whilst you\'re store is live, please turn disable it first.',
+                'artist_website.required' => 'You cannot clear the Artist Website field whilst you\'re store is live, please turn disable it first.',
+                'business_email.required' => 'You cannot clear the Business Email field whilst you\'re store is live, please turn disable it first.',
+            ];
+
+            $request->validate($rules, $messages);
+        }
+        
+        
         $profile->artist_name = $request->get('artist_name');
         $profile->artist_bio = $request->get('artist_bio');
         $profile->favourite_genre = $request->get('favourite_genre');
@@ -47,7 +76,7 @@ class ProfileController extends Controller
         $profile->business_email = $request->get('business_email');
 
         $error_bag = [];
-
+        
         if($request->has('social_link')){
             foreach($request->get('social_link') as $social_link){
                 $validate = Validator::make($social_link, [

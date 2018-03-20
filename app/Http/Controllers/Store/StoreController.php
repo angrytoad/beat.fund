@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -22,6 +23,9 @@ class StoreController extends Controller
 
     public function show()
     {
-        
+        return view('store.store')->with([
+            'profile' => Auth::user()->profile,
+            'store' => Auth::user()->store
+        ]);
     }
 }

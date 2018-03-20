@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->profile !== null;
     }
+
+    public function store()
+    {
+        return $this->hasOne('App\Models\Store');
+    }
 }

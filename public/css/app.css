@@ -8478,6 +8478,16 @@ button.close {
   cursor: pointer;
 }
 
+#create_store #store_requirements p {
+  margin: 0;
+}
+
+#create_store #store_requirements p svg {
+  margin-right: 5px;
+  font-size: 3.2rem;
+  vertical-align: top;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;
