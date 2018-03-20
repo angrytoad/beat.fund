@@ -8354,6 +8354,22 @@ button.close {
   background: #007BFF;
 }
 
+.navbar .navbar-brand {
+  color: #84BFFF;
+  font-size: 23px;
+}
+
+.navbar .navbar-brand .beat {
+  font-weight: 700;
+  color: #fff;
+}
+
+.navbar .navbar-brand .small {
+  font-size: 15px;
+  line-height: 23px;
+  vertical-align: top;
+}
+
 .navbar .open > a,
 .navbar .open > a:hover,
 .navbar .open > a:focus {
@@ -8388,6 +8404,29 @@ button.close {
   }
 }
 
+@media screen and (max-width: 500px) {
+  .navbar-brand .divider,
+  .navbar-brand .small {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #internal_account_menu .dropdown-menu > li > a,
+  #internal_menu .dropdown-menu > li > a {
+    color: #333333;
+  }
+
+  #internal_account_menu .dropdown-menu > .active > a,
+  #internal_account_menu .dropdown-menu > .active > a:hover,
+  #internal_account_menu .dropdown-menu > .active > a:focus,
+  #internal_menu .dropdown-menu > .active > a,
+  #internal_menu .dropdown-menu > .active > a:hover,
+  #internal_menu .dropdown-menu > .active > a:focus {
+    color: #fff;
+  }
+}
+
 #welcome-container {
   display: table;
   top: 0;
@@ -8409,8 +8448,49 @@ button.close {
   color: #007BFF;
 }
 
+#profile_editing_form textarea {
+  resize: none;
+}
+
+#profile_editing_form #social_page_container .row {
+  margin-bottom: 1rem;
+}
+
+#profile_editing_form #social_page_container .row .social_icon {
+  font-size: 22px;
+  line-height: 34px;
+  padding-right: 0;
+  width: 46px;
+}
+
+#profile_editing_form #social_page_container .row .remove_icon {
+  font-size: 16px;
+  line-height: 34px;
+  padding-left: 0;
+  padding-right: 0;
+  width: 24px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+#profile_editing_form #social_page_container .row .remove_icon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#create_store #store_requirements p {
+  margin: 0;
+}
+
+#create_store #store_requirements p svg {
+  margin-right: 5px;
+  font-size: 3.2rem;
+  vertical-align: top;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
+  background-color: #F4F9FF;
 }
 
 summary {

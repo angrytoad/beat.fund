@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Beat Fund
+                <span class="beat">Beat</span> <span class="fund">Fund</span> <span class="divider">|</span> <span class="small">Supporting independent artists.</span>
             </a>
         </div>
 
@@ -40,6 +40,13 @@
                                     Home
                                 </a>
                             </li>
+                            @if(Auth::user()->profile)
+                                <li>
+                                    <a href="{{ route('profile') }}">
+                                        Profile
+                                    </a>
+                                </li>
+                            @endif
                             <hr />
                             <li>
                                 <a href="{{ route('account') }}">

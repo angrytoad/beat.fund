@@ -1,0 +1,12 @@
+
+@media screen and (max-width: 767px){
+  #internal_account_menu,#internal_menu{
+    .dropdown-menu > li > a{
+      color:$text_color;
+    }
+
+    .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+      color:$text_light;
+    }
+  }
+}

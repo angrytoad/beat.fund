@@ -23,6 +23,6 @@ class AccountPasswordController extends Controller
 
     public function update()
     {
-      
+
     }
 }

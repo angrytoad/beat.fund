@@ -3,7 +3,9 @@
 namespace App\Http;
 
 use App\Http\Middleware\Account\EmailVerified;
+use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
+use App\Http\Middleware\Store\HasStore;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -60,6 +62,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'email.verified' => EmailVerified::class,
-        'account.has_verification' => HasVerification::class
+        'account.has_verification' => HasVerification::class,
+        'user.has_profile' => HasProfile::class,
+        'user.has_store' => HasStore::class,
     ];
 }

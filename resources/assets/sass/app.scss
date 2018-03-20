@@ -13,12 +13,16 @@
 
 // Structure
 @import "layout/navbar";
+@import "layout/internal_menu";
 
 // Page Imports
 @import "pages/welcome";
+@import "pages/profile/profile";
+@import "pages/store/create";
 
 body{
   font-family: 'Ubuntu', sans-serif;
+  background-color: $background;
 }
 
 #app{

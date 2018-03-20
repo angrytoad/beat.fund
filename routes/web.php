@@ -21,6 +21,9 @@ Route::get('/account/verify', 'Account\VerificationController@showVerificationRe
 Route::get('/account/verify/resend', 'Account\VerificationController@resendVerification')->name('account.resend_verification');
 Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVerification')->name('account.attempt_verification');
 
+Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
+Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
+
 Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
     Route::get('/', 'Account\AccountController@show')->name('account');
     Route::get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
@@ -33,4 +36,28 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
     Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
 });
 
-Route::get('/me', 'Home\HomeController@index')->name('home');
+Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
+    
+    Route::get('/', 'Home\HomeController@index')->name('home');
+    
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
+        Route::post('create', 'Profile\ProfileCreationController@create');
+        
+        Route::group(['middleware' => ['user.has_profile']], function () {
+            Route::get('/', 'Profile\ProfileController@show')->name('profile');
+            Route::post('/', 'Profile\ProfileController@update');
+        });
+    });
+
+    Route::group(['prefix' => 'store'], function () {
+        Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
+        Route::post('create', 'Store\StoreCreationController@create');
+
+        Route::group(['middleware' => ['user.has_store']], function () {
+            Route::get('/', 'Store\StoreController@show')->name('store');
+        });
+    });
+});
+
+
