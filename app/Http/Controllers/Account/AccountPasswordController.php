@@ -18,6 +18,11 @@ class AccountPasswordController extends Controller
 
     public function show()
     {
-        return view('account.change_password');
+        return view('account.password.change_password');
+    }
+
+    public function update()
+    {
+      
     }
 }
