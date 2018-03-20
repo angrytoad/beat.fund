@@ -13,7 +13,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $profile->artist_name }}'s Store</div>
                 <div class="panel-body">
-
+                    You've got a store, nothing here at the moment though
                 </div>
             </div>
         </div>
