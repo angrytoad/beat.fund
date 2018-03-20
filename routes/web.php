@@ -22,6 +22,7 @@ Route::get('/account/verify/resend', 'Account\VerificationController@resendVerif
 Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVerification')->name('account.attempt_verification');
 
 Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
+Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
 
 Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
     Route::get('/', 'Account\AccountController@show')->name('account');
