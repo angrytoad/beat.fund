@@ -8488,6 +8488,49 @@ button.close {
   vertical-align: top;
 }
 
+#store_products #store_products_clickthrough {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#store_products #store_products_clickthrough > a:hover {
+  text-decoration: none;
+}
+
+#store_products #store_products_clickthrough > a:hover div {
+  opacity: 0.8;
+}
+
+#store_products #store_products_clickthrough > a div {
+  height: 150px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  font-size: 3rem;
+}
+
+#store_products #store_products_clickthrough > a div span {
+  line-height: 20px;
+}
+
+#store_products #store_products_clickthrough > a div small {
+  font-size: 18px;
+}
+
+#store_products #store_products_clickthrough > a:first-child div {
+  background: #007BFF;
+  color: #fff;
+  padding: 15px;
+}
+
+#store_products #store_products_clickthrough > a:last-child div {
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;

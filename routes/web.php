@@ -56,6 +56,12 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
         Route::group(['middleware' => ['user.has_store']], function () {
             Route::get('/', 'Store\StoreController@show')->name('store');
+
+            Route::group(['prefix' => 'products'], function () {
+                Route::get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
+                Route::get('live', 'Store\Products\StoreProductsController@show_live')->name('store.products.live');
+                Route::get('pending', 'Store\Products\StoreProductsController@show_pending')->name('store.products.pending');
+            });
         });
     });
 });
