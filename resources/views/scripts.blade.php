@@ -1,5 +1,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.0/fuse.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- Add Vex -->
 <script src="/js/vex.combined.min.js"></script>
@@ -17,5 +16,13 @@
 </script>
 
 <script src="{{ asset('js/app.js') }}"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
+
+
+
 
 @yield('scripts')
