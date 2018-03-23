@@ -34,4 +34,8 @@ class Store extends Model
     public function getStoreName(){
         return $this->user->profile->artist_name.'\'s Store';
     }
+
+    public function products(){
+       return $this->hasMany('App\Models\Product'); 
+    }
 }
