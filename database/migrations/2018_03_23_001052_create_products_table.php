@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->uuid('store_id');
             $table->string('name');
             $table->text('description');
+            $table->text('description_delta');
             $table->string('image_key')->nullable();
             $table->string('image_url')->nullable();
             $table->integer('price')->nullable();

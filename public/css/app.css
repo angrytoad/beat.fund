@@ -8492,6 +8492,7 @@ button.close {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
+  margin-bottom: 15px;
 }
 
 #store_products #store_products_clickthrough > a:hover {
@@ -8531,6 +8532,68 @@ button.close {
   border: 1px solid #ddd;
 }
 
+#create-product #create-product-form textarea {
+  resize: none;
+}
+
+#product #product-details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 15px;
+}
+
+#product #product-details #product-image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ddd;
+}
+
+#product #product-details #product-image .dropzone {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  height: 100%;
+}
+
+#product #product-details #product-image .dropzone.dz-started {
+  opacity: 1;
+}
+
+#product #product-details #product-image .dropzone .dz-preview {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: none;
+  margin: 0;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+#product #product-details #product-image .dropzone .dz-preview .dz-details {
+  margin-top: 45px;
+}
+
+#product #product-details #product-image:hover .dropzone {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+#product #product-details #product-image img {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  top: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;
@@ -8546,5 +8609,34 @@ summary {
 
 summary:hover {
   cursor: pointer;
+}
+
+.dropzone {
+  padding: 0px !important;
+  border: 1px solid #ddd !important;
+  position: relative;
+}
+
+.dropzone .dz-message {
+  text-align: center;
+  height: 100%;
+  margin: 0 !important;
+  display: grid;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dropzone .dz-preview .dz-image {
+  border-radius: 6px !important;
+}
+
+.ql-container .ql-editor {
+  min-height: 200px;
 }
 

@@ -13,23 +13,32 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Products</div>
                 <div class="panel-body">
-                    <div id="store_products_clickthrough">
-                        <a href="{{ route('store.products.live') }}">
-                            <div title="Live Products">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div id="store_products_clickthrough">
+                                <a href="{{ route('store.products.live') }}">
+                                    <div title="Live Products">
                             <span>
                                 <i class="fas fa-music"></i> <strong>{{ $live_products_count }}</strong><br />
                                 <small>live products</small>
                             </span>
-                            </div>
-                        </a>
-                        <a href="{{ route('store.products.pending') }}">
-                            <div title="Pending Products">
+                                    </div>
+                                </a>
+                                <a href="{{ route('store.products.pending') }}">
+                                    <div title="Pending Products">
                                 <span>
                                     <i class="fas fa-cubes"></i> <strong>{{ $pending_products_count }}</strong><br />
                                     <small>pending products</small>
                                 </span>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="{{ route('store.products.create') }}"><button class="btn btn-primary">Create a product</button></a>
+                        </div>
                     </div>
                     <hr />
                     <h4>Recently Added</h4>

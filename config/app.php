@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         'Aloha\Twilio\Support\Laravel\ServiceProvider',
+        Aws\Laravel\AwsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
         'Helper' => App\Helpers\Helper::class,
+        'AWS' => Aws\Laravel\AwsFacade::class
     ],
 
 ];
