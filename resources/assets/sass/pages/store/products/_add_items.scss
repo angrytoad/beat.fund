@@ -1,0 +1,23 @@
+#add-items{
+  #add-items-container{
+    display:grid;
+    grid-gap:15px;
+    margin-bottom:15px;
+
+    .product-item{
+      display:grid;
+      grid-template-columns: auto 1fr 1fr auto;
+      grid-gap:15px;
+      align-items: center;
+
+      .form-group{
+        margin:0;
+      }
+
+      .product-item-number{
+        font-weight: bold;
+        font-size:20px;
+      }
+    }
+  }
+}
