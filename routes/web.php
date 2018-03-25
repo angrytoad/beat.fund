@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
                 Route::group(['middleware' => ['user.has_product'], 'prefix' => '{uuid}'], function () {
                     Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
+                    Route::get('/item/{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
 
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
                         Route::post('/', 'Store\Products\ProductController@update');
