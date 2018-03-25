@@ -47,9 +47,13 @@
                                                     <span class="input-group-text" id="basic-addon1">&pound;</span>
                                                 </div>
                                                 @if($product->price !== null)
-                                                    <input type="number" name="price" class="form-control" placeholder="Enter a price" min="0" value="{{ $product->price or old('price', '') }}" />
+                                                    @if(old('price'))
+                                                        <input type="number" name="price" class="form-control" step="any" placeholder="Enter a price" min="0" value="{{ number_format(old('price'),2) }}" />
+                                                    @else
+                                                        <input type="number" name="price" class="form-control" step="any" placeholder="Enter a price" min="0" value="{{ number_format($product->price/100,2) }}" />
+                                                    @endif
                                                 @else
-                                                    <input type="number" name="price" readonly class="form-control" placeholder="Enter a price" min="0" value="{{ $product->price or old('price', '') }}" />
+                                                    <input type="number" name="price" readonly class="form-control" step="any" placeholder="Enter a price" min="0" value="{{ $product->price or old('price', '') }}" />
                                                 @endif
                                             </div>
                                         </div>
