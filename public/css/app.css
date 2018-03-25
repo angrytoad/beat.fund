@@ -8594,6 +8594,30 @@ button.close {
   transform: translateX(-50%) translateY(-50%);
 }
 
+#add-items #add-items-container {
+  display: grid;
+  grid-gap: 15px;
+  margin-bottom: 15px;
+}
+
+#add-items #add-items-container .product-item {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr auto;
+  grid-gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#add-items #add-items-container .product-item .form-group {
+  margin: 0;
+}
+
+#add-items #add-items-container .product-item .product-item-number {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;

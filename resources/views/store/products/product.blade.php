@@ -118,6 +118,7 @@
                 <div class="panel-heading">Line Items</div>
                 <div class="panel-body">
                     <a href="{{ route('store.products.product.add_items',$product->id) }}"><button class="btn-primary btn">Add item(s)</button></a>
+                    <hr />
                     <table class="table-responsive table table-striped" id="product-line-items">
                         <thead>
                             <tr>
@@ -130,8 +131,12 @@
                             @foreach($product->items as $item)
                                 <tr>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->signed_url }}</td>
-                                    <td>View</td>
+                                    <td>
+                                        <audio controls>
+                                            <source src="{{ $item->signedURL() }}">
+                                        </audio>
+                                    </td>
+                                    <td><a href="{{ route('store.products.product.item',$item->id) }}">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -144,6 +149,8 @@
 @endsection
 @section('scripts')
     <script>
+
+        $('#product-line-items').dataTable();
 
         function submitForm() {
             document.getElementById("update-product-form").submit();
