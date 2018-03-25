@@ -65,7 +65,7 @@
                 this.on("success", function(file, response) {
                     $('#add-items-table tbody').append(
                             '<tr>' +
-                            '<td><input type="text" class="form-control" name="items['+response.client_name+'][item_name]" /></td>' +
+                            '<td><input type="text" class="form-control" required placeholder="Store name" name="items['+response.client_name+'][item_name]" /></td>' +
                             '<td>'+response.client_name+'</td>' +
                             '<td><audio controls><source src="'+response.public_url+'"></audio></td>' +
                             '</tr>'
