@@ -9,6 +9,8 @@ namespace App\Http\Controllers\Store\Products;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use GuzzleHttp\Psr7\CachingStream;
+use GuzzleHttp\Psr7\Stream;
 use Illuminate\Http\Request;
 use AWS;
 use Illuminate\Support\Facades\Auth;
@@ -54,20 +56,22 @@ class ProductController extends Controller
 
             try{
                 $image_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$product->id.'/'.str_replace('products/','',$request->get('image'));
-                $source_file = storage_path('app').'/'.$request->get('image');
+                $source_file = Storage::url($request->get('image'),'s3');
 
                 $s3 = AWS::createClient('s3');
                 $result = $s3->putObject(array(
                     'ACL' => 'public-read',
                     'Bucket' => env('AWS_BUCKET'),
                     'Key' => $image_key,
-                    'SourceFile' => $source_file
+                    'Body' => new CachingStream(
+                        new Stream(fopen($source_file, 'r'))
+                    ),
                 ));
 
                 $product->image_url = $result->get('ObjectURL');
                 $product->image_key = $image_key;
 
-                Storage::delete($request->get('image'));
+                Storage::delete($request->get('image'),'s3');
             }catch(\Exception $e){
                 return back()->withErrors([
                     $e->getMessage()
