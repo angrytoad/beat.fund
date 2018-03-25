@@ -37,6 +37,10 @@ class Product extends Model
     public function store()
     {
         return $this->belongsTo('App\Models\Store');
+    }
 
+    public function items()
+    {
+        return $this->hasMany('App\Models\ProductLineItem');
     }
 }
