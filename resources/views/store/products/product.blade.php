@@ -136,7 +136,7 @@
                                             <source src="{{ $item->signedURL() }}">
                                         </audio>
                                     </td>
-                                    <td><a href="{{ route('store.products.product.item',$item->id) }}">View</a></td>
+                                    <td><a href="{{ route('store.products.product.item',[$product->id, $item->id]) }}">View</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
