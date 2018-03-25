@@ -30,10 +30,10 @@ class ProductCreationImageController extends Controller
         ]);
         
         $image = $request->file('file');
-        $upload_success = $image->store('products');
+        $file_name = $image->store('products',['disk' => 's3','visibility' => 'public']);
 
-        if ($upload_success) {
-            return response()->json($upload_success, 200);
+        if ($file_name) {
+            return response()->json($file_name, 200);
         }
         // Else, return error 400
         else {
