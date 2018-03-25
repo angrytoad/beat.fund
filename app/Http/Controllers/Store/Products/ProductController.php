@@ -68,10 +68,12 @@ class ProductController extends Controller
                     ),
                 ));
 
+                Storage::delete($request->get('image'),'s3');
+                Storage::delete($product->image_key, 's3');
+
                 $product->image_url = $result->get('ObjectURL');
                 $product->image_key = $image_key;
 
-                Storage::delete($request->get('image'),'s3');
             }catch(\Exception $e){
                 return back()->withErrors([
                     $e->getMessage()
