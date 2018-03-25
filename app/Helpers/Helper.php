@@ -9,6 +9,8 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Route;
+use FFMpeg;
+use AWS;
 
 class Helper
 {
@@ -55,6 +57,31 @@ class Helper
     {
         $countries = Helper::getCountryList();
         return $countries[$id];
+    }
+
+    public static function getAudioBitrate($file_name)
+    {
+        $media = FFMpeg::fromDisk('s3')->open($file_name);
+
+        $duration = $media->getDurationInSeconds();
+        $size = AWS::createClient('s3')->headObject([
+            'Bucket' => env('AWS_BUCKET'),
+            'Key' => $file_name
+        ])['ContentLength'];
+
+        $kilobits = ($size*8)/1000;
+
+        return $kilobits/$duration;
+    }
+    
+    public static function getS3Filesize($file_name)
+    {
+        $size = AWS::createClient('s3')->headObject([
+            'Bucket' => env('AWS_BUCKET'),
+            'Key' => $file_name
+        ])['ContentLength'];
+
+        return ($size/1000);
     }
 
 }

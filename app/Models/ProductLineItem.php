@@ -42,7 +42,7 @@ class ProductLineItem extends Model
     public function signedURL()
     {
         return Storage::temporaryUrl(
-            $this->item_key, now()->addMinutes(5)
+            $this->item_key, now()->addMinutes(30)
         );
     }
 }

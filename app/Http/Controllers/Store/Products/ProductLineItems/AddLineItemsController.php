@@ -6,7 +6,7 @@
  * Date: 24/03/2018
  * Time: 21:51
  */
-namespace App\Http\Controllers\Store\Products;
+namespace App\Http\Controllers\Store\Products\ProductLineItems;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
