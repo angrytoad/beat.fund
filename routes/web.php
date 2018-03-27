@@ -40,6 +40,14 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     
     Route::get('/', 'Home\HomeController@index')->name('home');
     
+    Route::group(['prefix' => 'help'], function () {
+       Route::group(['prefix' => 'store'], function () {
+          Route::group(['prefix' => 'products'], function() {
+              Route::get('pricing', function(){ return view('help.store.products.pricing'); })->name('help.store.products.pricing');
+          });
+       });
+    });
+    
     Route::group(['prefix' => 'profile'], function () {
         Route::get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
         Route::post('create', 'Profile\ProfileCreationController@create');
@@ -56,6 +64,28 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
         Route::group(['middleware' => ['user.has_store']], function () {
             Route::get('/', 'Store\StoreController@show')->name('store');
+
+            Route::group(['prefix' => 'products'], function () {
+                Route::get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
+                Route::get('live', 'Store\Products\StoreProductsController@show_live')->name('store.products.live');
+                Route::get('pending', 'Store\Products\StoreProductsController@show_pending')->name('store.products.pending');
+                
+                Route::get('create', 'Store\Products\ProductCreationController@show')->name('store.products.create');
+                Route::post('create', 'Store\Products\ProductCreationController@create');
+                Route::post('create/image', 'Store\Products\ProductCreationImageController@upload')->name('store.products.create.image');
+
+                Route::group(['middleware' => ['user.has_product'], 'prefix' => '{uuid}'], function () {
+                    Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
+                    Route::get('/item/{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
+
+                    Route::group(['middleware' => ['user.store.product_not_live']], function () {
+                        Route::post('/', 'Store\Products\ProductController@update');
+                        Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
+                        Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
+                        Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
+                    });
+                });
+            });
         });
     });
 });

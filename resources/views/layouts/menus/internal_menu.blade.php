@@ -4,9 +4,20 @@
             <a class="list-group-item-heading" href="{{ route('home') }}">Home</a>
         </li>
         @if(Auth::user()->store)
-            <li class="list-group-item {{ Helper::isActiveRoute('store') }}">
-                <a class="list-group-item-heading" href="{{ route('store') }}">My Store</a>
-            </li>
+        <li class="list-group-item {{ Helper::areActiveRoutes(['store','store.products','store.products.product','store.products.create','store.products.product.add_items']) }}">
+            <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
+                Store <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="{{ Helper::isActiveRoute('store') }}">
+                    <a href="{{ route('store') }}">My Store</a>
+                </li>
+                <li class="{{ Helper::areActiveRoutes(['store.products','store.products.product','store.products.create','store.products.product.add_items']) }}">
+                    <a href="{{ route('store.products') }}">Products</a>
+                </li>
+            </ul>
+        </li>
+
         @endif
         <li class="list-group-item {{ Helper::areActiveRoutes(['profile','profile.create','store.create']) }}">
             <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">

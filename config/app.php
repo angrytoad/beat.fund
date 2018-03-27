@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
         'Aloha\Twilio\Support\Laravel\ServiceProvider',
+        Aws\Laravel\AwsServiceProvider::class,
+        Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -177,6 +179,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
 
     ],
 
@@ -229,6 +233,8 @@ return [
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
         'Helper' => App\Helpers\Helper::class,
+        'AWS' => Aws\Laravel\AwsFacade::class,
+        'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class
     ],
 
 ];
