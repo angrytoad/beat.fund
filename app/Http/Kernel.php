@@ -6,6 +6,7 @@ use App\Http\Middleware\Account\EmailVerified;
 use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
 use App\Http\Middleware\Store\HasStore;
+use App\Http\Middleware\Store\Product\LineItem\HasLineItem;
 use App\Http\Middleware\Store\Product\ProductNotLive;
 use App\Http\Middleware\Store\Product\UserHasProduct;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'user.has_profile' => HasProfile::class,
         'user.has_store' => HasStore::class,
         'user.has_product' => UserHasProduct::class,
-        'user.store.product_not_live' => ProductNotLive::class
+        'user.store.product_not_live' => ProductNotLive::class,
+        'user.store.product.has_item' => HasLineItem::class
     ];
 }
