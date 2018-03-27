@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePassword;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -29,22 +30,12 @@ class AccountPasswordController extends Controller
 
     public function update(UpdatePassword $request)
     {
-        $userPass = Auth::user()->getAuthPassword();
-        $password = $request->get('new-password');
-        if (empty($userPass)) {
-          return redirect('/');
-        }
-        echo $request->input('password');
-        echo '<br>';
-        echo $userPass;
-        echo '<br>';
-        echo Hash::make($request->get('password'));
-die;
-        if (Hash::check($request->input('password'), $userPass)) {
-          return redirect()->route('account.change_password')->withErrors(['password' => 'Incorrect Password']);
+        if (!Hash::check($request->get('password'), Auth::user()->getAuthPassword())) {
+          return redirect()->route('account.change_password')->withErrors(['password' => 'Your current password is not correct.']);
         }
 
-        $user->password = bcrypt($request->input('new-password'));
+        $user = User::find(Auth::user()->id);
+        $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
         Mail::to($user->email)->send(new UpdatePasswordNotice($user));
