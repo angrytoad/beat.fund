@@ -39,6 +39,8 @@ class AccountPasswordController extends Controller
         $user->save();
 
         Mail::to($user->email)->send(new UpdatePasswordNotice($user));
-        return redirect()->route('account.change_password')->withMsg(['success' => 'Password successfully updated!']);
+        return redirect()->route('account.change_password')->with(
+            ['alert-success' => 'Your password has been successfully updated.']
+        );
     }
 }
