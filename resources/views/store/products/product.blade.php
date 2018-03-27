@@ -140,7 +140,10 @@
                                             <source src="{{ $item->signedURL() }}">
                                         </audio>
                                     </td>
-                                    <td><a href="{{ route('store.products.product.item',[$product->id, $item->id]) }}">View</a></td>
+                                    <td>
+                                        <a href="{{ route('store.products.product.item', [$product->id, $item->id]) }}"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('store.products.product.item.delete',[$product->id, $item->id]) }}"><i class="fas fa-trash-alt text-danger"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
