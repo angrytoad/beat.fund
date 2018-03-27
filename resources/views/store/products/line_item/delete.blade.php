@@ -13,6 +13,24 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Delete {{ $line_item->name }}</div>
                 <div class="panel-body">
+                    <p>
+                        By deleting "{{ $line_item->name }}", you are confirming that any future purchase
+                        of <a href="{{ route('store.products.product', $line_item->product->id) }}"><strong>{{ $line_item->product->name }}</strong></a> will not contain this item.
+                    </p>
+                    <form method="POST" action={{ route('store.products.product.item.delete', [$line_item->product->id, $line_item->id]) }}>
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="delete_item_checkbox" id="delete_item_checkbox">
+                                <label class="form-check-label" for="delete_item_checkbox">
+                                    I understand this item will no longer be available.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger">Delete <strong>{{ $line_item->name }}</strong></button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
@@ -27,7 +45,7 @@
                         digital products they purchased, removed.
                     </p>
                     <p>
-                        Any future purchasers will not receive this item.
+                        <strong>Any future purchasers will not receive this item.</strong>
                     </p>
                 </div>
             </div>

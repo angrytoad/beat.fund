@@ -119,6 +119,9 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     // Get the product page AND the item page
                     Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
 
+                    Route::group(['middleware' => ['user.store.product_not_live']], function () {
+                       Route::get('/delete', 'Store\Products\ProductController@show')->name('store.products.product.delete');
+                    });
 
                     /**
                      * Routes for a specific item
@@ -131,6 +134,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                          */
                         Route::group(['middleware' => ['user.store.product_not_live']], function () {
                             Route::get('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@show')->name('store.products.product.item.delete');
+                            Route::post('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@delete');
                         });
 
                     });
