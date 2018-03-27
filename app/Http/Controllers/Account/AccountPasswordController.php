@@ -29,18 +29,18 @@ class AccountPasswordController extends Controller
 
     public function update(UpdatePassword $request)
     {
-        $user = Auth::user();
-        $password = $request->input('new-password');
-        if (empty($user)) {
+        $userPass = Auth::user()->getAuthPassword();
+        $password = $request->get('new-password');
+        if (empty($userPass)) {
           return redirect('/');
         }
         echo $request->input('password');
         echo '<br>';
-        echo $user->password;
+        echo $userPass;
         echo '<br>';
-        echo bcrypt($request->input('password'));
+        echo Hash::make($request->get('password'));
 die;
-        if (Hash::check($request->input('password'), $user->password)) {
+        if (Hash::check($request->input('password'), $userPass)) {
           return redirect()->route('account.change_password')->withErrors(['password' => 'Incorrect Password']);
         }
 
