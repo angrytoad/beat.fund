@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     Route::get('/', 'Home\HomeController@index')->name('home');
 
 
+
     /**
      * All routes for help documentation
      */
@@ -66,19 +67,17 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     Route::group(['prefix' => 'profile'], function () {
         Route::get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
         Route::post('create', 'Profile\ProfileCreationController@create');
-        
+
         Route::group(['middleware' => ['user.has_profile']], function () {
             Route::get('/', 'Profile\ProfileController@show')->name('profile');
             Route::post('/', 'Profile\ProfileController@update');
         });
     });
 
-
-
     /**
      * Routes for store functionality
      */
-    Route::group(['prefix' => 'store'], function () {
+    Route::group(['prefix' => 'store', 'middleware' => ['user.has_profile']], function () {
         Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
         Route::post('create', 'Store\StoreCreationController@create');
 
@@ -103,6 +102,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                 Route::get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
                 Route::get('live', 'Store\Products\StoreProductsController@show_live')->name('store.products.live');
                 Route::get('pending', 'Store\Products\StoreProductsController@show_pending')->name('store.products.pending');
+
 
                 // Creating a product
                 Route::get('create', 'Store\Products\ProductCreationController@show')->name('store.products.create');
@@ -150,5 +150,3 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
         });
     });
 });
-
-
