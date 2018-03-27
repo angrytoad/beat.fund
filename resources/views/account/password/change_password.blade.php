@@ -13,19 +13,19 @@
                         <form class="form-horizontal col-md-6" method="POST" action="{{ route('account.update_password') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">
                                 <label for="new-password">New Password</label>
-                                <input type="password" class="form-control" name="new-password" id="new-password" placeholder="Enter new password">
-                                @if ($errors->has('new-password'))
-                                    <small class="form-text text-muted">{{ $errors->first('new-password') }}</small>
+                                <input type="password" class="form-control" name="new_password" id="new_password" placeholder="Enter new password">
+                                @if ($errors->has('new_password'))
+                                    <small class="form-text text-muted">{{ $errors->first('new_password') }}</small>
                                 @endif
                             </div>
 
                             <div class="form-group{{ $errors->has('confirm') ? ' has-error' : '' }}">
                                 <label for="confirm">Confirm Password</label>
-                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm new password">
-                                @if ($errors->has('confirm'))
-                                    <small class="form-text text-muted">{{ $errors->first('confirm') }}</small>
+                                <input type="password" class="form-control" name="new_password_confirmation" id="new_password_confirmation" placeholder="Confirm new password">
+                                @if ($errors->has('new_password_confirmation'))
+                                    <small class="form-text text-muted">{{ $errors->first('new_password_confirmation') }}</small>
                                 @endif
                             </div>
 
