@@ -18,6 +18,6 @@ class HasProfile
             return $next($request);
         }
 
-        return redirect(route('profile.create'));
+        return redirect(route('profile.create'))->withErros(['You need to have created a profile to perform that action.']);
     }
 }
