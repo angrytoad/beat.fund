@@ -17,7 +17,12 @@
                         <div class="alert alert-warning">This product is currently PENDING. (It is not showing on your store page)</div>
                         <div id="product-details">
                             <div id="product-image">
-                                <img src="{{ $product->image_url }}" />
+                                @if($product->image_key)
+                                    <img src="{{ $product->image_url }}" />
+                                @else
+                                    <img src="/images/no_image.png" />
+                                @endif
+
                                 <form action="{{ route('store.products.create.image') }}" class="dropzone" id="product-image-dropzone">
                                     {{ csrf_field() }}
                                 </form>

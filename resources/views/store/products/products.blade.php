@@ -55,7 +55,7 @@
                         <tbody>
                             @foreach($recent_products as $recent_product)
                                 <tr>
-                                    <td>{{ $recent_product->live ? 'live' : 'pending' }}</td>
+                                    <td>{{ $recent_product->live ? 'Live' : 'Pending' }}</td>
                                     <td>{{ $recent_product->name }}</td>
                                     <td>{{ count($recent_product->items) }}</td>
                                     <td>{{ $recent_product->updated_at }}</td>

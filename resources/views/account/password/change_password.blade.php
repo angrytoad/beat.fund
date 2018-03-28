@@ -4,13 +4,16 @@
     <div class="container" id="verification_required">
         @include('layouts.flash_message')
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-3">
+                @include('layouts.menus.internal_menu')
+            </div>
+            <div class="col-md-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Update your password
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal col-md-6" method="POST" action="{{ route('account.update_password') }}">
+                        <form class="form-horizontal col-xs-12" method="POST" action="{{ route('account.update_password') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">

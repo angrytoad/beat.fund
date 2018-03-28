@@ -120,7 +120,8 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
 
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
-                       Route::get('/delete', 'Store\Products\ProductController@show')->name('store.products.product.delete');
+                       Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
+                       Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
                     });
 
                     /**

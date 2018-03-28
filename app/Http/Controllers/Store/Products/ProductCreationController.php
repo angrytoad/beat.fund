@@ -54,7 +54,7 @@ class ProductCreationController extends Controller
             $product->price = ( $request->get('price') !== null ? $request->get('price')*100 : 0 );
         }
 
-        if($request->has('image')){
+        if($request->has('image') && $request->get('image') !== null){
             try{
                 $image_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$product->id.'/'.str_replace('products/','',$request->get('image'));
                 $source_file = Storage::url($request->get('image'),'s3');
@@ -84,6 +84,8 @@ class ProductCreationController extends Controller
 
         $product->save();
         
-        return redirect(route('store.products.product', $product->id));
+        return redirect(route('store.products.product', $product->id))->with([
+            'alert-success' => $product->name.' has been successfully created.'
+        ]);
     }
 }
