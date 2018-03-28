@@ -82,7 +82,7 @@ class AddLineItemsController extends Controller
         }
 
         return redirect(route('store.products.product', $uuid))->with([
-            'Items have been successfully added to your product.'
+            'alert-success' => 'Items have been successfully added to your product.'
         ]);
     }
 }

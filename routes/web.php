@@ -24,6 +24,11 @@ Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVer
 Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
 Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
 
+
+
+/**
+ * All routes related to action actions
+ */
 Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
     Route::get('/', 'Account\AccountController@show')->name('account');
     Route::get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
@@ -38,8 +43,14 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
 
 Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
 
+    // Homepage Once logged in
     Route::get('/', 'Home\HomeController@index')->name('home');
 
+
+
+    /**
+     * All routes for help documentation
+     */
     Route::group(['prefix' => 'help'], function () {
        Route::group(['prefix' => 'store'], function () {
           Route::group(['prefix' => 'products'], function() {
@@ -48,6 +59,11 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
        });
     });
 
+
+
+    /**
+     * Profile Actions
+     */
     Route::group(['prefix' => 'profile'], function () {
         Route::get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
         Route::post('create', 'Profile\ProfileCreationController@create');
@@ -58,27 +74,77 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
         });
     });
 
+    /**
+     * Routes for store functionality
+     */
     Route::group(['prefix' => 'store', 'middleware' => ['user.has_profile']], function () {
         Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
         Route::post('create', 'Store\StoreCreationController@create');
 
+
+
+        /**
+         * Routes that require a store to exist
+         */
         Route::group(['middleware' => ['user.has_store']], function () {
+
+            // Show the store front
             Route::get('/', 'Store\StoreController@show')->name('store');
 
+
+
+            /**
+             * Routes for all products
+             */
             Route::group(['prefix' => 'products'], function () {
+
+                // Get all products, live and pending.
                 Route::get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
                 Route::get('live', 'Store\Products\StoreProductsController@show_live')->name('store.products.live');
                 Route::get('pending', 'Store\Products\StoreProductsController@show_pending')->name('store.products.pending');
 
+
+                // Creating a product
                 Route::get('create', 'Store\Products\ProductCreationController@show')->name('store.products.create');
                 Route::post('create', 'Store\Products\ProductCreationController@create');
                 Route::post('create/image', 'Store\Products\ProductCreationImageController@upload')->name('store.products.create.image');
 
+
+
+                /**
+                 * Routes for a specific product
+                 */
                 Route::group(['middleware' => ['user.has_product'], 'prefix' => '{uuid}'], function () {
+
+                    // Get the product page AND the item page
                     Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
-                    Route::get('/item/{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
 
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
+                       Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
+                       Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
+                    });
+
+                    /**
+                     * Routes for a specific item
+                     */
+                    Route::group(['middleware' => ['user.store.product.has_item'], 'prefix' => 'item'], function () {
+                        Route::get('{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
+
+                        /**
+                         * Routes for a specific item that requires the product to be pending
+                         */
+                        Route::group(['middleware' => ['user.store.product_not_live']], function () {
+                            Route::get('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@show')->name('store.products.product.item.delete');
+                            Route::post('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@delete');
+                        });
+
+                    });
+
+
+
+                    Route::group(['middleware' => ['user.store.product_not_live']], function () {
+
+                        // Allow items to be added and for the product to be updates
                         Route::post('/', 'Store\Products\ProductController@update');
                         Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
                         Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
