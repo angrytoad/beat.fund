@@ -23,6 +23,9 @@
 @import "pages/store/products/create";
 @import "pages/store/products/product";
 @import "pages/store/products/add_items";
+@import "pages/store/products/line_item/rearrange_items";
+@import "pages/store/products/line_item/tag_items";
+@import "pages/store/products/line_item/line_item";
 
 body{
   font-family: 'Ubuntu', sans-serif;
@@ -70,4 +73,16 @@ summary{
   .ql-editor{
     min-height: 200px;
   }
+}
+
+.tag{
+  display:inline-block;
+  background:$blue;
+  color:$text_light;
+  border-radius: 11px;
+  height: 22px;
+  font-size: 12px;
+  padding: 2px 8px;
+  line-height: 17px;
+  margin-bottom:2px;
 }

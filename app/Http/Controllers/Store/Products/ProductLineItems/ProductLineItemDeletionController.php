@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Store\Products\ProductLineItems;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\ProductLineItem;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,11 @@ class ProductLineItemDeletionController extends Controller
 
         $line_item = ProductLineItem::find($item_uuid);
         $line_item->delete();
+
+        foreach(Product::find($product_uuid)->items()->orderBy('order','ASC')->get() as $item_key => $item){
+            $item->order = $item_key;
+            $item->save();
+        }
 
         return redirect(route('store.products.product',$product_uuid))->with([
             'alert-success' => $line_item->name.' has been successfully removed from '.$line_item->product->name.'.'

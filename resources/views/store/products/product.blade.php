@@ -127,23 +127,43 @@
                 <div class="panel-heading">Line Items</div>
                 <div class="panel-body">
                     <a href="{{ route('store.products.product.add_items',$product->id) }}"><button class="btn-primary btn">Add item(s)</button></a>
+                    <a href="{{ route('store.products.product.rearrange_items',$product->id) }}"><button class="btn-primary btn">Rearrange item(s)</button></a>
+                    <a href="{{ route('store.products.product.tag_items',$product->id) }}"><button class="btn-primary btn">Tag item(s)</button></a>
                     <hr />
                     <table class="table-responsive table table-striped" id="product-line-items">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>File</th>
+                                <th>Tags</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($product->items as $item)
+                            @foreach($product->items()->orderBy('order','ASC')->get() as $item)
                                 <tr>
+                                    <td>{{ $item->order+1 }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>
                                         <audio controls>
                                             <source src="{{ $item->signedURL() }}">
                                         </audio>
+                                    </td>
+                                    <td>
+                                        @foreach(array_slice($item->tags->toArray(),0,5) as $tag)
+                                            <div class="tag">
+                                                {{ $tag['name'] }}
+                                            </div>
+                                        @endforeach
+                                        @if(count($item->tags) > 5)
+                                                <div class="tag">
+                                                    <strong>+{{ count($item->tags)-5 }}</strong>
+                                                </div>
+                                        @endif
+                                        @if(count($item->tags) === 0)
+                                            <i>N/A</i>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{ route('store.products.product.item', [$product->id, $item->id]) }}"><i class="fas fa-eye"></i></a>
