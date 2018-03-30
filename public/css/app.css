@@ -8618,6 +8618,96 @@ button.close {
   font-size: 20px;
 }
 
+#rearrange-items #rearrange-items-sortable {
+  list-style-type: none;
+  padding: 0;
+}
+
+#rearrange-items #rearrange-items-sortable .ui-sortable-helper {
+  background: #007BFF;
+  color: #fff;
+}
+
+#tag-items #center-arrow {
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#tag-items #items-to-modify,
+#tag-items #product-items {
+  min-height: 150px;
+  background: #F4F9FF;
+  padding: 1rem;
+  border: 1px solid #f5f5f5;
+  margin: 0;
+  list-style-type: none;
+}
+
+#tag-items #items-to-modify ul,
+#tag-items #product-items ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#tag-items #items-to-modify .ui-draggable-dragging,
+#tag-items #product-items .ui-draggable-dragging {
+  z-index: 20;
+  display: block;
+  width: 100%;
+}
+
+#tag-items .bootstrap-tagsinput {
+  width: 100%;
+}
+
+#tag-items .bootstrap-tagsinput input {
+  height: 25px;
+}
+
+#tag-items .bootstrap-tagsinput .label {
+  font-size: 16px;
+  font-weight: 300;
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+#tag-items .bootstrap-tagsinput .label-info {
+  background: #007BFF;
+}
+
+#line-item #line-item-actions-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+#line-item #line-item-actions-list li {
+  display: inline-block;
+}
+
+#line-item #line-item-tags #delete-selected-tags-form {
+  display: inline-block;
+}
+
+#line-item #line-item-tags .tag {
+  border-radius: 13px;
+  height: 26px;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+#line-item #line-item-tags .tag:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#line-item #line-item-tags .tag.selected {
+  background: #d9534f !important;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;
@@ -8662,5 +8752,17 @@ summary:hover {
 
 .ql-container .ql-editor {
   min-height: 200px;
+}
+
+.tag {
+  display: inline-block;
+  background: #007BFF;
+  color: #fff;
+  border-radius: 11px;
+  height: 22px;
+  font-size: 12px;
+  padding: 2px 8px;
+  line-height: 17px;
+  margin-bottom: 2px;
 }
 

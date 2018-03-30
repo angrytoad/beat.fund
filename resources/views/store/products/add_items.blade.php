@@ -63,18 +63,21 @@
             acceptedFiles: ".ogg,.wav,.aac,.mp4,.mp3,.m4a",
             init: function() {
                 this.on("success", function(file, response) {
+
+                    let random_client_name = response.client_name+Math.random().toString(36).substring(7);
+
                     $('#add-items-table tbody').append(
                             '<tr>' +
-                            '<td><input type="text" class="form-control" required placeholder="Store name" name="items['+response.client_name+'][item_name]" /></td>' +
+                            '<td><input type="text" class="form-control" required placeholder="Store name" name="items['+random_client_name+'][item_name]" /></td>' +
                             '<td>'+response.client_name+'</td>' +
                             '<td><audio controls><source src="'+response.public_url+'"></audio></td>' +
                             '</tr>'
                     )
 
                     $('#product-items-uploaded').append(
-                            '<input type="hidden" name="items['+response.client_name+'][s3_name]" value="'+response.s3_name+'" />' +
-                            '<input type="hidden" name="items['+response.client_name+'][client_name]" value="'+response.client_name+'" />' +
-                            '<input type="hidden" name="items['+response.client_name+'][public_url]" value="'+response.public_url+'" />'
+                            '<input type="hidden" name="items['+random_client_name+'][s3_name]" value="'+response.s3_name+'" />' +
+                            '<input type="hidden" name="items['+random_client_name+'][client_name]" value="'+response.client_name+'" />' +
+                            '<input type="hidden" name="items['+random_client_name+'][public_url]" value="'+response.public_url+'" />'
                     )
                 });
 

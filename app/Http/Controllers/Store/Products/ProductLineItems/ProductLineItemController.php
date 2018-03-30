@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Store\Products\ProductLineItems;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductLineItem;
 
 class ProductLineItemController extends Controller
 {
@@ -20,8 +21,10 @@ class ProductLineItemController extends Controller
 
     }
 
-    public function show()
+    public function show($product_uuid, $product_line_item_uuid)
     {
-        return 'Hello';
+        return view('store.products.line_item.line_item')->with([
+            'item' => ProductLineItem::find($product_line_item_uuid)
+        ]);
     }
 }

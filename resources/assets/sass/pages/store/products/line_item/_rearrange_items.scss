@@ -1,0 +1,11 @@
+#rearrange-items{
+  #rearrange-items-sortable{
+    list-style-type:none;
+    padding:0;
+
+    .ui-sortable-helper{
+      background:$blue;
+      color:$text_light;
+    }
+  }
+}

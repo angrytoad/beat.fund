@@ -118,18 +118,31 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
                     // Get the product page AND the item page
                     Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
+                    Route::get('/rearrange-items', 'Store\Products\ProductLineItems\RearrangeLineItemsController@show')->name('store.products.product.rearrange_items');
+                    Route::post('/rearrange-items', 'Store\Products\ProductLineItems\RearrangeLineItemsController@rearrange');
+                    
+                    Route::get('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@show')->name('store.products.product.tag_items');
+                    Route::post('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@tag');
 
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
-                       Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
-                       Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
-                    });
 
+                        
+                        Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
+                        Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
+                        
+                        // Allow items to be added and for the product to be updates
+                        Route::post('/', 'Store\Products\ProductController@update');
+                        Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
+                        Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
+                        Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
+                    });
+                    
                     /**
                      * Routes for a specific item
                      */
                     Route::group(['middleware' => ['user.store.product.has_item'], 'prefix' => 'item'], function () {
                         Route::get('{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
-
+                        Route::post('{item_uuid}/tags/delete', 'Store\Products\ProductLineItems\ProductLineItemTags\ProductLineItemTagsDeletionController@delete')->name('store.products.product.item.tags.delete');
                         /**
                          * Routes for a specific item that requires the product to be pending
                          */
@@ -138,17 +151,6 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                             Route::post('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@delete');
                         });
 
-                    });
-
-
-
-                    Route::group(['middleware' => ['user.store.product_not_live']], function () {
-
-                        // Allow items to be added and for the product to be updates
-                        Route::post('/', 'Store\Products\ProductController@update');
-                        Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
-                        Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
-                        Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
                     });
                 });
             });

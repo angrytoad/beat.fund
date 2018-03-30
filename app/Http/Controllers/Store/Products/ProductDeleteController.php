@@ -36,6 +36,9 @@ class ProductDeleteController extends Controller
         ]);
 
         $product = Product::find($product_uuid);
+        foreach($product->items as $item){
+            $item->delete();
+        }
         $product->delete();
 
         return redirect(route('store.products'))->with([

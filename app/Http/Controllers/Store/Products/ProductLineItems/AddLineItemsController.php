@@ -45,13 +45,13 @@ class AddLineItemsController extends Controller
             'items.*.public_url' => 'required',
             'items.*.item_name' => 'required',
         ]);
-
-
+        
         foreach($request->get('items') as $item){
             $product_item = new ProductLineItem();
             $product_item->product_id = $uuid;
             $product_item->name = $item['item_name'];
             $product_item->item_type = 'track';
+            $product_item->order = count(Product::find($uuid)->items);
 
             $item_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/'.str_replace('product-items/','',$item['s3_name']);
             $source_file = Storage::url($item['s3_name'],'s3');

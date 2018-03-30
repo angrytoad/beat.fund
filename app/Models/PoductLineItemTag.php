@@ -12,10 +12,9 @@ use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
-class ProductLineItem extends Model
+class ProductLineItemTag extends Model
 {
     use Uuids;
-    use SoftDeletes;
 
     public $incrementing = false;
 
@@ -26,30 +25,14 @@ class ProductLineItem extends Model
      */
     protected $fillable = [
         'id',
-        'product_id',
+        'product_line_item_id',
         'name',
-        'item_type',
-        'item_key',
-        'item_sample_key',
         'created_at',
         'updated_at',
-        'deleted_at'
     ];
 
-    public function product()
+    public function product_line_item()
     {
-        return $this->belongsTo('App\Models\Product');
-    }
-
-    public function tags()
-    {
-        return $this->hasMany('App\Models\ProductLineItemTag');
-    }
-
-    public function signedURL()
-    {
-        return Storage::temporaryUrl(
-            $this->item_key, now()->addMinutes(30)
-        );
+        return $this->belongsTo('App\Models\ProductLineItem');
     }
 }
