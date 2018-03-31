@@ -147,7 +147,7 @@
                                     <td>{{ $item->order+1 }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>
-                                        <audio controls>
+                                        <audio controls preload="none">
                                             <source src="{{ $item->signedURL() }}">
                                         </audio>
                                     </td>
