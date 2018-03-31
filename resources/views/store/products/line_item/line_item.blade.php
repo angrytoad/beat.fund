@@ -52,6 +52,17 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading">Actions</div>
                                 <div class="panel-body">
+                                    <form method="POST" action="{{ route('store.products.product.item.update_name',[$item->product->id,$item->id]) }}">
+                                        {{ csrf_field() }}
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <input placeholder="Item Name" type="text" class="form-control" name="name" value="{{ $item->name }}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button class="btn btn-primary">Update Name</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                     <ul id="line-item-actions-list">
                                         <a href="{{ route('store.products.product.item.delete', [$item->product->id, $item->id]) }}">
                                             <li><button class="btn btn-danger">Delete <strong>{{ $item->name }}</strong></button></li>
