@@ -8766,3 +8766,8 @@ summary:hover {
   margin-bottom: 2px;
 }
 
+.breadcrumb {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+

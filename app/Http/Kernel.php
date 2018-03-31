@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\Account\EmailVerified;
 use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
+use App\Http\Middleware\Store\HasNoStore;
 use App\Http\Middleware\Store\HasStore;
 use App\Http\Middleware\Store\Product\LineItem\HasLineItem;
 use App\Http\Middleware\Store\Product\ProductNotLive;
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'account.has_verification' => HasVerification::class,
         'user.has_profile' => HasProfile::class,
         'user.has_store' => HasStore::class,
+        'user.has_no_store' => HasNoStore::class,
         'user.has_product' => UserHasProduct::class,
         'user.store.product_not_live' => ProductNotLive::class,
         'user.store.product.has_item' => HasLineItem::class

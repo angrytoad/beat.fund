@@ -234,7 +234,8 @@ return [
         'Twilio' => 'Aloha\Twilio\Support\Laravel\Facade',
         'Helper' => App\Helpers\Helper::class,
         'AWS' => Aws\Laravel\AwsFacade::class,
-        'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class
+        'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
+        'Breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class
     ],
 
 ];

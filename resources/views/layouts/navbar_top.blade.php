@@ -47,6 +47,13 @@
                                     </a>
                                 </li>
                             @endif
+                            @if(Auth::user()->store)
+                                <li>
+                                    <a href="{{ route('store') }}">
+                                        Store
+                                    </a>
+                                </li>
+                            @endif
                             <hr />
                             <li>
                                 <a href="{{ route('account') }}">

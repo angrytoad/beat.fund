@@ -74,12 +74,23 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
         });
     });
 
+
+
+
     /**
      * Routes for store functionality
      */
     Route::group(['prefix' => 'store', 'middleware' => ['user.has_profile']], function () {
-        Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
-        Route::post('create', 'Store\StoreCreationController@create');
+
+
+
+        /**
+         * Routes that require the user to not have a store
+         */
+        Route::group(['middleware' => ['user.has_no_store']], function () {
+            Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
+            Route::post('create', 'Store\StoreCreationController@create');
+        });
 
 
 
@@ -130,7 +141,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                         Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
                         Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
                         
-                        // Allow items to be added and for the product to be updates
+                        // Allow items to be added and for the product to be updated
                         Route::post('/', 'Store\Products\ProductController@update');
                         Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
                         Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
