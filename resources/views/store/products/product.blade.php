@@ -5,6 +5,7 @@
 @section('content')
 <div id="product" class="container">
     @include('layouts.flash_message')
+    {{ Breadcrumbs::render('store.products.product', $product) }}
     <div class="row">
         <div class="col-md-3">
             @include('layouts.menus.internal_menu')

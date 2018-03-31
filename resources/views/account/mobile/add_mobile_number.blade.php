@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Add a mobile number')
+
 @section('content')
     <div class="container" id="verification_required">
         @include('layouts.flash_message')
+        {{ Breadcrumbs::render('account.add_mobile_number') }}
         <div class="row">
             <div class="col-md-3">
                 @include('layouts.menus.internal_menu')

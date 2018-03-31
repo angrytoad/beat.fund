@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'Update Email')
+
 @section('content')
     <div class="container" id="verification_required">
         @include('layouts.flash_message')
+        {{ Breadcrumbs::render('account.update_email') }}
         <div class="row">
             <div class="col-md-3">
                 @include('layouts.menus.internal_menu')

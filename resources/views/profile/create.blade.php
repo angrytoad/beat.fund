@@ -5,6 +5,7 @@
 @section('content')
 <div class="container">
     @include('layouts.flash_message')
+    {{ Breadcrumbs::render('profile.create') }}
     <div class="row">
         <div class="col-md-4">
             @include('layouts.menus.internal_menu')
