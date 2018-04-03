@@ -18,6 +18,11 @@
         color:$text_light;
         height:100%;
 
+        &:hover{
+          opacity:1;
+          transition: opacity 0.2s;
+        }
+
         &.dz-started{
           opacity:1;
         }
@@ -38,13 +43,6 @@
         }
       }
 
-      &:hover{
-        .dropzone{
-          opacity:1;
-          transition: opacity 0.2s;
-        }
-      }
-
 
       img{
         position: absolute;
@@ -53,6 +51,10 @@
         top: 50%;
         -webkit-transform: translateX(-50%) translateY(-50%);
         transform: translateX(-50%) translateY(-50%);
+      }
+
+      #product-status-button{
+        margin-top:2rem;
       }
     }
 

@@ -38,4 +38,12 @@ class Store extends Model
     public function products(){
        return $this->hasMany('App\Models\Product'); 
     }
+
+    public function liveProducts(){
+        return $this->products()->where('live',true)->get();
+    }
+
+    public function pendingProducts(){
+        return $this->products()->where('live',false)->get();
+    }
 }

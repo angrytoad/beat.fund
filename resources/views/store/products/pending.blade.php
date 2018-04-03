@@ -18,6 +18,31 @@
                         <button class="btn btn-primary">Create a product</button>
                     </a>
                     <hr />
+                    <table class="table table-striped table-hover table-responsive" id="store_products_pending">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Items</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($pending_products as $pending_product)
+                            <tr>
+                                <td>{{ $pending_product->live ? 'Live' : 'Pending' }}</td>
+                                <td>{{ $pending_product->name }}</td>
+                                <td>{{ count($pending_product->items) }}</td>
+                                <td>{{ $pending_product->updated_at }}</td>
+                                <td>
+                                    <a href="{{ route('store.products.product', $pending_product->id) }}"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('store.products.product.delete', $pending_product->id) }}"><i class="fas fa-trash-alt text-danger"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -26,6 +51,10 @@
 @endsection
 @section('scripts')
     <script>
-
+        $(document).ready( function () {
+            $('#store_products_pending').dataTable({
+                "pageLength": 25
+            });
+        } );
     </script>
 @endsection

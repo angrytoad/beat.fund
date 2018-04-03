@@ -101,6 +101,14 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
             // Show the store front
             Route::get('/', 'Store\StoreController@show')->name('store');
+            
+            Route::get('/banner/add', 'Store\StoreBannerController@show')->name('store.banner.add');
+            Route::post('/banner/add', 'Store\StoreBannerController@add');
+            Route::post('/banner/add/image', 'Store\StoreBannerController@upload')->name('store.banner.add.image');
+
+            Route::get('/avatar/add', 'Store\StoreAvatarController@show')->name('store.avatar.add');
+            Route::post('/avatar/add', 'Store\StoreAvatarController@add');
+            Route::post('/avatar/add/image', 'Store\StoreAvatarController@upload')->name('store.avatar.add.image');
 
 
 
@@ -141,6 +149,8 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                      */
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
 
+                        Route::post('/live', 'Store\Products\ProductStatusController@live')->name('store.products.product.set_live');
+
                         
                         Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
                         Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
@@ -153,6 +163,13 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     });
 
 
+                    /**
+                     * Routes for a product that require the product to be live
+                     */
+                    Route::group(['middleware' => ['user.store.product_live']], function () {#
+                        
+                        Route::post('/pending', 'Store\Products\ProductStatusController@pending')->name('store.products.product.set_pending');
+                    });
 
 
                     /**

@@ -32,7 +32,9 @@ class StoreProductsController extends Controller
 
     public function show_live()
     {
-
+        return view('store.products.live')->with([
+            'live_products' => Auth::user()->store->products()->where('live', true)->get()
+        ]);
     }
 
     public function show_pending()

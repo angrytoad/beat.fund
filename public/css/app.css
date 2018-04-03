@@ -8488,6 +8488,64 @@ button.close {
   vertical-align: top;
 }
 
+#add-banner #banner {
+  overflow: hidden;
+  border: 1px solid #ddd;
+  position: relative;
+  height: 250px;
+  margin-bottom: 2rem;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+#add-banner #banner p {
+  margin: 0;
+}
+
+#add-banner #banner img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  background: #F4F9FF;
+}
+
+#add-avatar #avatar {
+  overflow: hidden;
+  border: 1px solid #ddd;
+  position: relative;
+  height: 128px;
+  width: 128px;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+#add-avatar #avatar p {
+  margin: 0;
+}
+
+#add-avatar #avatar img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  background: #F4F9FF;
+}
+
 #store_products #store_products_clickthrough {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8558,6 +8616,12 @@ button.close {
   height: 100%;
 }
 
+#product #product-details #product-image .dropzone:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
 #product #product-details #product-image .dropzone.dz-started {
   opacity: 1;
 }
@@ -8579,12 +8643,6 @@ button.close {
   margin-top: 45px;
 }
 
-#product #product-details #product-image:hover .dropzone {
-  opacity: 1;
-  -webkit-transition: opacity 0.2s;
-  transition: opacity 0.2s;
-}
-
 #product #product-details #product-image img {
   position: absolute;
   left: 50%;
@@ -8592,6 +8650,10 @@ button.close {
   top: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+}
+
+#product #product-details #product-image #product-status-button {
+  margin-top: 2rem;
 }
 
 #add-items #add-items-container {
