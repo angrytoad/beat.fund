@@ -1,0 +1,25 @@
+#add-banner{
+  #banner{
+    overflow:hidden;
+    border:1px solid $border_light;
+    position: relative;
+    height:250px;
+    margin-bottom:2rem;
+    display:grid;
+    align-items: center;
+    justify-items: center;
+
+    p{
+      margin:0;
+    }
+
+    img{
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      background:$background;
+    }
+  }
+}

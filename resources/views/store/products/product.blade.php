@@ -27,6 +27,14 @@
                                 <form action="{{ route('store.products.create.image') }}" class="dropzone" id="product-image-dropzone">
                                     {{ csrf_field() }}
                                 </form>
+                                <div id="product-status-button">
+                                    @if(!$product->live)
+                                        <form method="POST" action="{{ route('store.products.product.set_live',$product->id) }}">
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-success">Set Product Live</button>
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
                             <form id="update-product-form" action="{{ route('store.products.product', $product->id) }}" method="POST">
                                 {{ csrf_field() }}
@@ -95,6 +103,10 @@
                                 <img src="{{ $product->image_url }}" />
                             </div>
                             <div id="product-information">
+                                <form method="POST" action="{{ route('store.products.product.set_pending',$product->id) }}" class="pull-right">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-warning">Set Product Pending</button>
+                                </form>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <strong>Product Name:</strong> {{ $product->name }}

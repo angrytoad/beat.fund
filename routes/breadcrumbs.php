@@ -89,6 +89,17 @@ Breadcrumbs::register('store.create', function ($breadcrumbs) {
     $breadcrumbs->push('Create a Store', route('store.create'));
 });
 
+Breadcrumbs::register('store.add_banner', function ($breadcrumbs) {
+    $breadcrumbs->parent('store');
+    $breadcrumbs->push('Add a banner', route('store.banner.add'));
+});
+
+Breadcrumbs::register('store.add_avatar', function ($breadcrumbs) {
+    $breadcrumbs->parent('store');
+    $breadcrumbs->push('Add an avatar', route('store.avatar.add'));
+});
+
+
 Breadcrumbs::register('store.products', function ($breadcrumbs) {
     $breadcrumbs->parent('store');
     $breadcrumbs->push('Products', route('store.products'));

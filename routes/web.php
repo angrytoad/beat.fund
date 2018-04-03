@@ -101,6 +101,14 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
             // Show the store front
             Route::get('/', 'Store\StoreController@show')->name('store');
+            
+            Route::get('/banner/add', 'Store\StoreBannerController@show')->name('store.banner.add');
+            Route::post('/banner/add', 'Store\StoreBannerController@add');
+            Route::post('/banner/add/image', 'Store\StoreBannerController@upload')->name('store.banner.add.image');
+
+            Route::get('/avatar/add', 'Store\StoreAvatarController@show')->name('store.avatar.add');
+            Route::post('/avatar/add', 'Store\StoreAvatarController@add');
+            Route::post('/avatar/add/image', 'Store\StoreAvatarController@upload')->name('store.avatar.add.image');
 
 
 
@@ -135,7 +143,13 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     Route::get('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@show')->name('store.products.product.tag_items');
                     Route::post('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@tag');
 
+
+                    /**
+                     * Routes for a product that require the product to not be live.
+                     */
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
+
+                        Route::post('/live', 'Store\Products\ProductStatusController@live')->name('store.products.product.set_live');
 
                         
                         Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
@@ -147,13 +161,26 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                         Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
                         Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
                     });
-                    
+
+
+                    /**
+                     * Routes for a product that require the product to be live
+                     */
+                    Route::group(['middleware' => ['user.store.product_live']], function () {#
+                        
+                        Route::post('/pending', 'Store\Products\ProductStatusController@pending')->name('store.products.product.set_pending');
+                    });
+
+
                     /**
                      * Routes for a specific item
                      */
                     Route::group(['middleware' => ['user.store.product.has_item'], 'prefix' => 'item'], function () {
                         Route::get('{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
                         Route::post('{item_uuid}/tags/delete', 'Store\Products\ProductLineItems\ProductLineItemTags\ProductLineItemTagsDeletionController@delete')->name('store.products.product.item.tags.delete');
+
+
+
                         /**
                          * Routes for a specific item that requires the product to be pending
                          */

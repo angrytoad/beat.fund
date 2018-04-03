@@ -49,6 +49,7 @@ class ProfileController extends Controller
          * for the store.
          */
         if($user->store && $user->store->live){
+            dd($user->store);
             $rules = [
                 'artist_name' => 'required',
                 'artist_bio' => 'required',
