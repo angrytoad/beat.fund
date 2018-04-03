@@ -135,6 +135,10 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     Route::get('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@show')->name('store.products.product.tag_items');
                     Route::post('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@tag');
 
+
+                    /**
+                     * Routes for a product that require the product to not be live.
+                     */
                     Route::group(['middleware' => ['user.store.product_not_live']], function () {
 
                         
@@ -147,13 +151,19 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                         Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
                         Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
                     });
-                    
+
+
+
+
                     /**
                      * Routes for a specific item
                      */
                     Route::group(['middleware' => ['user.store.product.has_item'], 'prefix' => 'item'], function () {
                         Route::get('{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
                         Route::post('{item_uuid}/tags/delete', 'Store\Products\ProductLineItems\ProductLineItemTags\ProductLineItemTagsDeletionController@delete')->name('store.products.product.item.tags.delete');
+
+
+
                         /**
                          * Routes for a specific item that requires the product to be pending
                          */
