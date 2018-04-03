@@ -25,6 +25,13 @@ class ProductStatusController extends Controller
     public function live(Request $request, $uuid)
     {
         $product = Product::find($uuid);
+        
+        if(count($product->items) === 0){
+            return back()->withErrors([
+                'You cannot set a product live if it does not have any line items.'
+            ]);
+        }
+
         $product->live = true;
         $product->save();
 
