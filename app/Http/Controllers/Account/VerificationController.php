@@ -40,19 +40,30 @@ class VerificationController extends Controller
         if($email_verification){
             $email_verification->created_at = Carbon::now();
             $email_verification->save();
-            Mail::to(Auth::user()->email)->send(new Verify(Auth::user()));
-            return redirect(route('account.needs_verification'))->with([
-                'alert-info' => 'Another verification email has been sent to '.Auth::user()->email.'. Please check your inbox.'
-            ]);
+            try{
+                Mail::to(Auth::user()->email)->send(new Verify(Auth::user()));
+                return redirect(route('account.needs_verification'))->with([
+                    'alert-info' => 'Another verification email has been sent to '.Auth::user()->email.'. Please check your inbox.'
+                ]);
+            }catch(\Exception $e){
+                return back()->withErrors([
+                    $e->getMessage()
+                ]);
+            }
         }else{
             $email_verification = new EmailVerification();
             $email_verification->user_id = Auth::user()->id;
             $email_verification->token = Uuid::generate();
             $email_verification->save();
 
-            Mail::to(Auth::user()->email)->send(new Verify(Auth::user()));
+            try{
+                Mail::to(Auth::user()->email)->send(new Verify(Auth::user()));
+            }catch(\Exception $e){
+                return back()->withErrors([
+                    $e->getMessage()
+                ]);
+            }
         }
-
     }
     
     public function attemptVerification($token)
