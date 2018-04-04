@@ -19,14 +19,13 @@
                         </form>
                         <hr />
                         <h3>Preview</h3>
-                        <div id="avatar">
-                            <p class="text-muted">Your avatar will appear once uploaded.</p>
-                            @if(Auth::user()->store->avatar_url)
-                                <img src="{{ Auth::user()->store->avatar_url }}" />
-                            @else
-                                <img src="" />
-                            @endif
-                        </div>
+                        @if(Auth::user()->store->avatar_url)
+                            <div id="avatar" style="background:url({{ Auth::user()->store->avatar_url }})">
+                            </div>
+                        @else
+                            <div id="avatar">
+                            </div>
+                        @endif
                         <form action="{{ route('store.avatar.add') }}" method="POST">
                             {{ csrf_field() }}
                             <input name="image" type="hidden" />
@@ -49,7 +48,7 @@
                 this.on("success", function(file, response) {
                     var image = document.querySelector('input[name=image]');
                     image.value = response.file_name;
-                    $('#avatar img').attr('src',response.source_file);
+                    $('#avatar img').attr('style','background:url('+response.source_file+')');
                 });
 
                 this.on("error", function(file, response) {
