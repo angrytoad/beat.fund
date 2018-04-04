@@ -19,14 +19,13 @@
                     </form>
                     <hr />
                     <h3>Preview</h3>
-                    <div id="banner">
-                        <p class="text-muted">Your preview will appear once you have uploaded a banner.</p>
-                        @if(Auth::user()->store->banner_url)
-                            <img src="{{ Auth::user()->store->banner_url }}" />
-                        @else
-                            <img src="" />
-                        @endif
-                    </div>
+                    @if(Auth::user()->store->banner_url)
+                        <div id="banner" style="background:url({{ Auth::user()->store->banner_url }})">
+                        </div>
+                    @else
+                        <div id="banner">
+                        </div>
+                    @endif
                     <form action="{{ route('store.banner.add') }}" method="POST">
                         {{ csrf_field() }}
                         <input name="image" type="hidden" />
@@ -49,7 +48,7 @@
                 this.on("success", function(file, response) {
                     var image = document.querySelector('input[name=image]');
                     image.value = response.file_name;
-                    $('#banner img').attr('src',response.source_file);
+                    $('#banner').attr('style','background:url('+response.source_file+')');
                 });
 
                 this.on("error", function(file, response) {
