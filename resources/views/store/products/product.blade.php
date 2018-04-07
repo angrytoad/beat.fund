@@ -160,7 +160,7 @@
                                     <td><a href="{{ route('store.products.product.item', [$product->id, $item->id]) }}">{{ $item->name }}</a></td>
                                     <td>
                                         <audio controls preload="none">
-                                            <source src="{{ $item->signedURL() }}">
+                                            <source src="{{ $item->signedSampleURL() }}">
                                         </audio>
                                     </td>
                                     <td>

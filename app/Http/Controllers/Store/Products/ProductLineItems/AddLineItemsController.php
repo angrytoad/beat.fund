@@ -9,11 +9,11 @@
 namespace App\Http\Controllers\Store\Products\ProductLineItems;
 
 use App\Http\Controllers\Controller;
+use App\Library\Contracts\ProductStorageInterface;
+use App\Library\Contracts\TranscodingInterface;
 use App\Models\Product;
 use App\Models\ProductLineItem;
 use AWS;
-use GuzzleHttp\Psr7\CachingStream;
-use GuzzleHttp\Psr7\Stream;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -21,12 +21,19 @@ use Illuminate\Support\Facades\Storage;
 class AddLineItemsController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
+    public $transcodingInterface;
+    public $productStorageInterface;
 
+
+    /**
+     * AddLineItemsController constructor.
+     * @param TranscodingInterface $transcodingInterface
+     * @param ProductStorageInterface $productStorageInterface
+     */
+    public function __construct(TranscodingInterface $transcodingInterface, ProductStorageInterface $productStorageInterface)
+    {
+        $this->transcodingInterface = $transcodingInterface;
+        $this->productStorageInterface = $productStorageInterface;
     }
 
     public function show($uuid) {
@@ -47,35 +54,25 @@ class AddLineItemsController extends Controller
         ]);
         
         foreach($request->get('items') as $item){
-            $product_item = new ProductLineItem();
-            $product_item->product_id = $uuid;
-            $product_item->name = $item['item_name'];
-            $product_item->item_type = 'track';
-            $product_item->order = count(Product::find($uuid)->items);
-
-            $item_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/'.str_replace('product-items/','',$item['s3_name']);
-            $source_file = Storage::url($item['s3_name'],'s3');
-
             try{
-                $s3 = AWS::createClient('s3');
-                $s3->putObject(array(
-                    'ACL' => 'private',
-                    'Bucket' => env('AWS_BUCKET'),
-                    'Key' => $item_key,
-                    'Body' => new CachingStream(
-                        new Stream(fopen($source_file, 'r'))
-                    ),
-                ));
+                $product_item = new ProductLineItem();
+                $product_item->product_id = $uuid;
+                $product_item->name = $item['item_name'];
+                $product_item->item_type = 'track';
+                $product_item->order = count(Product::find($uuid)->items);
 
-                $s3->deleteObject(array(
-                    'Bucket' => env('AWS_BUCKET'),
-                    'Key' => $item['s3_name']
-                ));
+                $item_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/'.str_replace('product-items/','',$item['s3_name']);
+                $item_sample_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/SAMPLE_'.str_replace('product-items/','',$item['s3_name']);
+
+                $this->transcodingInterface->transcode($item['s3_name'],$item_sample_key);
+
+                $source_file = $this->productStorageInterface->url($item['s3_name']);
+
+                $this->productStorageInterface->store($item_key,$source_file);
+                $this->productStorageInterface->delete($item['s3_name']);
 
                 $product_item->item_key = $item_key;
-                $product_item->item_sample_key = $item_key;
-
-                Storage::delete($item['s3_name'],'s3');
+                $product_item->item_sample_key = $item_sample_key;
             }catch(\Exception $e){
                 return back()->withErrors([
                     $e->getMessage()

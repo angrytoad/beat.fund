@@ -52,4 +52,11 @@ class ProductLineItem extends Model
             $this->item_key, now()->addMinutes(30)
         );
     }
+
+    public function signedSampleURL()
+    {
+        return Storage::temporaryUrl(
+            $this->item_sample_key, now()->addMinutes(30)
+        );
+    }
 }

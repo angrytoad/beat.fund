@@ -81,7 +81,7 @@
                                 @else
                                     <div>
                                         <i class="fas fa-times text-danger"></i>
-                                        <p>You are not set up to take payments. <a href="{{ route('account.stripe') }}">Add one here.</a></p>
+                                        <p>You are not set up to take payments via Stripe. <a href="{{ route('account.stripe') }}">Set up Stripe Account.</a></p>
                                     </div>
                                 @endif
                             </div>
