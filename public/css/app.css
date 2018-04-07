@@ -8813,6 +8813,15 @@ button.close {
   font-size: 22px;
 }
 
+#artist-store #artist-store-bio img {
+  max-height: 300px;
+  max-width: 100%;
+  margin: auto;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;
@@ -8857,6 +8866,15 @@ summary:hover {
 
 .ql-container .ql-editor {
   min-height: 200px;
+}
+
+.ql-container .ql-editor img {
+  max-height: 300px;
+  max-width: 100%;
+  margin: auto;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .tag {

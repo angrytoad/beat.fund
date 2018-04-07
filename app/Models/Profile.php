@@ -31,6 +31,11 @@ class Profile extends Model
         return $this->hasMany('App\Models\ProfileLink');
     }
 
+    public function products()
+    {
+        return $this->user->store->products();
+    }
+
     public function getCompletionPercentage()
     {
         $completion_percentage = 0;

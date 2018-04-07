@@ -14,13 +14,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-heading">{{ $artist->artist_name }}'s Store</div>
                 <div class="panel-body">
-
+                    <h1>{{ $artist->artist_name }}</h1><hr />
+                    <div id="artist-store-bio">
+                        {!! $artist->artist_bio !!}
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-3">
+
         </div>
     </div>
 </div>
