@@ -52,9 +52,18 @@ class StoreCreationController extends Controller
             ]);
         }
 
+        $profile = Auth::user()->profile;
+        $count = Store::where('slug',str_slug($profile->artist_name,'-'))->count();
+        if($count > 0){
+            $slug = str_slug($profile->artist_name.'-'.$count,'-');
+        }else{
+            $slug = str_slug($profile->artist_name,'-');
+        }
+
         $store = new Store();
         $store->user_id = Auth::user()->id;
         $store->live = false;
+        $store->slug = $slug;
         $store->save();
 
         return redirect(route('store'))->with([

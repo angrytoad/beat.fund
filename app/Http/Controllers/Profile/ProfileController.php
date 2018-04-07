@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProfileLink;
+use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -70,6 +71,21 @@ class ProfileController extends Controller
         }
         
         
+
+
+        if(Auth::user()->store){
+            $count = Store::where('slug',str_slug($request->get('artist_name'),'-'))->count();
+            if($count > 0){
+                $slug = str_slug($request->get('artist_name').'-'.$count,'-');
+            }else{
+                $slug = str_slug($request->get('artist_name'),'-');
+            }
+
+            $store = Auth::user()->store;
+            $store->slug = $slug;
+            $store->save();
+        }
+
         $profile->artist_name = $request->get('artist_name');
         $profile->artist_bio = $request->get('artist_bio');
         $profile->favourite_genre = $request->get('favourite_genre');
