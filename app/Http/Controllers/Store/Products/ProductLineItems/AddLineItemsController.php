@@ -64,11 +64,11 @@ class AddLineItemsController extends Controller
                 $item_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/'.str_replace('product-items/','',$item['s3_name']);
                 $item_sample_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/SAMPLE_'.str_replace('product-items/','',$item['s3_name']);
 
-                $this->transcodingInterface->transcode($item['s3_name'],$item_sample_key);
-
                 $source_file = $this->productStorageInterface->url($item['s3_name']);
 
                 $this->productStorageInterface->store($item_key,$source_file);
+                $this->transcodingInterface->transcode($item_key,$item_sample_key);
+                
                 $this->productStorageInterface->delete($item['s3_name']);
 
                 $product_item->item_key = $item_key;
