@@ -38,6 +38,18 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
 });
 
 /**
+ * STORE BREADCRUMBS
+ */
+Breadcrumbs::register('storefront', function ($breadcrumbs) {
+   $breadcrumbs->push('Store', route('storefront'));
+});
+
+Breadcrumbs::register('artist.store', function ($breadcrumbs, $artist) {
+    $breadcrumbs->parent('storefront');
+    $breadcrumbs->push($artist->artist_name, route('artist.store',$artist->slug));
+});
+
+/**
  * ACCOUNT BREADCRUMBS
  */
 Breadcrumbs::register('account', function ($breadcrumbs) {
@@ -58,6 +70,11 @@ Breadcrumbs::register('account.change_email', function ($breadcrumbs) {
 Breadcrumbs::register('account.add_mobile_number', function ($breadcrumbs) {
     $breadcrumbs->parent('account');
     $breadcrumbs->push('Add a mobile number', route('account.add_mobile_number'));
+});
+
+Breadcrumbs::register('account.stripe', function ($breadcrumbs) {
+    $breadcrumbs->parent('account');
+    $breadcrumbs->push('Stripe', route('account.stripe'));
 });
 
 

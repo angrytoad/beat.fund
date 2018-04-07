@@ -51,6 +51,12 @@ class StoreBannerController extends Controller
                 ),
             ));
 
+            if($store->banner_key !== null){
+                $s3->deleteObject(array(
+                    'Bucket' => env('AWS_BUCKET'),
+                    'Key' => $store->banner_key
+                ));
+            }
 
             $store->banner_url = $result->get('ObjectURL');
             $store->banner_key = $image_key;

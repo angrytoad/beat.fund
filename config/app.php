@@ -170,6 +170,7 @@ return [
         'Aloha\Twilio\Support\Laravel\ServiceProvider',
         Aws\Laravel\AwsServiceProvider::class,
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -180,7 +181,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
+        /*
+         * Custom Service Providers
+         */
+        \App\Providers\CheckoutServiceProvider::class
+        
 
     ],
 
@@ -235,7 +240,8 @@ return [
         'Helper' => App\Helpers\Helper::class,
         'AWS' => Aws\Laravel\AwsFacade::class,
         'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
-        'Breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class
+        'Breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
     ],
 
 ];

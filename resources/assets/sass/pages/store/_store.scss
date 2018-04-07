@@ -1,0 +1,31 @@
+#store{
+  #store-live-requirements{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:15px;
+
+    > div{
+      padding:2rem;
+      background:$background;
+      border:1px solid $border_light;
+      display: grid;
+      align-items: center;
+      text-align: center;
+
+      > div{
+        display:grid;
+        grid-template-columns: auto 1fr;
+        grid-gap:4rem;
+        align-items: center;
+
+        svg{
+          font-size:32px;
+        }
+
+        p{
+          margin:0;
+        }
+      }
+    }
+  }
+}

@@ -67,6 +67,11 @@ class AddLineItemsController extends Controller
                     ),
                 ));
 
+                $s3->deleteObject(array(
+                    'Bucket' => env('AWS_BUCKET'),
+                    'Key' => $item['s3_name']
+                ));
+
                 $product_item->item_key = $item_key;
                 $product_item->item_sample_key = $item_key;
 
