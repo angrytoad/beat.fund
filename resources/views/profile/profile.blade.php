@@ -62,13 +62,16 @@
                             <small id="artist_name_help" class="form-text text-muted">This name will be used to identify your store on the website.</small>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label for="artist_bio">Artist/Band Bio</label>
-                                <textarea class="form-control" name="artist_bio" id="artist_bio" rows="6"
-                                          placeholder="Let the world know a bit about you." >{{ $profile->artist_bio or old('artist_bio', '') }}</textarea>
+                                <div id="artist_bio">
+                                    {!! $profile->artist_bio !!}
+                                </div>
                                 <small id="artist_bio_help" class="form-text text-muted">Tell customers a little bit about yourself.</small>
+                                <input type="hidden" name="artist_bio" value="{{ $profile->artist_bio or old('artist_bio', '') }}" />
+                                <input type="hidden" name="delta" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="favourite_genre">Favorite Genres</label>
                                     <input type="text" class="form-control" name="favourite_genre" id="favourite_genre"
@@ -231,5 +234,30 @@
                 }
             });
         }
+
+        var quill = new Quill('#artist_bio', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    [{ 'header': [1, 2, false] }],
+                    ['link', 'blockquote', 'code-block', 'image'],
+                    [{ list: 'ordered' }, { list: 'bullet' }]
+                ]
+            },
+            placeholder: 'Your description will be shown on the store.',
+            theme: 'snow',
+        });
+
+        @if(old('delta'))
+            quill.setContents({!! old('delta') !!});
+        @endif
+
+        quill.on('text-change', function(delta, oldDelta, source) {
+            var description = document.querySelector('input[name=artist_bio]');
+            description.value = $('.ql-editor').html();
+
+            var delta_input = document.querySelector('input[name=delta]');
+            delta_input.value = JSON.stringify(quill.getContents());
+        });
     </script>
 @endsection

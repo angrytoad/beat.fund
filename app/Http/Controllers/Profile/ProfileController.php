@@ -73,7 +73,7 @@ class ProfileController extends Controller
         
 
 
-        if(Auth::user()->store){
+        if(Auth::user()->store && $request->get('artist_name') !== $profile->artist_name){
             $count = Store::where('slug',str_slug($request->get('artist_name'),'-'))->count();
             if($count > 0){
                 $slug = str_slug($request->get('artist_name').'-'.$count,'-');
