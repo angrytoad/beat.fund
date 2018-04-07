@@ -7,10 +7,12 @@ use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
 use App\Http\Middleware\Store\HasNoStore;
 use App\Http\Middleware\Store\HasStore;
+use App\Http\Middleware\Store\IsNotLive;
 use App\Http\Middleware\Store\Product\LineItem\HasLineItem;
 use App\Http\Middleware\Store\Product\ProductLive;
 use App\Http\Middleware\Store\Product\ProductNotLive;
 use App\Http\Middleware\Store\Product\UserHasProduct;
+use App\Http\Middleware\Storefront\Artist\StoreExists;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -74,6 +76,8 @@ class Kernel extends HttpKernel
         'user.has_product' => UserHasProduct::class,
         'user.store.product_not_live' => ProductNotLive::class,
         'user.store.product_live' => ProductLive::class,
-        'user.store.product.has_item' => HasLineItem::class
+        'user.store.product.has_item' => HasLineItem::class,
+        'store.is_not_live' => IsNotLive::class,
+        'artist.store_exists' => StoreExists::class
     ];
 }

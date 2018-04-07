@@ -40,6 +40,7 @@ class ProfileController extends Controller
          * We need to make srue that the website and email are the right format if not null.
          */
         $request->validate([
+            'artist_name' => 'required',
             'artist_website' => 'nullable|url',
             'business_email' => 'nullable|email'
         ]);
@@ -49,7 +50,6 @@ class ProfileController extends Controller
          * for the store.
          */
         if($user->store && $user->store->live){
-            dd($user->store);
             $rules = [
                 'artist_name' => 'required',
                 'artist_bio' => 'required',

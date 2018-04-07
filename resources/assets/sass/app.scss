@@ -18,6 +18,7 @@
 // Page Imports
 @import "pages/welcome";
 @import "pages/profile/profile";
+@import "pages/store/store";
 @import "pages/store/create";
 @import "pages/store/add_banner";
 @import "pages/store/add_avatar";
@@ -28,6 +29,8 @@
 @import "pages/store/products/line_item/rearrange_items";
 @import "pages/store/products/line_item/tag_items";
 @import "pages/store/products/line_item/line_item";
+
+@import "pages/storefront/artist/store";
 
 body{
   font-family: 'Ubuntu', sans-serif;

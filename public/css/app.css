@@ -8478,6 +8478,40 @@ button.close {
   cursor: pointer;
 }
 
+#store #store-live-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#store #store-live-requirements > div {
+  padding: 2rem;
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#store #store-live-requirements > div > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#store #store-live-requirements > div > div svg {
+  font-size: 32px;
+}
+
+#store #store-live-requirements > div > div p {
+  margin: 0;
+}
+
 #create_store #store_requirements p {
   margin: 0;
 }
@@ -8751,6 +8785,32 @@ button.close {
 
 #line-item #line-item-tags .tag.selected {
   background: #d9534f !important;
+}
+
+#artist-store .banner {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  position: relative;
+  height: 330px;
+  margin-bottom: 2rem;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+#artist-store .banner .banner-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 22px;
 }
 
 body {

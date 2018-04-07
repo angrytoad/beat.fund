@@ -83,5 +83,12 @@ class Helper
 
         return ($size/1000);
     }
+    
+    public static function getStripeConnectUrl()
+    {
+        return (
+            'https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id='.env('STRIPE_CLIENT_ID')
+        );
+    }
 
 }

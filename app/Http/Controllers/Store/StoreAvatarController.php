@@ -51,6 +51,12 @@ class StoreAvatarController extends Controller
                 ),
             ));
 
+            if($store->avatar_key !== null){
+                $s3->deleteObject(array(
+                    'Bucket' => env('AWS_BUCKET'),
+                    'Key' => $store->avatar_key
+                ));
+            }
 
             $store->avatar_url = $result->get('ObjectURL');
             $store->avatar_key = $image_key;

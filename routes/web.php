@@ -25,6 +25,17 @@ Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show'
 Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
 
 
+/**
+ * All Webhooks
+ */
+Route::group(['prefix' => 'webhooks'], function () {
+    Route::group(['prefix' => 'stripe'], function () {
+        Route::group(['prefix' => 'account'], function () {
+            Route::get('/deauthorized', 'Webhooks\Stripe\Account\StripeAccountDeauthorizedController@deauthorized');
+        });
+    });
+});
+
 
 /**
  * All routes related to action actions
@@ -39,7 +50,39 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
     Route::post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
     Route::get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
     Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
+
+
+    Route::group(['middleware' => ['user.has_store']], function () {
+        Route::get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');
+        Route::get('/stripe/connect', 'Account\AccountStripeController@connect')->name('account.stripe.connect');
+    });
 });
+
+
+
+
+
+
+
+/**
+ * STOREFRONT ROUTES
+ */
+Route::group(['prefix' => 'store'], function () {
+    Route::get('/','Storefront\StorefrontController@show')->name('storefront');
+});
+
+Route::group(['prefix' => 'artist'], function () {
+    Route::group(['middleware' => ['artist.store_exists'], 'prefix' => '{slug}'], function () {
+        Route::get('/','Storefront\Artist\ArtistStoreController@show')->name('artist.store');
+    });
+});
+
+
+
+
+
+
+
 
 Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
 
@@ -110,6 +153,10 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
             Route::post('/avatar/add', 'Store\StoreAvatarController@add');
             Route::post('/avatar/add/image', 'Store\StoreAvatarController@upload')->name('store.avatar.add.image');
 
+
+            Route::group(['middleware' => ['store.is_not_live']], function () {
+                Route::post('/set-live', 'Store\StoreSetLiveController@live')->name('store.set_live');
+            });
 
 
             /**

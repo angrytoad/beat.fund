@@ -68,7 +68,12 @@ class ProductCreationController extends Controller
                         new Stream(fopen($source_file, 'r'))
                     ),
                 ));
-                
+
+                $s3->deleteObject(array(
+                    'Bucket' => env('AWS_BUCKET'),
+                    'Key' => $request->get('image')
+                ));
+
 
                 $product->image_url = $result->get('ObjectURL');
                 $product->image_key = $image_key;
