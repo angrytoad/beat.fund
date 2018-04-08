@@ -12,6 +12,7 @@ use App\Http\Middleware\Store\Product\LineItem\HasLineItem;
 use App\Http\Middleware\Store\Product\ProductLive;
 use App\Http\Middleware\Store\Product\ProductNotLive;
 use App\Http\Middleware\Store\Product\UserHasProduct;
+use App\Http\Middleware\Storefront\Artist\Product\ProductIsLive;
 use App\Http\Middleware\Storefront\Artist\StoreExists;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -78,6 +79,7 @@ class Kernel extends HttpKernel
         'user.store.product_live' => ProductLive::class,
         'user.store.product.has_item' => HasLineItem::class,
         'store.is_not_live' => IsNotLive::class,
-        'artist.store_exists' => StoreExists::class
+        'artist.store_exists' => StoreExists::class,
+        'artist.product.is_live' => ProductIsLive::class
     ];
 }

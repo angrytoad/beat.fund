@@ -32,6 +32,7 @@
 
 @import "pages/storefront/artist/store";
 
+
 body{
   font-family: 'Ubuntu', sans-serif;
   background-color: $background;
@@ -105,3 +106,9 @@ summary{
   background-color: #fff;
   border: 1px solid #ddd;
 }
+
+// Responsive Imports
+@import "responsive/1200";
+@import "responsive/800";
+@import "responsive/600";
+@import "responsive/450";
