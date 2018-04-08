@@ -33,4 +33,153 @@
       border-radius:4px;
     }
   }
+
+  #artist-store-avatar{
+    height: 128px;
+    width: 128px;
+    display: block;
+    background-size: cover !important;
+    background-position: center !important;
+    margin: 15px auto;
+    border:1px solid $border_light;
+    border-radius:4px;
+  }
+
+  #artist-store-links{
+    text-align: center;
+
+    .artist-store-link{
+      display:inline-block;
+      margin:7px;
+      font-size:24px;
+      line-height:24px;
+    }
+  }
+
+  #artist-website-link{
+    text-align: center;
+
+    hr{
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+
+    h4{
+      margin:0;
+      font-weight: 300;
+    }
+  }
+
+  #artist-store-all-products{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap:1rem;
+
+    .artist-store-product{
+      .product-image{
+        position: relative;
+        margin:auto;
+        width:100%;
+        height:128px;
+        background-size: cover !important;
+        background-position: center !important;
+        border:1px solid $border_light;
+        border-radius:4px 4px 0 0;
+
+        .product-image-item-count,.product-image-item-price{
+          position: absolute;
+          background:rgba(0,0,0,0.5);
+          color:$text_light;
+          padding:1rem 1rem;
+          opacity:0;
+          transition: opacity 0.2s;
+
+        }
+
+        .product-image-item-count{
+          top:0;
+          right:0;
+          border-radius:0 4px 0 4px;
+        }
+
+        .product-image-item-price{
+          bottom:0;
+          left:0;
+          border-radius:0 4px 0 4px;
+        }
+
+        &:hover{
+          .product-image-item-count,.product-image-item-price{
+            opacity:1;
+            transition: opacity 0.2s;
+          }
+        }
+      }
+
+      .product-name{
+        text-align: center;
+        padding:5px;
+        border:1px solid $border_light;
+        border-top:none;
+        color:inherit;
+      }
+    }
+  }
+
+  #artist-store-recent-additions{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:1rem;
+
+    .artist-store-recent-addition{
+
+      .product-image{
+        position: relative;
+        margin:auto;
+        overflow:hidden;
+        width:220px;
+        height:220px;
+        background-size: cover !important;
+        background-position: center !important;
+        border:1px solid $border_light;
+        border-radius:4px;
+
+        .product-image-item-count,.product-image-item-price{
+          position: absolute;
+          background:rgba(0,0,0,0.5);
+          color:$text_light;
+          padding:1rem 1rem;
+          opacity:0;
+          transition: opacity 0.2s;
+
+        }
+
+        .product-image-item-count{
+          top:0;
+          right:0;
+          border-radius:0 0 0 4px;
+        }
+
+        .product-image-item-price{
+          bottom:0;
+          left:0;
+          border-radius:0 4px 0 0;
+        }
+
+        &:hover{
+          .product-image-item-count,.product-image-item-price{
+            opacity:1;
+            transition: opacity 0.2s;
+          }
+        }
+
+
+      }
+
+      .product-name{
+        text-align: center;
+        padding:5px;
+      }
+    }
+  }
 }

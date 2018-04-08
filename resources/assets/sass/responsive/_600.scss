@@ -1,0 +1,13 @@
+@media screen and (max-width:600px){
+  #artist-store #artist-store-all-products{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #artist-store #artist-store-recent-additions{
+    grid-template-columns: 1fr 1fr;
+
+    .artist-store-recent-addition:nth-child(3){
+      display:none;
+    }
+  }
+}

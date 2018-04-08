@@ -46,4 +46,8 @@ class Store extends Model
     public function pendingProducts(){
         return $this->products()->where('live',false)->get();
     }
+    
+    public function recentAdditions($limit){
+        return $this->products()->where('live',true)->orderBy('created_at','DESC')->limit($limit)->get();
+    }
 }

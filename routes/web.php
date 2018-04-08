@@ -74,6 +74,10 @@ Route::group(['prefix' => 'store'], function () {
 Route::group(['prefix' => 'artist'], function () {
     Route::group(['middleware' => ['artist.store_exists'], 'prefix' => '{slug}'], function () {
         Route::get('/','Storefront\Artist\ArtistStoreController@show')->name('artist.store');
+
+        Route::group(['middleware' => ['artist.product.is_live'], 'prefix' => '{uuid}'], function () {
+            Route::get('/','Storefront\Artist\Product\ArtistProductController@show')->name('artist.store.product');
+        });
     });
 });
 

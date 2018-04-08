@@ -1,0 +1,10 @@
+@media screen and (max-width:1200px){
+  #artist-store #artist-store-all-products{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  #artist-store #artist-store-recent-additions .artist-store-recent-addition .product-image{
+    width: 160px;
+    height: 160px;
+  }
+}
