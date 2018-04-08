@@ -98,19 +98,21 @@
             <div class="panel panel-default hidden-sm hidden-xs">
                 <div id="artist-store-avatar" style="background: url({{ $store->avatar_url }})"></div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div id="artist-store-links">
-                        @foreach($artist->profile_links as $profile_link)
-                            <div class="artist-store-link">
-                                <a href="{{ $profile_link->link }}" target="_blank">
-                                    <i class="fab fa-{{$profile_link->type}}"></i>
-                                </a>
-                            </div>
-                        @endforeach
+            @if(count($artist->profile_links) > 0)
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="artist-store-links">
+                            @foreach($artist->profile_links as $profile_link)
+                                <div class="artist-store-link">
+                                    <a href="{{ $profile_link->link }}" target="_blank">
+                                        <i class="fab fa-{{$profile_link->type}}"></i>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div id="artist-website-link">
