@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AdminPanelController extends Controller
@@ -12,7 +13,7 @@ class AdminPanelController extends Controller
     public function show(Request $request) {
 
 
-        return view();
+        return view('account.admin.admin_panel');
 
     }
 }

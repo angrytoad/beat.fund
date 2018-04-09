@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
  */
 
 Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' => 'admin'], function () {
-    Route::get('/admin', 'Account\Admin\AdminPanelController@show')->name('account.admin.show_panel');
+    Route::get('panel', 'Account\Admin\AdminPanelController@show')->name('account.admin.show_panel');
 });
 
 
