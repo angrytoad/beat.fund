@@ -50,4 +50,14 @@ class Store extends Model
     public function recentAdditions($limit){
         return $this->products()->where('live',true)->orderBy('created_at','DESC')->limit($limit)->get();
     }
+
+    public function downsizedBanner()
+    {
+        return env('SERVERLESS_IMAGE_HANDLER').'/1140x330/smart/'.$this->banner_key;
+    }
+
+    public function downsizedAvatar()
+    {
+        return env('SERVERLESS_IMAGE_HANDLER').'/200x200/smart/'.$this->avatar_key;
+    }
 }

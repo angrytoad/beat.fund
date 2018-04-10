@@ -9,7 +9,7 @@
     {{ Breadcrumbs::render('artist.store.product',$product->store->user->profile,$product) }}
     <div class="row">
         <div class="col-xs-12">
-            <div class="banner animated fadeIn" style="background: url({{ $product->store->banner_url }})">
+            <div class="banner" style="background: url({{ $product->store->downsizedBanner() }})">
                 <div class="banner-text">{{ $product->name }}</div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <h2 class="hidden-lg hidden-md hidden-sm text-center">{{ $product->name }}</h2>
             @if($product->image_key)
                 <div id="product-image" class="panel">
-                    <img src="{{ $product->image_url }}" />
+                    <img src="{{ $product->downsizedImage() }}" />
                 </div>
             @endif
             @include('misc.is_product_in_cart')
