@@ -49,4 +49,9 @@ class Product extends Model
     public function plaintextDescription(){
         return strip_tags($this->description);
     }
+    
+    public function downsizedImage()
+    {
+        return env('SERVERLESS_IMAGE_HANDLER').'/300x300/smart/'.$this->image_key;
+    }
 }

@@ -9,7 +9,7 @@
     {{ Breadcrumbs::render('artist.store',$artist) }}
     <div class="row">
         <div class="col-xs-12">
-            <div class="banner animated fadeIn" style="background: url({{ $store->banner_url }})">
+            <div class="banner animated fadeIn" style="background: url({{ $store->downsizedBanner() }})">
                 <div class="banner-text">{{ $artist->artist_name }}</div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                                     <div class="artist-store-recent-addition">
                                         <div class="product-image"
                                              @if($product->image_key)
-                                             style="background:url({{ $product->image_url }})"
+                                             style="background:url({{ $product->downsizedImage() }})"
                                              @else
                                              style="background:url('/images/no_image.png')"
                                                 @endif
@@ -71,7 +71,7 @@
                                 <div class="artist-store-product">
                                     <div class="product-image"
                                          @if($product->image_key)
-                                         style="background:url({{ $product->image_url }})"
+                                         style="background:url({{ $product->downsizedImage() }})"
                                          @else
                                          style="background:url('/images/no_image.png')"
                                             @endif
@@ -97,7 +97,7 @@
         </div>
         <div class="col-md-3">
             <div class="panel panel-default hidden-sm hidden-xs">
-                <div id="artist-store-avatar" style="background: url({{ $store->avatar_url }})"></div>
+                <div id="artist-store-avatar" style="background: url({{ $store->downsizedAvatar() }})"></div>
             </div>
             @if(count($artist->profile_links) > 0)
                 <div class="panel panel-default">

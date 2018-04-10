@@ -57,7 +57,7 @@
             <h2 class="hidden-lg hidden-md hidden-sm text-center">{{ $product->name }}</h2>
             @if($product->image_key)
                 <div id="product-image" class="panel">
-                    <img src="{{ $product->image_url }}" />
+                    <img src="{{ $product->downsizedImage() }}" />
                 </div>
             @endif
             @include('misc.is_product_in_cart')
