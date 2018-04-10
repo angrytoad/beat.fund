@@ -9,6 +9,7 @@
         "aloha/twilio": "^3.0",
         "aws/aws-sdk-php": "~3.0",
         "aws/aws-sdk-php-laravel": "~3.0",
+        "bugsnag/bugsnag-laravel": "^2.0",
         "cartalyst/stripe-laravel": "7.0.*",
         "davejamesmiller/laravel-breadcrumbs": "^4.2",
         "doctrine/dbal": "^2.5",
