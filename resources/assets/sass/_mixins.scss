@@ -6,3 +6,7 @@
   -ms-user-select: none;
   user-select: none;
 }
+
+@mixin BlueGradient() {
+  background: linear-gradient(135deg, #0067d6, #007bff, #429dff, #5aa8fc);
+}

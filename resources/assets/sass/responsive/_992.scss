@@ -1,0 +1,30 @@
+@media screen and (max-width:992px) {
+  #artist-product {
+    #artist-product-columns{
+      display:grid;
+      grid-template-areas: "right""left" ;
+      grid-template-columns: 1fr;
+
+      #artist-product-left-column{
+        grid-area: left;
+      }
+
+      #artist-product-right-column{
+        grid-area: right;
+
+        .is_product_in_cart{
+          max-width:300px;
+          margin:auto;
+          margin-bottom:20px;
+        }
+      }
+    }
+
+    #product-image {
+      max-width: 200px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+  }
+
+}

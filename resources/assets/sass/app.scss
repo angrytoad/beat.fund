@@ -15,6 +15,9 @@
 @import "layout/navbar";
 @import "layout/internal_menu";
 
+// Misc
+@import "misc/is_product_in_cart";
+
 // Page Imports
 @import "pages/welcome";
 @import "pages/profile/profile";
@@ -31,6 +34,7 @@
 @import "pages/store/products/line_item/line_item";
 
 @import "pages/storefront/artist/store";
+@import "pages/storefront/artist/product/product";
 
 
 body{
@@ -109,6 +113,8 @@ summary{
 
 // Responsive Imports
 @import "responsive/1200";
+@import "responsive/992";
 @import "responsive/800";
+@import "responsive/767";
 @import "responsive/600";
 @import "responsive/450";

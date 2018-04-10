@@ -8,7 +8,7 @@
     {{ Breadcrumbs::render('artist.store',$artist) }}
     <div class="row">
         <div class="col-xs-12">
-            <div class="banner" style="background: url({{ $store->banner_url }})">
+            <div class="banner animated fadeIn" style="background: url({{ $store->banner_url }})">
                 <div class="banner-text">{{ $artist->artist_name }}</div>
             </div>
         </div>

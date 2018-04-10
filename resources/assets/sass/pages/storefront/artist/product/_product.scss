@@ -1,0 +1,87 @@
+#artist-product{
+  .banner{
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid $border_light;
+    position: relative;
+    height:165px;
+    margin-bottom:2rem;
+    display:grid;
+    align-items: center;
+    justify-items: center;
+    background-size:cover!important;
+    background-position: center!important;
+
+    .banner-text{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      right: 0;
+      left: 0;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.5);
+      color: $text_light;
+      font-size: 22px;
+    }
+  }
+
+  #product-image{
+    img{
+      width:100%;
+    }
+  }
+
+  #artist-product-price{
+    #amount_display{
+      height:30px;
+      margin-top:1rem;
+      margin-bottom:1rem;
+
+      input{
+        height:100%;
+        width:100%;
+      }
+
+      .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+        height:40px;
+      }
+
+      .ui-slider-horizontal .ui-slider-handle{
+        margin-top:-6px;
+      }
+
+      .ui-slider-range{
+        @include BlueGradient()
+      }
+
+      .ui-state-active{
+        background:$blue;
+      }
+
+    }
+  }
+
+  #artist-product-items{
+    .artist-product-item{
+      display:grid;
+      grid-template-columns: auto 1fr 300px;
+      align-items: center;
+      grid-gap:2rem;
+
+      .order{
+        font-weight: bold;
+        color:$blue;
+      }
+
+      .sample{
+        display: grid;
+        align-items: center;
+
+        audio{
+          width:100%;
+        }
+      }
+    }
+  }
+}

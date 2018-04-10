@@ -1,0 +1,11 @@
+@media screen and (max-width:767px){
+  #artist-product{
+    .banner{
+      display:none;
+    }
+  }
+
+  #artist-product #artist-product-description{
+    display:none;
+  }
+}
