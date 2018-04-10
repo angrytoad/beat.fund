@@ -171,7 +171,7 @@ return [
         Aws\Laravel\AwsServiceProvider::class,
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
-        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
 
         /*
          * Application Service Providers...
