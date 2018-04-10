@@ -9,7 +9,7 @@
     {{ Breadcrumbs::render('artist.store.product',$product->store->user->profile,$product) }}
     <div class="row">
         <div class="col-xs-12">
-            <div class="banner animated fadeIn" style="background: url({{ $product->store->banner_url }})">
+            <div class="banner" style="background: url({{ $product->store->downsizedBanner() }})">
                 <div class="banner-text">{{ $product->name }}</div>
             </div>
         </div>
