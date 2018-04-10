@@ -31,7 +31,7 @@ class CartActionsController extends Controller
 
     public function addToCart(Request $request, $slug, $product_id){
         $request->validate([
-            'amount' => 'required|numeric|min:0.50',
+            'amount' => 'required|numeric|min:0.10',
         ]);
 
 

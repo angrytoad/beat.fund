@@ -45,4 +45,8 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductLineItem');
     }
+    
+    public function plaintextDescription(){
+        return strip_tags($this->description);
+    }
 }
