@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $product->name)
+@section('meta_description', $product->plaintextDescription())
 
 @section('content')
 <div id="artist-product" class="container">

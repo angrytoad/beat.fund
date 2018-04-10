@@ -62,4 +62,8 @@ class Profile extends Model
 
         return $completion_percentage;
     }
+
+    public function plaintextBio(){
+        return strip_tags($this->artist_bio);
+    }
 }

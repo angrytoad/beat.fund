@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $artist->artist_name.'\'s Store')
+@section('meta_description', $artist->plaintextBio())
 
 @section('content')
 <div id="artist-store" class="container">
