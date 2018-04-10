@@ -8,19 +8,30 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
+use App\Library\Repositories\StorefrontRepository;
 
 class StorefrontController extends Controller
 {
+    public $storefrontRepository;
 
     /**
-     * Create a new controller instance.
+     * StorefrontController constructor.
+     * @param StorefrontRepository $storefrontRepository
      */
-    public function __construct()
+    public function __construct(StorefrontRepository $storefrontRepository)
     {
-
+        $this->storefrontRepository = $storefrontRepository;
     }
 
     public function show(){
-        return "Nothing here... yet";
+        return view('storefront.storefront')->with([
+            'products' => $this->storefrontRepository->getAllProducts()
+        ]);
+    }
+
+    public function cart(){
+        return view('storefront.storefront')->with([
+            'products' => $this->storefrontRepository->getAllProducts()
+        ]);
     }
 }

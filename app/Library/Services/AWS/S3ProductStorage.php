@@ -13,6 +13,7 @@ use App\Library\Contracts\ProductStorageInterface;
 use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7\Stream;
+use App\Library\Services\AWS\AWSClient;
 
 class S3ProductStorage implements ProductStorageInterface
 {

@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
  */
 Route::group(['prefix' => 'store'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
+    Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
 });
 
 Route::group(['prefix' => 'artist'], function () {
@@ -77,6 +78,8 @@ Route::group(['prefix' => 'artist'], function () {
 
         Route::group(['middleware' => ['artist.product.is_live'], 'prefix' => '{uuid}'], function () {
             Route::get('/','Storefront\Artist\Product\ArtistProductController@show')->name('artist.store.product');
+            Route::post('/add-to-cart','Storefront\Cart\CartActionsController@addToCart')->name('artist.store.product.add_to_cart');
+            Route::post('/remove-from-cart','Storefront\Cart\CartActionsController@removeFromCart')->name('artist.store.product.remove_from_cart');
         });
     });
 });

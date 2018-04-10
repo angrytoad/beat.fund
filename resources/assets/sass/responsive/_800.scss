@@ -9,4 +9,8 @@
   #artist-store #artist-store-all-products .artist-store-product .product-image .product-image-item-price{
     opacity:1
   }
+
+  #artist-product #artist-product-items .artist-product-item{
+    grid-template-columns: auto 1fr 200px;
+  }
 }
