@@ -1,4 +1,4 @@
-<nav class="navbar navbar-static-top">
+<nav id="navbar-top" class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
 
@@ -23,8 +23,8 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
+            <ul id="navbar-top-right" class="nav navbar-nav navbar-right">
+                <li class="{{ \App\Helpers\Helper::areActiveRoutes(['storefront']) }}"><a href="{{ route('storefront') }}">Store</a></li>
                 @guest
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>
@@ -50,7 +50,7 @@
                             @if(Auth::user()->store)
                                 <li>
                                     <a href="{{ route('store') }}">
-                                        Store
+                                        My Store
                                     </a>
                                 </li>
                             @endif
@@ -73,7 +73,18 @@
                             </li>
                         </ul>
                     </li>
-                    @endguest
+                @endguest
+                <li id="cart-menu-item" class="{{ \App\Helpers\Helper::areActiveRoutes(['storefront.cart']) }}">
+                    <a href="{{ route('storefront.cart') }}">
+                        @if(session()->exists('cart'))
+                            <i class="fas fa-shopping-cart"></i>
+                            {{ count(session()->get('cart')) }}
+                        @else
+                            <i class="fas fa-shopping-cart"></i>
+                            0
+                        @endif
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

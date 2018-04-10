@@ -83,7 +83,34 @@
                     </div>
                 @endif
             @endif
+            @if(count($other_products) > 0)
+                <div id="artist-product-other-products" class="panel panel-default">
+                    <p id="artist-product-other-products-more-from">More from <a href="{{ route('artist.store',$product->store->slug) }}">{{ $artist->artist_name }}</a></p>
+                    @foreach($other_products as $other_product)
+                        <a href="{{ route('artist.store.product',[$other_product->store->slug, $other_product->id]) }}">
+                            <div class="row other-product">
+                                <div class="col-xs-12">
+                                    @if($other_product->image_key)
+                                        <div class="other-product-image" style="background:url({{ $other_product->image_url }})">
+                                            <div class="other-product-price">
+                                                @if($other_product->price)
+                                                    {{ number_format($other_product->price/100,2) }}
+                                                @else
+                                                    PWYW
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="other-product-name">
+                                        {{ $other_product->name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
 
+                </div>
+            @endif
         </div>
     </div>
 </div>
@@ -106,8 +133,10 @@
         });
 
         function updateProductPrice(e){
-            $( "#amount_price_display" ).text(parseFloat(e.target.value).toFixed(2));
-            $( "#amount" ).val(parseFloat(e.target.value).toFixed(2));
+            if(e.target.value !== ""){
+                $( "#amount_price_display" ).text(parseFloat(e.target.value).toFixed(2));
+                $( "#amount" ).val(parseFloat(e.target.value).toFixed(2));
+            }
         }
 
 
@@ -118,7 +147,7 @@
                             '<div class="input-group-addon">' +
                                 '<div class="input-group-text">&pound;</div>' +
                             '</div>' +
-                            '<input class="form-control" type="number" name="amount" step="0.01" min="0" onkeyup="updateProductPrice(event)"/>' +
+                            '<input class="form-control" type="number" name="amount" step="0.01" min="0.10" onkeyup="updateProductPrice(event)"/>' +
                         '</div>'
                 );
                 $( "#amount_display" ).slider("destroy");

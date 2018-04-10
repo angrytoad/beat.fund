@@ -111,6 +111,26 @@ summary{
   border: 1px solid #ddd;
 }
 
+#navbar-top{
+  #navbar-top-right{
+    .active{
+      background:$blue_hover;
+    }
+
+    a:hover{
+      text-decoration: underline;
+    }
+
+    #cart-menu-item{
+      font-size:18px;
+
+      a{
+        text-decoration: none!important;
+      }
+    }
+  }
+}
+
 // Responsive Imports
 @import "responsive/1200";
 @import "responsive/992";

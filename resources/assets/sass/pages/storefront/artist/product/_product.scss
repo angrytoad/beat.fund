@@ -84,4 +84,59 @@
       }
     }
   }
+
+  #artist-product-other-products{
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-gap:15px;
+    padding:15px;
+
+    #artist-product-other-products-more-from{
+      margin:0;
+      text-align: center;
+    }
+
+    .other-product{
+
+      .other-product-image{
+        border:1px solid $border_light;
+        border-radius:4px 4px 0 0;
+        height:230px;
+        width:100%;
+        background-size:cover!important;
+        background-position: center!important;
+        position: relative;
+
+        .other-product-price{
+          opacity:0;
+          transition:opacity 0.2s;
+          position: absolute;
+          bottom:0;
+          left:0;
+          padding:1rem 2rem;
+          background:rgba(0,0,0,0.5);
+          color:$text_light;
+          border-radius:0 4px 0 4px;
+          font-size:13px;
+        }
+
+
+
+        &:hover{
+          .other-product-name,.other-product-price{
+            opacity:1;
+          }
+        }
+      }
+
+      .other-product-name{
+        text-align: center;
+        font-size:16px;
+        font-weight: 300;
+        margin-top:5px;
+      }
+
+
+    }
+  }
 }

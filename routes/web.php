@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
  */
 Route::group(['prefix' => 'store'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
-    Route::get('/cart','Storefront\StorefrontController@show')->name('storefront.cart');
+    Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
 });
 
 Route::group(['prefix' => 'artist'], function () {
