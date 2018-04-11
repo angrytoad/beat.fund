@@ -71,8 +71,8 @@
                                     Price: <strong>&pound;{{ number_format($product->price/100,2) }}</strong>
                                     <input type="hidden" id="amount" readonly name="amount" value="{{ number_format($product->price/100,2) }}" />
                                 @else
-                                    Price: <strong>&pound;<span id="amount_price_display">5.60</span></strong> <br />
-                                    <input type="hidden" id="amount" readonly name="amount" value="5.60" />
+                                    Price: <strong>&pound;<span id="amount_price_display">{{ number_format((count($product->items)*60)/100,2) }}</span></strong> <br />
+                                    <input type="hidden" id="amount" readonly name="amount" value="{{ number_format((count($product->items)*60)/100,2) }}" />
                                     <div id="amount_display"></div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" onclick="toggleCustomAmount(event)" />
@@ -120,7 +120,7 @@
     <script>
 
         $( "#amount_display" ).slider({
-            value:5.60,
+            value: "{{ number_format((count($product->items)*60)/100,2) }}",
             range: "min",
             animate: true,
             orientation: "horizontal",
@@ -160,8 +160,8 @@
                     animate: true,
                     orientation: "horizontal",
                     min: 0.50,
-                    max: 10,
-                    step:0.01,
+                    max: 15,
+                    step:0.10,
                     slide: function( event, ui ) {
                         $( "#amount" ).val(ui.value);
                         $( "#amount_price_display" ).text(ui.value.toFixed(2));
