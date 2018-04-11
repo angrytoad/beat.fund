@@ -161,7 +161,7 @@
                     orientation: "horizontal",
                     min: 0.50,
                     max: 15,
-                    step:0.01,
+                    step:0.10,
                     slide: function( event, ui ) {
                         $( "#amount" ).val(ui.value);
                         $( "#amount_price_display" ).text(ui.value.toFixed(2));
