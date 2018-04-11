@@ -44,6 +44,16 @@ Breadcrumbs::register('storefront', function ($breadcrumbs) {
    $breadcrumbs->push('Store', route('storefront'));
 });
 
+Breadcrumbs::register('storefront.cart', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront');
+    $breadcrumbs->push('Cart', route('storefront.cart'));
+});
+
+Breadcrumbs::register('storefront.checkout', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.cart');
+    $breadcrumbs->push('Checkout', route('storefront.checkout'));
+});
+
 Breadcrumbs::register('artist.store', function ($breadcrumbs, $artist) {
     $breadcrumbs->parent('storefront');
     $breadcrumbs->push($artist->artist_name, route('artist.store',$artist->user->store->slug));

@@ -1,0 +1,21 @@
+#cart{
+  #cart-table{
+
+  }
+
+  #cart-total{
+    display: inline-block;
+
+    tbody{
+      float:right;
+    }
+
+    td{
+      text-align: right;
+    }
+
+    #cart-total-total{
+      color:$blue;
+    }
+  }
+}

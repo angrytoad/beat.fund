@@ -8795,6 +8795,22 @@ button.close {
   background: #d9534f !important;
 }
 
+#cart #cart-total {
+  display: inline-block;
+}
+
+#cart #cart-total tbody {
+  float: right;
+}
+
+#cart #cart-total td {
+  text-align: right;
+}
+
+#cart #cart-total #cart-total-total {
+  color: #007BFF;
+}
+
 #artist-store .banner {
   border-radius: 4px;
   overflow: hidden;

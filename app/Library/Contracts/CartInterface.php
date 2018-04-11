@@ -18,5 +18,9 @@ interface CartInterface{
     public function getCart();
 
     public function clearCart();
+
+    public function getFormattedCart();
+
+    public function addToFormattedCart($product, $price = null);
     
 }
