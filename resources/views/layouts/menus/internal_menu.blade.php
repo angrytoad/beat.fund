@@ -3,7 +3,6 @@
         <li class="list-group-item {{ Helper::isActiveRoute('home') }}">
             <a class="list-group-item-heading" href="{{ route('home') }}">Home</a>
         </li>
-        @if(Auth::user()->store)
         <li class="list-group-item {{ Helper::areActiveRoutes([
         'store',
         'store.create',
@@ -20,6 +19,7 @@
                 Store <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+                @if(Auth::user()->store)
                 <li class="{{ Helper::isActiveRoute('store') }}">
                     <a href="{{ route('store') }}">My Store</a>
                 </li>
@@ -35,13 +35,12 @@
                 ]) }}">
                     <a href="{{ route('store.products') }}">Products</a>
                 </li>
+                @endif
                 @if(Auth::user()->store === null)
                     <li class="{{ Helper::isActiveRoute('store.create') }}"><a href="{{ route('store.create') }}">Create a store</a></li>
                 @endif
             </ul>
         </li>
-
-        @endif
         <li class="list-group-item {{ Helper::areActiveRoutes(['profile','profile.create']) }}">
             <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
                 Profile <span class="caret"></span>
