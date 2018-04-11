@@ -4,7 +4,7 @@
     overflow:hidden;
     border:1px solid $border_light;
     position: relative;
-    height:165px;
+    height:330px;
     margin-bottom:2rem;
     display:grid;
     align-items: center;
@@ -14,21 +14,21 @@
 
     .banner-text{
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: center;
-      right: 0;
-      left: 0;
-      padding: 1rem 2rem;
-      background: rgba(0, 0, 0, 0.5);
-      color: $text_light;
-      font-size: 22px;
+      bottom:0;
+      left:0;
+      padding:1rem 2rem;
+      background:rgba(0,0,0,0.5);
+      color:$text_light;
+      font-size:22px;
     }
   }
 
   #product-image{
     img{
       width:100%;
+      display:block;
+      border:1px solid $border_light;
+      border-radius:4px;
     }
   }
 

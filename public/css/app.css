@@ -8882,6 +8882,10 @@ button.close {
   font-weight: 300;
 }
 
+#artist-store #artist-website-link a {
+  word-break: break-all;
+}
+
 #artist-store #artist-store-all-products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -8995,7 +8999,7 @@ button.close {
   overflow: hidden;
   border: 1px solid #ddd;
   position: relative;
-  height: 165px;
+  height: 330px;
   margin-bottom: 2rem;
   display: grid;
   -webkit-box-align: center;
@@ -9008,11 +9012,7 @@ button.close {
 
 #artist-product .banner .banner-text {
   position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  text-align: center;
-  right: 0;
+  bottom: 0;
   left: 0;
   padding: 1rem 2rem;
   background: rgba(0, 0, 0, 0.5);
@@ -9022,6 +9022,9 @@ button.close {
 
 #artist-product #product-image img {
   width: 100%;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 #artist-product #artist-product-price #amount_display {
