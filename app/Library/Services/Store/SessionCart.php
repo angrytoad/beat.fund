@@ -71,7 +71,7 @@ class SessionCart implements CartInterface
         }
     }
 
-    public function addToFormattedCart($product, $price = null){
+    private function addToFormattedCart($product, $price = null){
         $this->formattedCart['products'][$product->id] = [
             'product' => $product,
             'price' => $price === null ? $this->cart[$product->id]['price'] : $product->price
