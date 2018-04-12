@@ -60,7 +60,7 @@
         'account.stripe.connect'
         ]) }}">
             <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
-                {{ Auth::user()->first_name }} <span class="caret"></span>
+                {{ Auth::user()->first_name }}'s Account <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li class="{{ Helper::isActiveRoute('account') }}"><a href="{{ route('account') }}">Account</a></li>

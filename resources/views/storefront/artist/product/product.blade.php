@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="sample">
                                     <audio controls preload="none">
-                                        <source src="{{ $line_item->signedSampleURL() }}">
+                                        <source src="{{ $line_item->sampleURL() }}">
                                     </audio>
                                 </div>
                             </li>
