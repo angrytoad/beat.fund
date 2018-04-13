@@ -8795,6 +8795,61 @@ button.close {
   background: #d9534f !important;
 }
 
+#cards #cards-display .card-display {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#cards #cards-display .card-display .card-actions {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 4px 0 0 0;
+}
+
+#cards #cards-display .card-display .card-actions svg {
+  margin: 0 2px;
+}
+
+#cards #cards-display .card-display .card-display-name {
+  font-weight: bold;
+}
+
+#cards #cards-display .card-display p {
+  margin: 0;
+}
+
+#cards #cards-display .card-display hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#cards #cards-display .card-display .default-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 18px;
+  background: #F4F9FF;
+  border-radius: 0 0 0 4px;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-right: none;
+}
+
+#card #card-delete {
+  margin-left: 5px;
+}
+
 #cart #cart-total {
   display: inline-block;
 }

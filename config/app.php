@@ -187,7 +187,9 @@ return [
          */
         \App\Providers\CheckoutServiceProvider::class,
         \App\Providers\TranscodingServiceProvider::class,
-        \App\Providers\StoreServiceProvider::class
+        \App\Providers\StoreServiceProvider::class,
+        \App\Providers\AccountServiceProvider::class
+
         
 
     ],

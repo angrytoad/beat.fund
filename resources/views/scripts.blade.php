@@ -47,4 +47,7 @@
 <!-- TouchPunch -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
+<!-- Stripe Elements -->
+<script src="https://js.stripe.com/v3/"></script>
+
 @yield('scripts')
