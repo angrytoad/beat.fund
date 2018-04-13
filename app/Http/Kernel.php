@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Account\EmailVerified;
+use App\Http\Middleware\Account\OwnsCard;
 use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
 use App\Http\Middleware\Store\HasNoStore;
@@ -80,6 +81,7 @@ class Kernel extends HttpKernel
         'user.store.product.has_item' => HasLineItem::class,
         'store.is_not_live' => IsNotLive::class,
         'artist.store_exists' => StoreExists::class,
-        'artist.product.is_live' => ProductIsLive::class
+        'artist.product.is_live' => ProductIsLive::class,
+        'user.owns_card' => OwnsCard::class
     ];
 }

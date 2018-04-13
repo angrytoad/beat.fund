@@ -50,7 +50,15 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
     Route::post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
     Route::get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
     Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
+    Route::get('/cards', 'Account\AccountSavedCardsController@show')->name('account.cards');
+    Route::post('/cards/add', 'Account\AccountSavedCardsController@add')->name('account.cards.add');
 
+    Route::group(['middleware' => ['user.owns_card']], function () {
+        Route::get('/cards/{card_id}', 'Account\AccountCardController@show')->name('account.cards.card');
+        Route::post('/cards/{card_id}/update', 'Account\AccountCardController@update')->name('account.cards.card.update');
+        Route::post('/cards/{card_id}/delete', 'Account\AccountCardController@delete')->name('account.cards.card.delete');
+        Route::post('/cards/{card_id}/make-default', 'Account\AccountCardController@makeDefault')->name('account.cards.card.make_default');
+    });
 
     Route::group(['middleware' => ['user.has_store']], function () {
         Route::get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');

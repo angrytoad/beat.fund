@@ -31,9 +31,9 @@ class S3ProductStorage implements ProductStorageInterface
         $this->bucket = $bucket;
     }
     
-    public function store($destination_key, $source_file){
+    public function store($destination_key, $source_file, $public = false){
         $this->s3->client->putObject(array(
-            'ACL' => 'private',
+            'ACL' => !$public ? 'private' : 'public-read',
             'Bucket' => $this->bucket,
             'Key' => $destination_key,
             'Body' => new CachingStream(

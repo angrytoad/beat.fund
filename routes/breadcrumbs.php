@@ -92,6 +92,15 @@ Breadcrumbs::register('account.stripe', function ($breadcrumbs) {
     $breadcrumbs->push('Stripe', route('account.stripe'));
 });
 
+Breadcrumbs::register('account.cards', function ($breadcrumbs) {
+    $breadcrumbs->parent('account');
+    $breadcrumbs->push('Cards', route('account.cards'));
+});
+
+Breadcrumbs::register('account.cards.card', function ($breadcrumbs, $card) {
+    $breadcrumbs->parent('account.cards');
+    $breadcrumbs->push('Edit '.$card->name, route('account.cards.card',$card->id));
+});
 
 /**
  * PROFILE BREADCRUMBS
