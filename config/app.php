@@ -247,6 +247,7 @@ return [
         'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
         'Breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
         'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+        'Bugsnag' => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
     ],
 
 ];
