@@ -54,6 +54,16 @@ Breadcrumbs::register('storefront.checkout', function ($breadcrumbs) {
     $breadcrumbs->push('Checkout', route('storefront.checkout'));
 });
 
+Breadcrumbs::register('storefront.checkout.guest', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.checkout');
+    $breadcrumbs->push('Guest Checkout', route('storefront.checkout.guest'));
+});
+
+Breadcrumbs::register('storefront.checkout.user', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.checkout');
+    $breadcrumbs->push('User Checkout', route('storefront.checkout.user'));
+});
+
 Breadcrumbs::register('artist.store', function ($breadcrumbs, $artist) {
     $breadcrumbs->parent('storefront');
     $breadcrumbs->push($artist->artist_name, route('artist.store',$artist->user->store->slug));
@@ -101,6 +111,15 @@ Breadcrumbs::register('account.cards.card', function ($breadcrumbs, $card) {
     $breadcrumbs->parent('account.cards');
     $breadcrumbs->push('Edit '.$card->name, route('account.cards.card',$card->id));
 });
+
+/**
+ * PURCHASES BREADCRUMBS
+ */
+Breadcrumbs::register('purchases', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Purchases', route('purchases'));
+});
+
 
 /**
  * PROFILE BREADCRUMBS

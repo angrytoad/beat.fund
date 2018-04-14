@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\StripeCustomerAccount');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

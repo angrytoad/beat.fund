@@ -40,7 +40,7 @@ class StorefrontController extends Controller
     }
 
     public function checkout(){
-        return view('storefront.checkout')->with([
+        return view('storefront.checkout.checkout')->with([
             'cart' => $this->cartInterface->getFormattedCart()
         ]);
     }

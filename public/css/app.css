@@ -8850,20 +8850,65 @@ button.close {
   margin-left: 5px;
 }
 
-#cart #cart-total {
+#cart-total {
   display: inline-block;
 }
 
-#cart #cart-total tbody {
+#cart-total tbody {
   float: right;
 }
 
-#cart #cart-total td {
+#cart-total td {
   text-align: right;
 }
 
-#cart #cart-total #cart-total-total {
+#cart-total #cart-total-total {
   color: #007BFF;
+}
+
+#checkout a {
+  text-decoration: none;
+}
+
+#checkout .checkout-option {
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 200px;
+  background: #F4F9FF;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-size: cover !important;
+  background-position: center bottom !important;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+#checkout .checkout-option:hover {
+  opacity: 0.9;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border-color: #007BFF;
+}
+
+#checkout .checkout-option.guest {
+  background: url("/images/checkout/guest_checkout.jpg");
+}
+
+#checkout .checkout-option.user {
+  background: url("/images/checkout/user_checkout.jpg");
+}
+
+#checkout .checkout-option .checkout-title {
+  padding: 15px;
+  margin: 0 -15px;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  font-size: 21px;
 }
 
 #artist-store .banner {

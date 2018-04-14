@@ -3,19 +3,21 @@
 
   }
 
-  #cart-total{
-    display: inline-block;
 
-    tbody{
-      float:right;
-    }
+}
 
-    td{
-      text-align: right;
-    }
+#cart-total{
+  display: inline-block;
 
-    #cart-total-total{
-      color:$blue;
-    }
+  tbody{
+    float:right;
+  }
+
+  td{
+    text-align: right;
+  }
+
+  #cart-total-total{
+    color:$blue;
   }
 }
