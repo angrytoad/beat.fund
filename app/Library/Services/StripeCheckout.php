@@ -10,15 +10,12 @@ namespace App\Library\Services;
 
 use App\Exceptions\CheckoutProcessingException;
 use App\Library\Contracts\CheckoutInterface;
-use App\Models\Order;
-use App\Models\OrderItem;
 use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe as Stripe;
 use Stripe\Charge as Charge;
 use Stripe\Transfer as Transfer;
 use Stripe\Balance as Balance;
-use Webpatser\Uuid\Uuid;
 
 class StripeCheckout implements CheckoutInterface
 {
@@ -79,8 +76,6 @@ class StripeCheckout implements CheckoutInterface
     {
         $this->createBillingArray($cart);
 
-        $user = Auth::user();
-
         try{
 
             $billables = $this->createBillingArray($cart);
@@ -88,23 +83,6 @@ class StripeCheckout implements CheckoutInterface
 
             foreach($billables as $billable){
                 $transfer = $this->createTransfer($billable, $charge->id);
-            }
-
-            $order = new Order();
-            if($email){
-                $order->email = $email;
-            }else{
-                $order->user_id = $user->id;
-                $order->email = $user->email;
-            }
-            $order->save();
-
-            foreach($cart['products'] as $product_id => $product){
-                $orderItem = new OrderItem();
-                $orderItem->order_id = $order->id;
-                $orderItem->product_id = $product['product']->id;
-                $orderItem->price_paid = $product['price'];
-                $orderItem->save();
             }
 
         }catch(\Stripe\Error\Base $e){

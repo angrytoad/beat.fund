@@ -13,9 +13,13 @@ use App\Exceptions\CheckoutProcessingException;
 use App\Http\Controllers\Controller;
 use App\Library\Contracts\CartInterface;
 use App\Library\Contracts\CheckoutInterface;
+use App\Mail\Storefront\OrderCompleted;
 use App\Models\StripeCustomerAccountCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Order;
+use App\Models\OrderItem;
 
 class StorefrontCheckoutController extends Controller
 {
@@ -61,7 +65,28 @@ class StorefrontCheckoutController extends Controller
             $cart = $this->cartInterface->getFormattedCart();
             $this->checkoutInterface->processCart($cart, $card);
 
+            $user = Auth::user();
+
+            $order = new Order();
+            if($request->has('email')){
+                $order->email = $request->get('email');
+            }else{
+                $order->user_id = $user->id;
+                $order->email = $user->email;
+            }
+            $order->save();
+
+            foreach($cart['products'] as $product_id => $product){
+                $orderItem = new OrderItem();
+                $orderItem->order_id = $order->id;
+                $orderItem->product_id = $product['product']->id;
+                $orderItem->price_paid = $product['price'];
+                $orderItem->save();
+            }
+            
             session()->remove('cart');
+
+            Mail::to($order->email)->send(new OrderCompleted($order, $cart));
             return redirect(route('purchases'))->with([
                 'alert-success' => 'Thanks for your order, we\'ve sent you an email to confirm your purchase'
             ]);

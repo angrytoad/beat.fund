@@ -26,6 +26,21 @@
             text-decoration: underline;
         }
 
+        button{
+            background:#007BFF;;
+            color:#fff;
+            padding:5px 15px;
+            font-size:18px;
+            outline:none;
+            border:none;
+            border-radius:4px;
+        }
+
+        button:hover{
+            opacity:0.7;
+            cursor:pointer;
+        }
+
         #banner,#footer{
             background:#007BFF;
             padding:1rem;
@@ -74,7 +89,29 @@
             padding:2rem;
             background: #f7f7f7;
             border-left:1px solid #f4f4f4;
-            border-right:1px solid #e1e1e1;
+            border-right:1px solid #f4f4f4;
+        }
+
+        table{
+            width:100%;
+        }
+
+        table thead tr{
+            background: #007BFF;
+            color: #fff;
+        }
+
+        table thead tr th{
+            text-align: left;
+            padding: 5px 15px;
+        }
+
+        table tbody tr td{
+            padding: 5px 15px;
+        }
+
+        .blue{
+            color:#007BFF;
         }
 
     </style>
