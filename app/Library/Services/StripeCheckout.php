@@ -52,7 +52,7 @@ class StripeCheckout implements CheckoutInterface
     private function initialOrderCharge($cart, $card, $transfer_group){
         $total = (int) $cart['total']+env('STRIPE_FEE');
         $balance = Balance::retrieve();
-        if($balance['available']['amount'] > $total){
+        if($balance['available'][0]['amount'] > $total){
             return Charge::create(array(
                 'amount' => $total,
                 'currency' => 'gbp',
