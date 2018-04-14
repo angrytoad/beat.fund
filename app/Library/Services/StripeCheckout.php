@@ -49,21 +49,14 @@ class StripeCheckout implements CheckoutInterface
         return $billables;
     }
 
-    private function initialOrderCharge($cart, $card, $transfer_group){
+    private function initialOrderCharge($cart, $card){
         $total = (int) $cart['total']+env('STRIPE_FEE');
-        $balance = Balance::retrieve();
-        if($balance['available'][0]['amount'] > $total){
-            return Charge::create(array(
-                'amount' => $total,
-                'currency' => 'gbp',
-                'customer' => $card->stripe_customer_account->stripe_customer_id,
-                'source' => $card->card_token,
-                'transfer_group' => $transfer_group
-            ));
-        }else{
-            throw new CheckoutProcessingException('We cannot process your payment at the moment, please try again at a later date.');
-        }
-
+        return Charge::create(array(
+            'amount' => $total,
+            'currency' => 'gbp',
+            'customer' => $card->stripe_customer_account->stripe_customer_id,
+            'source' => $card->card_token,
+        ));
     }
 
     private function calculateBillableAmount($total){
@@ -73,12 +66,12 @@ class StripeCheckout implements CheckoutInterface
         return (int) $total*$cut;
     }
 
-    private function createTransfer($billable, $transfer_group){
+    private function createTransfer($billable, $charge_id){
         return Transfer::create(array(
             'amount' => $this->calculateBillableAmount($billable['total']),
             'currency' => 'gbp',
             'destination' => $billable['connect_id'],
-            'transfer_group' => $transfer_group
+            'source_transaction' => $charge_id
         ));
     }
 
@@ -90,17 +83,14 @@ class StripeCheckout implements CheckoutInterface
 
         try{
 
-            $uuid = Uuid::generate()->string;
-
             $billables = $this->createBillingArray($cart);
-            $charge = $this->initialOrderCharge($cart, $card, $uuid);
+            $charge = $this->initialOrderCharge($cart, $card);
 
             foreach($billables as $billable){
-                $transfer = $this->createTransfer($billable, $uuid);
+                $transfer = $this->createTransfer($billable, $charge->id);
             }
 
             $order = new Order();
-            $order->id = $uuid;
             if($email){
                 $order->email = $email;
             }else{
