@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe as Stripe;
 use Stripe\Charge as Charge;
 use Stripe\Transfer as Transfer;
+use Webpatser\Uuid\Uuid;
 
 class StripeCheckout implements CheckoutInterface
 {
@@ -57,9 +58,16 @@ class StripeCheckout implements CheckoutInterface
         ));
     }
 
+    private function calculateBillableAmount($total){
+        $cut = env('BEATFUND_SALES_SHARE',10);
+        $cut /= 100;
+        $cut = 1 - $cut;
+        return (int) $total*$cut;
+    }
+
     private function createTransfer($billable, $transfer_group){
         return Transfer::create(array(
-            'amount' => $billable['total'],
+            'amount' => $this->calculateBillableAmount($billable['total']),
             'currency' => 'gbp',
             'destination' => $billable['connect_id'],
             'transfer_group' => $transfer_group
@@ -74,7 +82,17 @@ class StripeCheckout implements CheckoutInterface
 
         try{
 
+            $uuid = Uuid::generate()->string;
+
+            $billables = $this->createBillingArray($cart);
+            $charge = $this->initialOrderCharge($cart, $card, $uuid);
+
+            foreach($billables as $billable){
+                $transfer = $this->createTransfer($billable, $uuid);
+            }
+
             $order = new Order();
+            $order->id = $uuid;
             if($email){
                 $order->email = $email;
             }else{
@@ -89,14 +107,6 @@ class StripeCheckout implements CheckoutInterface
                 $orderItem->product_id = $product['product']->id;
                 $orderItem->price_paid = $product['price'];
                 $orderItem->save();
-            }
-
-
-            $billables = $this->createBillingArray($cart);
-            $charge = $this->initialOrderCharge($cart, $card, $order->id);
-
-            foreach($billables as $billable){
-                $transfer = $this->createTransfer($billable, $order->id);
             }
 
         }catch(\Stripe\Error\Base $e){
