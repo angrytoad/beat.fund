@@ -55,7 +55,7 @@
                                 </tr>
                                 <tr>
                                     <td>Stripe Fees:</td>
-                                    <td><strong>+ &pound;0.50</strong></td>
+                                    <td><strong>+ &pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>Total:</td>

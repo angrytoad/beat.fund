@@ -15,6 +15,7 @@ use App\Http\Middleware\Store\Product\ProductNotLive;
 use App\Http\Middleware\Store\Product\UserHasProduct;
 use App\Http\Middleware\Storefront\Artist\Product\ProductIsLive;
 use App\Http\Middleware\Storefront\Artist\StoreExists;
+use App\Http\Middleware\Storefront\HasItemsInCart;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -82,6 +83,7 @@ class Kernel extends HttpKernel
         'store.is_not_live' => IsNotLive::class,
         'artist.store_exists' => StoreExists::class,
         'artist.product.is_live' => ProductIsLive::class,
-        'user.owns_card' => OwnsCard::class
+        'user.owns_card' => OwnsCard::class,
+        'user.has_items_in_cart' => HasItemsInCart::class
     ];
 }

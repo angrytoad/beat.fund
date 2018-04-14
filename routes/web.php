@@ -78,7 +78,17 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
 Route::group(['prefix' => 'store'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
     Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
-    Route::get('/checkout','Storefront\StorefrontController@checkout')->name('storefront.checkout');
+
+    Route::group(['middleware' => ['user.has_items_in_cart']], function () {
+        Route::get('/checkout','Storefront\StorefrontController@checkout')->name('storefront.checkout');
+
+        Route::get('/checkout/guest', 'Storefront\StorefrontCheckoutController@guestCheckout')->name('storefront.checkout.guest');
+        Route::group(['middleware' => ['auth','email.verified']], function () {
+            Route::get('/checkout/user', 'Storefront\StorefrontCheckoutController@userCheckout')->name('storefront.checkout.user');
+            Route::post('/checkout','Storefront\StorefrontCheckoutController@process');
+        });
+    });
+
 });
 
 Route::group(['prefix' => 'artist'], function () {
@@ -105,8 +115,6 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     // Homepage Once logged in
     Route::get('/', 'Home\HomeController@index')->name('home');
 
-
-
     /**
      * All routes for help documentation
      */
@@ -118,7 +126,19 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
        });
     });
 
-
+    /**
+     * Collection
+     */
+    Route::group(['prefix' => 'collection'], function () {
+        Route::get('/', 'Collection\CollectionController@show')->name('collection');
+    });
+    
+    /**
+     * Purchases
+     */
+    Route::group(['prefix' => 'purchases'], function () {
+        Route::get('/', 'Purchases\PurchasesController@show')->name('purchases');
+    });
 
     /**
      * Profile Actions
