@@ -12,10 +12,12 @@ use App\Exceptions\CheckoutProcessingException;
 use App\Library\Contracts\CheckoutInterface;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe as Stripe;
 use Stripe\Charge as Charge;
 use Stripe\Transfer as Transfer;
+use Stripe\Balance as Balance;
 use Webpatser\Uuid\Uuid;
 
 class StripeCheckout implements CheckoutInterface
@@ -49,13 +51,19 @@ class StripeCheckout implements CheckoutInterface
 
     private function initialOrderCharge($cart, $card, $transfer_group){
         $total = (int) $cart['total']+env('STRIPE_FEE');
-        return Charge::create(array(
-            'amount' => $total,
-            'currency' => 'gbp',
-            'customer' => $card->stripe_customer_account->stripe_customer_id,
-            'source' => $card->card_token,
-            'transfer_group' => $transfer_group
-        ));
+        $balance = Balance::retrieve();
+        if($balance['available']['total'] > $total){
+            return Charge::create(array(
+                'amount' => $total,
+                'currency' => 'gbp',
+                'customer' => $card->stripe_customer_account->stripe_customer_id,
+                'source' => $card->card_token,
+                'transfer_group' => $transfer_group
+            ));
+        }else{
+            throw new CheckoutProcessingException('We cannot process your payment at the moment, please try again at a later date.');
+        }
+
     }
 
     private function calculateBillableAmount($total){
@@ -110,7 +118,8 @@ class StripeCheckout implements CheckoutInterface
             }
 
         }catch(\Stripe\Error\Base $e){
-            throw new CheckoutProcessingException($e->getMessage());
+            Bugsnag::notifyException($e);
+            throw new CheckoutProcessingException('We cannot process your payment at the moment, please try again at a later date.');
         }
     }
 
