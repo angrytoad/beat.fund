@@ -23,6 +23,7 @@ Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVer
 
 Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
 Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
+Route::get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
 
 
 /**
