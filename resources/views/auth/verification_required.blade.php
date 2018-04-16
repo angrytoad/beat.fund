@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Verify your email')
+
 @section('content')
     <div class="container" id="verification_required">
         <div class="col-md-8 col-md-offset-2">

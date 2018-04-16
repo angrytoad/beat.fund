@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Storefront;
 use App\Http\Controllers\Controller;
 use App\Library\Contracts\CartInterface;
 use App\Library\Repositories\StorefrontRepository;
+use App\Models\Product;
 
 class StorefrontController extends Controller
 {
@@ -31,6 +32,11 @@ class StorefrontController extends Controller
         return view('storefront.storefront')->with([
             'products' => $this->storefrontRepository->getAllProducts()
         ]);
+    }
+
+    public function random(){
+        $product = Product::inRandomOrder()->first();
+        return redirect(route('artist.store.product',[$product->store->slug, $product->id]));
     }
 
     public function cart(){

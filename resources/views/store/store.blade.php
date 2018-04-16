@@ -37,7 +37,7 @@
                                 @if(count($store->liveProducts()) > 0)
                                     <div>
                                         <i class="fas fa-check text-primary"></i>
-                                        <p>You have {{ count($store->liveProducts()) }} live product(s)</p>
+                                        <p>You have {{ count($store->liveProducts()) }} live product(s). <a href="{{ route('store.products') }}">View products.</a></p>
                                     </div>
                                 @else
                                     <div>

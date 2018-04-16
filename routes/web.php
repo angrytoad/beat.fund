@@ -23,6 +23,7 @@ Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVer
 
 Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
 Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
+Route::get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
 
 
 /**
@@ -77,6 +78,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
  */
 Route::group(['prefix' => 'store'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
+    Route::get('/random','Storefront\StorefrontController@random')->name('storefront.random');
     Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
 
     Route::group(['middleware' => ['user.has_items_in_cart']], function () {
