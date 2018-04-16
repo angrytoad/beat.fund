@@ -9,6 +9,6 @@ namespace App\Library\Contracts;
 
 interface CheckoutInterface {
 
-    public function test();
-
+    public function processCart($cart, $card, $email = null);
+    
 }

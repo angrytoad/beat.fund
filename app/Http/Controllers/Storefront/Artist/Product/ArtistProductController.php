@@ -22,8 +22,13 @@ class ArtistProductController extends Controller
     }
     
     public function show($slug, $uuid){
+
+        $product = Product::find($uuid);
+
         return view('storefront.artist.product.product')->with([
-            'product' => Product::find($uuid)
+            'product' => $product,
+            'artist' => $product->store->user->profile,
+            'other_products' => $product->store->products()->where('id','!=',$uuid)->where('live', true)->limit(3)->get()->shuffle()
         ]);
     }
 }

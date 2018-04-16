@@ -21,7 +21,8 @@ class UploadItemFileController extends Controller
     public $productStorageInterface;
 
     /**
-     * Create a new controller instance.
+     * UploadItemFileController constructor.
+     * @param ProductStorageInterface $productStorageInterface
      */
     public function __construct(ProductStorageInterface $productStorageInterface)
     {
@@ -29,19 +30,19 @@ class UploadItemFileController extends Controller
     }
 
     public function upload(Request $request) {
-
         $file = $request->file('file');
 
         $request->validate([
             'file.*' => 'required|mimetypes:ogg,wav,aac,mp4,mp3,m4a'
         ]);
 
-        $file_name = $file->store('product-items',['disk' => 's3','visibility' => 'public']);
-        $public_url = $this->productStorageInterface->url($file_name);
 
-        if ($file_name) {
-            try{
+        try{
 
+            $file_name = $file->store('product-items',['disk' => 's3','visibility' => 'public']);
+            $public_url = $this->productStorageInterface->url($file_name);
+
+            if ($file_name) {
                 if(Helper::getS3Filesize($file_name) > env('MAX_ITEM_UPLOAD_SIZE',40000)){
                     $this->productStorageInterface->delete($file_name);
                     throw(new \Exception('You are not allowed to upload files greater than '.number_format(env('MAX_ITEM_UPLOAD_SIZE',40000)/1000).'MB'));
@@ -57,14 +58,12 @@ class UploadItemFileController extends Controller
                     's3_name' => $file_name,
                     'client_name' => $file->getClientOriginalName()
                 ], 200);
-
-            }catch(\Exception $e){
-                return response()->json($e->getMessage(),422);
             }
-        }
-        // Else, return error 400
-        else {
+
             return response()->json('error', 400);
+
+        }catch(\Exception $e){
+            return response()->json($e->getMessage(),422);
         }
     }
 }

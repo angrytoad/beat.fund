@@ -8,19 +8,46 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
+use App\Library\Contracts\CartInterface;
+use App\Library\Repositories\StorefrontRepository;
+use App\Models\Product;
 
 class StorefrontController extends Controller
 {
+    public $storefrontRepository;
+    public $cartInterface;
 
     /**
-     * Create a new controller instance.
+     * StorefrontController constructor.
+     * @param StorefrontRepository $storefrontRepository
+     * @param CartInterface $cartInterface
      */
-    public function __construct()
+    public function __construct(StorefrontRepository $storefrontRepository, CartInterface $cartInterface)
     {
-
+        $this->storefrontRepository = $storefrontRepository;
+        $this->cartInterface = $cartInterface;
     }
 
     public function show(){
-        return "Nothing here... yet";
+        return view('storefront.storefront')->with([
+            'products' => $this->storefrontRepository->getAllProducts()
+        ]);
+    }
+
+    public function random(){
+        $product = Product::inRandomOrder()->first();
+        return redirect(route('artist.store.product',[$product->store->slug, $product->id]));
+    }
+
+    public function cart(){
+        return view('storefront.cart')->with([
+            'cart' => $this->cartInterface->getFormattedCart()
+        ]);
+    }
+
+    public function checkout(){
+        return view('storefront.checkout.checkout')->with([
+            'cart' => $this->cartInterface->getFormattedCart()
+        ]);
     }
 }

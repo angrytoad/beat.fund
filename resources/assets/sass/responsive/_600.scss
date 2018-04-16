@@ -10,4 +10,23 @@
       display:none;
     }
   }
+
+  #artist-product #artist-product-items .artist-product-item{
+    grid-template-rows: 1fr 1fr;
+    grid-gap:0 2rem;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "order name""sample sample";
+
+    .order{
+      grid-area:order;
+    }
+
+    .name{
+      grid-area:name;
+    }
+
+    .sample{
+      grid-area:sample;
+    }
+  }
 }

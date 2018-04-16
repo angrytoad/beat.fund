@@ -23,6 +23,7 @@ Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVer
 
 Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
 Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
+Route::get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
 
 
 /**
@@ -50,7 +51,15 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
     Route::post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
     Route::get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
     Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
+    Route::get('/cards', 'Account\AccountSavedCardsController@show')->name('account.cards');
+    Route::post('/cards/add', 'Account\AccountSavedCardsController@add')->name('account.cards.add');
 
+    Route::group(['middleware' => ['user.owns_card']], function () {
+        Route::get('/cards/{card_id}', 'Account\AccountCardController@show')->name('account.cards.card');
+        Route::post('/cards/{card_id}/update', 'Account\AccountCardController@update')->name('account.cards.card.update');
+        Route::post('/cards/{card_id}/delete', 'Account\AccountCardController@delete')->name('account.cards.card.delete');
+        Route::post('/cards/{card_id}/make-default', 'Account\AccountCardController@makeDefault')->name('account.cards.card.make_default');
+    });
 
     Route::group(['middleware' => ['user.has_store']], function () {
         Route::get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');
@@ -74,6 +83,19 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
  */
 Route::group(['prefix' => 'store'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
+    Route::get('/random','Storefront\StorefrontController@random')->name('storefront.random');
+    Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
+
+    Route::group(['middleware' => ['user.has_items_in_cart']], function () {
+        Route::get('/checkout','Storefront\StorefrontController@checkout')->name('storefront.checkout');
+
+        Route::get('/checkout/guest', 'Storefront\StorefrontCheckoutController@guestCheckout')->name('storefront.checkout.guest');
+        Route::group(['middleware' => ['auth','email.verified']], function () {
+            Route::get('/checkout/user', 'Storefront\StorefrontCheckoutController@userCheckout')->name('storefront.checkout.user');
+            Route::post('/checkout','Storefront\StorefrontCheckoutController@process');
+        });
+    });
+
 });
 
 Route::group(['prefix' => 'artist'], function () {
@@ -82,6 +104,8 @@ Route::group(['prefix' => 'artist'], function () {
 
         Route::group(['middleware' => ['artist.product.is_live'], 'prefix' => '{uuid}'], function () {
             Route::get('/','Storefront\Artist\Product\ArtistProductController@show')->name('artist.store.product');
+            Route::post('/add-to-cart','Storefront\Cart\CartActionsController@addToCart')->name('artist.store.product.add_to_cart');
+            Route::post('/remove-from-cart','Storefront\Cart\CartActionsController@removeFromCart')->name('artist.store.product.remove_from_cart');
         });
     });
 });
@@ -98,8 +122,6 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     // Homepage Once logged in
     Route::get('/', 'Home\HomeController@index')->name('home');
 
-
-
     /**
      * All routes for help documentation
      */
@@ -111,7 +133,19 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
        });
     });
 
-
+    /**
+     * Collection
+     */
+    Route::group(['prefix' => 'collection'], function () {
+        Route::get('/', 'Collection\CollectionController@show')->name('collection');
+    });
+    
+    /**
+     * Purchases
+     */
+    Route::group(['prefix' => 'purchases'], function () {
+        Route::get('/', 'Purchases\PurchasesController@show')->name('purchases');
+    });
 
     /**
      * Profile Actions

@@ -9,7 +9,7 @@ namespace App\Library\Contracts;
 
 interface ProductStorageInterface{
     
-    public function store($destination_key, $source_file);
+    public function store($destination_key, $source_file, $public = false);
     
     public function delete($item_key);
     

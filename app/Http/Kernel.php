@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Account\Admin\IsAdmin;
 use App\Http\Middleware\Account\EmailVerified;
+use App\Http\Middleware\Account\OwnsCard;
 use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
 use App\Http\Middleware\Store\HasNoStore;
@@ -15,6 +16,7 @@ use App\Http\Middleware\Store\Product\ProductNotLive;
 use App\Http\Middleware\Store\Product\UserHasProduct;
 use App\Http\Middleware\Storefront\Artist\Product\ProductIsLive;
 use App\Http\Middleware\Storefront\Artist\StoreExists;
+use App\Http\Middleware\Storefront\HasItemsInCart;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -82,6 +84,8 @@ class Kernel extends HttpKernel
         'store.is_not_live' => IsNotLive::class,
         'artist.store_exists' => StoreExists::class,
         'artist.product.is_live' => ProductIsLive::class,
-        'is.admin' => IsAdmin::class
+        'is.admin' => IsAdmin::class,
+        'user.owns_card' => OwnsCard::class,
+        'user.has_items_in_cart' => HasItemsInCart::class
     ];
 }

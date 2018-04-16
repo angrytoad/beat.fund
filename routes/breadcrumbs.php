@@ -44,6 +44,26 @@ Breadcrumbs::register('storefront', function ($breadcrumbs) {
    $breadcrumbs->push('Store', route('storefront'));
 });
 
+Breadcrumbs::register('storefront.cart', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront');
+    $breadcrumbs->push('Cart', route('storefront.cart'));
+});
+
+Breadcrumbs::register('storefront.checkout', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.cart');
+    $breadcrumbs->push('Checkout', route('storefront.checkout'));
+});
+
+Breadcrumbs::register('storefront.checkout.guest', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.checkout');
+    $breadcrumbs->push('Guest Checkout', route('storefront.checkout.guest'));
+});
+
+Breadcrumbs::register('storefront.checkout.user', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.checkout');
+    $breadcrumbs->push('User Checkout', route('storefront.checkout.user'));
+});
+
 Breadcrumbs::register('artist.store', function ($breadcrumbs, $artist) {
     $breadcrumbs->parent('storefront');
     $breadcrumbs->push($artist->artist_name, route('artist.store',$artist->user->store->slug));
@@ -80,6 +100,24 @@ Breadcrumbs::register('account.add_mobile_number', function ($breadcrumbs) {
 Breadcrumbs::register('account.stripe', function ($breadcrumbs) {
     $breadcrumbs->parent('account');
     $breadcrumbs->push('Stripe', route('account.stripe'));
+});
+
+Breadcrumbs::register('account.cards', function ($breadcrumbs) {
+    $breadcrumbs->parent('account');
+    $breadcrumbs->push('Cards', route('account.cards'));
+});
+
+Breadcrumbs::register('account.cards.card', function ($breadcrumbs, $card) {
+    $breadcrumbs->parent('account.cards');
+    $breadcrumbs->push('Edit '.$card->name, route('account.cards.card',$card->id));
+});
+
+/**
+ * PURCHASES BREADCRUMBS
+ */
+Breadcrumbs::register('purchases', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Purchases', route('purchases'));
 });
 
 

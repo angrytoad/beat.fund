@@ -171,6 +171,7 @@ return [
         Aws\Laravel\AwsServiceProvider::class,
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -186,7 +187,9 @@ return [
          */
         \App\Providers\CheckoutServiceProvider::class,
         \App\Providers\TranscodingServiceProvider::class,
-        \App\Providers\StoreServiceProvider::class
+        \App\Providers\StoreServiceProvider::class,
+        \App\Providers\AccountServiceProvider::class
+
         
 
     ],
@@ -244,6 +247,8 @@ return [
         'FFMpeg' => Pbmedia\LaravelFFMpeg\FFMpegFacade::class,
         'Breadcrumbs' => \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class,
         'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+        'Bugsnag' => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
+        'ZipStream' => ZipStream\ZipStream::class,
     ],
 
 ];
