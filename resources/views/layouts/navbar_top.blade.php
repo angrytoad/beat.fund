@@ -54,6 +54,11 @@
                                     </a>
                                 </li>
                             @endif
+                            <li>
+                                <a href="{{ route('purchases') }}">
+                                    My Purchases
+                                </a>
+                            </li>
                             <hr />
                             <li>
                                 <a href="{{ route('account') }}">
