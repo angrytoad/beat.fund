@@ -9232,6 +9232,14 @@ button.close {
   margin-top: 5px;
 }
 
+.align-middle {
+  vertical-align: middle;
+}
+
+.users-list {
+  list-style-type: none;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;

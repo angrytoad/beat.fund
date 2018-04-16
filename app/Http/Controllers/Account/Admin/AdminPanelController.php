@@ -12,7 +12,6 @@ class AdminPanelController extends Controller
      */
     public function show(Request $request) {
 
-
         return view('account.admin.admin_panel');
 
     }
