@@ -65,6 +65,13 @@
                     Discography
                 </div>
                 <div class="panel-body">
+                    @if(count($store->liveProducts()) === 0)
+                        <h4>Oops!</h4>
+                        <p>
+                            Sorry, but I looks like {{ $artist->artist_name }} doesn't have any songs the their store at
+                            the moment, you may have better luck checking back at a later date.
+                        </p>
+                    @endif
                     <div id="artist-store-all-products">
                         @foreach($store->liveProducts() as $product)
                             <a href="{{ route('artist.store.product',[$store->slug,$product->id]) }}">
