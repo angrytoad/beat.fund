@@ -14,6 +14,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create Profile</div>
                 <div class="panel-body">
+                    <div class="alert alert-warning">
+                        Please only use this feature if you wish to sell <strong>your own music</strong> on Beat Fund.
+                    </div>
                     <p>
                         If you are an artist/band, then you are in the right place, creating a profile is the only way
                         you can let other users and new fans know more about you.
@@ -50,7 +53,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="create_profile_checkbox" id="create_profile_checkbox">
                             <label class="form-check-label" for="create_profile_checkbox">
-                                I understand that by clicking "Create a Profile" I am aware that I am an Artist/Band.
+                                I understand that I am an Artist/Band and I wish to sell my own music.
                             </label>
                         </div>
                         <button type="submit" class="btn btn-primary">Create a Profile</button>

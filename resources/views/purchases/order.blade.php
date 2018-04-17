@@ -7,7 +7,10 @@
     @include('layouts.flash_message')
     {{ Breadcrumbs::render('purchases.order', $order) }}
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-3">
+            @include('layouts.menus.internal_menu')
+        </div>
+        <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">Order created - {{ \Carbon\Carbon::parse($order->created_at)->toDayDateTimeString() }}</div>
                 <div class="panel-body">

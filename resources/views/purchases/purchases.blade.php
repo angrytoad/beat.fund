@@ -14,6 +14,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Purchases</div>
                 <div class="panel-body">
+                    @if(count($orders) === 0)
+                        <div class="alert alert-warning">
+                            <p>
+                                Oh snap! Doesn't look like you have made any purchases yet, why not
+                                visit <a href="{{ route('storefront') }}">the store</a> and find something you like.
+                            </p>
+                            <p>
+                                Of course, you could just click <a href="{{ route('storefront.random') }}">this link</a> and find something new...
+                            </p>
+                        </div>
+                    @endif
                     <table class="table table-responsive table-striped" id="purchases-table">
                         <thead>
                             <tr>

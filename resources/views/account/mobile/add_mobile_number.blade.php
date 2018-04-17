@@ -271,7 +271,7 @@
                         </p>
                         <p>
                             This helps us verify that any actions you take are non-automated, we also require a mobile
-                            number for when more secure account actions need to be confirmed, such as adding a stripe account.
+                            number for when more secure account actions need to be confirmed, such as deleting your account.
                         </p>
                     </div>
                 </div>
