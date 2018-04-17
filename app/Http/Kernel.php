@@ -6,6 +6,8 @@ use App\Http\Middleware\Account\EmailVerified;
 use App\Http\Middleware\Account\OwnsCard;
 use App\Http\Middleware\Profile\HasProfile;
 use App\Http\Middleware\Account\HasVerification;
+use App\Http\Middleware\Purchases\HasOrder;
+use App\Http\Middleware\Purchases\HasOrderItem;
 use App\Http\Middleware\Store\HasNoStore;
 use App\Http\Middleware\Store\HasStore;
 use App\Http\Middleware\Store\IsNotLive;
@@ -84,6 +86,8 @@ class Kernel extends HttpKernel
         'artist.store_exists' => StoreExists::class,
         'artist.product.is_live' => ProductIsLive::class,
         'user.owns_card' => OwnsCard::class,
-        'user.has_items_in_cart' => HasItemsInCart::class
+        'user.has_items_in_cart' => HasItemsInCart::class,
+        'purchases.has_order' => HasOrder::class,
+        'purchases.has_order_item' => HasOrderItem::class
     ];
 }

@@ -38,4 +38,8 @@ class OrderItem extends Model
     public function product(){
         return $this->belongsTo('App\Models\Product');
     }
+
+    public function trashed_product(){
+        return $this->product()->withTrashed();
+    }
 }
