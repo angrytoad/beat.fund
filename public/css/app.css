@@ -9290,6 +9290,10 @@ summary:hover {
   border-radius: 4px;
 }
 
+.ql-container .ql-editor p {
+  margin: 0 0 10px;
+}
+
 .tag {
   display: inline-block;
   background: #007BFF;
