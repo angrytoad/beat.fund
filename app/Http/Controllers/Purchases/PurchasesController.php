@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Purchases;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class PurchasesController extends Controller
@@ -23,7 +24,15 @@ class PurchasesController extends Controller
     
     public function show(){
         return view('purchases.purchases')->with([
-            'orders' => Auth::user()->orders
+            'orders' => Auth::user()->orders()->orderBy('created_at','DESC')->get()
+        ]);
+    }
+
+    public function showOrder($order_id){
+        $order = Order::find($order_id);
+        
+        return view('purchases.order')->with([
+            'order' => $order
         ]);
     }
 }

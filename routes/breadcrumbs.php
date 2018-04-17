@@ -112,12 +112,18 @@ Breadcrumbs::register('account.cards.card', function ($breadcrumbs, $card) {
     $breadcrumbs->push('Edit '.$card->name, route('account.cards.card',$card->id));
 });
 
+
 /**
  * PURCHASES BREADCRUMBS
  */
 Breadcrumbs::register('purchases', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Purchases', route('purchases'));
+});
+
+Breadcrumbs::register('purchases.order', function ($breadcrumbs, $order) {
+    $breadcrumbs->parent('purchases');
+    $breadcrumbs->push('Order '.$order->shortid(), route('purchases.order', $order->id));
 });
 
 

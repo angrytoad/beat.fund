@@ -7,6 +7,7 @@
  */
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -53,5 +54,16 @@ class Product extends Model
     public function downsizedImage()
     {
         return env('SERVERLESS_IMAGE_HANDLER').'/300x300/smart/'.$this->image_key;
+    }
+
+    public function getItemsBeforeDate($date){
+        // 2018-04-14 02:21:48.0 UTC (+00:00)
+        return $this->items()
+            ->withTrashed()
+            ->where('created_at','<',$date)
+            ->where('deleted_at',null)
+            ->orWhere('deleted_at','>',$date)
+            ->where('product_id',$this->id)
+            ->get();
     }
 }

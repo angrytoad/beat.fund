@@ -26,6 +26,8 @@ Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsControlle
 Route::get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
 
 
+Route::get('/zip-stream-test', 'Test\ZipStreamTestController@test');
+
 /**
  * All Webhooks
  */
@@ -140,6 +142,15 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
      */
     Route::group(['prefix' => 'purchases'], function () {
         Route::get('/', 'Purchases\PurchasesController@show')->name('purchases');
+
+        Route::group(['middleware' => ['purchases.has_order'], 'prefix' => '{order_id}'], function () {
+            Route::get('/', 'Purchases\PurchasesController@showOrder')->name('purchases.order');
+
+            Route::group(['middleware' => ['purchases.has_order_item'], 'prefix' => '{order_item_id}'], function () {
+               Route::get('/download', 'Purchases\Order\OrderItemDownloadController@download')->name('purchases.order.order_item.download'); 
+            });
+        });
+
     });
 
     /**

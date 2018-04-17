@@ -3,7 +3,7 @@
 @section('title', 'Purchases')
 
 @section('content')
-<div class="container">
+<div id="purchases" class="container">
     @include('layouts.flash_message')
     {{ Breadcrumbs::render('purchases') }}
     <div class="row">
@@ -14,14 +14,42 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Purchases</div>
                 <div class="panel-body">
-                    <h4>
-                        Your purchases will be available here soon...
-                    </h4>
-                    @foreach($orders as $order)
-                        <div>
-                            {{ $order->id }}
-                        </div>
-                    @endforeach
+                    <table class="table table-responsive table-striped" id="purchases-table">
+                        <thead>
+                            <tr>
+                                <th>Products</th>
+                                <th>Date</th>
+                                <th># of Products</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($orders as $order)
+                            <tr>
+                                <td>
+                                    <a href="{{ route('purchases.order', $order->id) }}">
+                                        {{ $order->items()->first()->trashed_product->name }}
+                                        @if(count($order->items) > 1)
+                                            and {{ count($order->items)-1 }} others
+                                        @endif
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ \Carbon\Carbon::parse($order->created_at)->toDayDateTimeString() }}
+                                </td>
+                                <td>{{ count($order->items) }}</td>
+                                <td>
+                                    &pound;{{ number_format($order->total()/100,2) }}
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
@@ -30,6 +58,9 @@
 @endsection
 @section('scripts')
     <script>
-
+        $('#purchases-table').dataTable({
+            "pageLength": 25,
+            "ordering": false
+        });
     </script>
 @endsection
