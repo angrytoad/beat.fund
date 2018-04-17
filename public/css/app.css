@@ -9233,10 +9233,23 @@ button.close {
 }
 
 .align-middle {
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 .users-list {
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.admin-panel {
+  border: 1px solid #007BFF;
+  border-radius: 15px;
+}
+
+.actions-list {
   list-style-type: none;
 }
 

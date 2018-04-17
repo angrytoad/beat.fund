@@ -20,9 +20,28 @@ class AdminUserController
         $paginator = User::paginate(25);
         $paginator->withPath('admin/user');
 
-        return view('account.admin.admin_users', [
+        return view('account.admin.user.admin_users', [
             'users' => $paginator
         ]);
+
+    }
+
+    public function user(Request $request, $id) {
+
+        if (empty($id)) {
+            return redirect('/admin/users');
+        } else {
+            $user = User::find($id);
+        }
+
+        return view('account.admin.user.admin_user', [
+            'user' => $user,
+            'profile' => $user->profile
+        ]);
+
+    }
+
+    public function store(Request $request) {
 
     }
 

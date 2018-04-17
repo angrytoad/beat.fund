@@ -74,8 +74,10 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
 
 Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' => 'admin'], function () {
     Route::get('panel', 'Account\Admin\AdminPanelController@show')->name('account.admin.show_panel');
-    Route::get('user', 'Account\Admin\AdminUserController@list')->name('account.admin.user_list');
+    Route::get('users', 'Account\Admin\AdminUserController@list')->name('account.admin.user_list');
+    Route::get('user/{id}', 'Account\Admin\AdminUserController@user')->name('account.admin.user');
     Route::get('user/store/{id}', 'Account\Admin\AdminUserController@store')->name('account.admin.user_store');
+    Route::post('user/purge', 'Account\Admin\AdminUserController@purge')->name('account.admin.purge');
 });
 
 
