@@ -43,7 +43,7 @@
                                     &pound;{{ number_format($order->total()/100,2) }}
                                 </td>
                                 <td>
-
+                                    <a href="{{ route('purchases.order', $order->id) }}"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach
