@@ -9235,6 +9235,27 @@ button.close {
   margin-top: 5px;
 }
 
+.align-middle {
+  vertical-align: middle !important;
+}
+
+.users-list {
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.admin-panel {
+  border: 1px solid #007BFF;
+  border-radius: 15px;
+}
+
+.actions-list {
+  list-style-type: none;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #F4F9FF;

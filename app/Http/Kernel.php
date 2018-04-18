@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Account\Admin\IsAdmin;
 use App\Http\Middleware\Account\EmailVerified;
 use App\Http\Middleware\Account\OwnsCard;
 use App\Http\Middleware\Profile\HasProfile;
@@ -85,6 +86,7 @@ class Kernel extends HttpKernel
         'store.is_not_live' => IsNotLive::class,
         'artist.store_exists' => StoreExists::class,
         'artist.product.is_live' => ProductIsLive::class,
+        'is.admin' => IsAdmin::class,
         'user.owns_card' => OwnsCard::class,
         'user.has_items_in_cart' => HasItemsInCart::class,
         'purchases.has_order' => HasOrder::class,
