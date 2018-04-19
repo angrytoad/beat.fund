@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Store\Products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use App\Models\Product;
 use AWS;
 use GuzzleHttp\Psr7\CachingStream;
@@ -48,8 +49,6 @@ class ProductCreationController extends Controller
         $product->description_delta = $request->get('delta');
         $product->live = false;
 
-        $product->save();
-
         if($request->has('pricing_type')){
             $product->price = ( $request->get('price') !== null ? $request->get('price')*100 : 0 );
         }
@@ -88,6 +87,15 @@ class ProductCreationController extends Controller
         }
 
         $product->save();
+
+        $product->genres()->detach();
+
+        foreach($request->get('genres') as $genre){
+            $found_genre = Genre::find($genre);
+            if($found_genre){
+                $product->genres()->attach($found_genre->id);
+            }
+        }
         
         return redirect(route('store.products.product', $product->id))->with([
             'alert-success' => $product->name.' has been successfully created.'

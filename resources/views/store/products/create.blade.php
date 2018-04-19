@@ -30,6 +30,30 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Product Genres</label>
+                                    <p>
+                                        You can select as many genres as you wish to add to this product, you can search for them by typing in the search below.
+                                    </p>
+                                    <input class="form-control" type="text" onkeyup="searchGenres(event)" placeholder="Search for a genre..." />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Selected Genres</label>
+                                    <div id="selected_genres" class="list-group">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <ul id="genre_select_list">
+
+                                </ul>
+                            </div>
+                        </div>
                         <hr />
                         <div class="row">
                             <div class="col-md-6">
@@ -129,6 +153,55 @@
 @endsection
 @section('scripts')
     <script>
+
+        var genres = [
+                @foreach(\App\Helpers\Helper::getGenres() as $genre)
+                    {!! json_encode($genre) !!},
+                @endforeach
+        ];
+
+        var options = {
+            keys: ['pretty_name','genre'],
+        };
+
+        var fuse = new Fuse(genres, options);
+
+        function removeGenre(id){
+            $('#selected_genres').children().each(function(index, genre){
+               if($(genre).data('id') === id){
+                   $(genre).remove();
+               }
+            });
+        }
+
+        function addGenre(id, name){
+            var found = false;
+            $('#selected_genres').children().each(function(index, genre){
+                if($(genre).data('id') === id){
+                    found = true
+                }
+            });
+
+            if(!found){
+                $('#selected_genres').append(
+                        '<div class="list-group-item list-group-item-success" data-id="'+id+'">' +
+                        '<i onclick="removeGenre(\''+id+'\')" class="fas fa-times text-danger"></i>' +
+                        '<input type="hidden" name="genres[]" value="'+id+'"/> '+name+'' +
+                        '</div>'
+                );
+            }
+        }
+
+        function searchGenres(e){
+            var search = e.target.value;
+            var search_results = fuse.search(search);
+            var to_render = search_results.slice(0,10);
+            console.log(to_render);
+            $('#genre_select_list').empty();
+            to_render.forEach(function(result){
+               $('#genre_select_list').append('<li onclick="addGenre(\''+result.id+'\',\''+result.pretty_name+'\')">'+result.pretty_name+'</li>')
+            });
+        }
 
         function submitForm() {
             document.getElementById("create-product-form").submit();

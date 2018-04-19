@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Store\Products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use App\Models\Product;
 use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7\Stream;
@@ -80,8 +81,15 @@ class ProductController extends Controller
                 ])->withInput();
             }
         }
-
-        $product->save();
+        
+        
+        foreach($request->get('genres') as $genre){
+            $product->genres()->detach();
+            $found_genre = Genre::find($genre);
+            if($found_genre){
+                $product->genres()->attach($found_genre->id);
+            }
+        }
 
         return redirect(route('store.products.product', $product->id))->with([
             'alert-success' => 'Product successfully updated'

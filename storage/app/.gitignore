@@ -1,3 +1,5 @@
 *
 !public/
+!data_files/*
+!data_files/
 !.gitignore

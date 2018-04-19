@@ -8619,6 +8619,40 @@ button.close {
   resize: none;
 }
 
+#create-product #create-product-form #genre_select_list {
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 2rem;
+}
+
+#create-product #create-product-form #genre_select_list li {
+  padding: 5px;
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#create-product #create-product-form #genre_select_list li:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#create-product #create-product-form #selected_genres svg {
+  margin-right: 15px;
+}
+
+#create-product #create-product-form #selected_genres svg:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 #product #product-details {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -8679,6 +8713,40 @@ button.close {
 
 #product #product-details #product-image #product-status-button {
   margin-top: 2rem;
+}
+
+#product #genre_select_list {
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 2rem;
+}
+
+#product #genre_select_list li {
+  padding: 5px;
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#product #genre_select_list li:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#product #selected_genres svg {
+  margin-right: 15px;
+}
+
+#product #selected_genres svg:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 #add-items #add-items-container {
@@ -8848,6 +8916,121 @@ button.close {
 
 #card #card-delete {
   margin-left: 5px;
+}
+
+#storefront {
+  padding-bottom: 50rem;
+}
+
+#storefront #storefront-main {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "featured_albums search_and_cart search_and_cart" "featured_albums artist_recommendation product_recommendation" "featured_artists_banner featured_artists_banner featured_artists_banner" "best_selling_products best_selling_products best_selling_artists" "random_artist_product popular_tags popular_tags" "random_artist_product random_artist_bio random_artist_bio" "recently_bought recently_bought recently_bought" "recently_added_products recently_added_products recently_added_products";
+}
+
+#storefront #storefront-main #featured_albums {
+  grid-area: featured_albums;
+}
+
+#storefront #storefront-main #search_and_cart {
+  grid-area: search_and_cart;
+}
+
+#storefront #storefront-main #artist_recommendation {
+  grid-area: artist_recommendation;
+}
+
+#storefront #storefront-main #product_recommendation {
+  grid-area: product_recommendation;
+}
+
+#storefront #storefront-main #featured_artists_banner {
+  grid-area: featured_artists_banner;
+}
+
+#storefront #storefront-main #best_selling_products {
+  grid-area: best_selling_products;
+}
+
+#storefront #storefront-main #best_selling_artists {
+  grid-area: best_selling_artists;
+}
+
+#storefront #storefront-main #random_artist_product {
+  grid-area: random_artist_product;
+}
+
+#storefront #storefront-main #popular_tags {
+  grid-area: popular_tags;
+}
+
+#storefront #storefront-main #random_artist_bio {
+  grid-area: random_artist_bio;
+}
+
+#storefront #storefront-main #recently_bought {
+  grid-area: recently_bought;
+}
+
+#storefront #storefront-main #recently_added_products {
+  grid-area: recently_added_products;
+}
+
+#storefront #storefront-main > div h1 {
+  margin: 0;
+}
+
+#storefront #storefront-main #search_and_cart {
+  height: 40px;
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-gap: 15px;
+}
+
+#storefront #storefront-main #search_and_cart form input {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+#storefront #storefront-main #search_and_cart #cart_widget {
+  border: 1px solid #ddd;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 18px;
+}
+
+#storefront #storefront-main #search_and_cart #cart_widget #cart_widget_count {
+  background: #fff;
+  height: 100%;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#storefront #storefront-main #search_and_cart #cart_widget #cart_widget_count:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+#storefront #storefront-main #search_and_cart #cart_widget #cart_widget_total {
+  height: 100%;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background: #007BFF;
+  border-left: 1px solid #ddd;
+  color: #fff;
 }
 
 #cart-total {
@@ -9410,6 +9593,16 @@ summary:hover {
   }
 
   #artist-product #artist-product-description {
+    display: none;
+  }
+
+  #create-product #create-product-form #genre_select_list,
+  #product #genre_select_list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #create-product #create-product-form #genre_select_list li:nth-child(n+5),
+  #product #genre_select_list li:nth-child(n+5) {
     display: none;
   }
 }
