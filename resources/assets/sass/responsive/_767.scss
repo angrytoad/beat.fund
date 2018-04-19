@@ -8,4 +8,14 @@
   #artist-product #artist-product-description{
     display:none;
   }
+
+  #create-product #create-product-form #genre_select_list,
+  #product #genre_select_list{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #create-product #create-product-form #genre_select_list li:nth-child(n+5),
+  #product #genre_select_list li:nth-child(n+5){
+    display: none;
+  }
 }

@@ -50,4 +50,7 @@
 <!-- Stripe Elements -->
 <script src="https://js.stripe.com/v3/"></script>
 
+<!-- Fuse -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.min.js"></script>
+
 @yield('scripts')

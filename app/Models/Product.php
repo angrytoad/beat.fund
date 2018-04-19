@@ -46,7 +46,12 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductLineItem');
     }
-    
+
+    public function genres()
+    {
+        return $this->belongsToMany('App\Models\Genre');
+    }
+
     public function plaintextDescription(){
         return strip_tags($this->description);
     }

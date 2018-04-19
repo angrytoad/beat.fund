@@ -256,6 +256,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                         Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
                         Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
                         Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
+                        Route::post('update-genres', 'Store\Products\ProductGenreController@update')->name('store.products.product.update_genres');
                     });
 
 

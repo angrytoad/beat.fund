@@ -8,6 +8,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Genre;
 use Illuminate\Support\Facades\Route;
 use FFMpeg;
 use AWS;
@@ -57,6 +58,11 @@ class Helper
     {
         $countries = Helper::getCountryList();
         return $countries[$id];
+    }
+
+    public static function getGenres()
+    {
+        return Genre::all();
     }
 
     public static function getAudioBitrate($file_name)
