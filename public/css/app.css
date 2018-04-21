@@ -8981,14 +8981,18 @@ button.close {
   margin: 0;
 }
 
-#storefront #storefront-main #search_and_cart {
+#storefront.storefront-basic #recently_added_products {
+  margin-top: 15px;
+}
+
+#storefront #search_and_cart {
   height: 40px;
   display: grid;
   grid-template-columns: 1fr 200px;
   grid-gap: 15px;
 }
 
-#storefront #storefront-main #search_and_cart form input {
+#storefront #search_and_cart form input {
   height: 100%;
   width: 100%;
   border: 1px solid #ddd;
@@ -8997,14 +9001,15 @@ button.close {
   font-weight: 300;
 }
 
-#storefront #storefront-main #search_and_cart #cart_widget {
+#storefront #search_and_cart #cart_widget {
   border: 1px solid #ddd;
   display: grid;
   grid-template-columns: 1fr 1fr;
   font-size: 18px;
+  border-radius: 4px;
 }
 
-#storefront #storefront-main #search_and_cart #cart_widget #cart_widget_count {
+#storefront #search_and_cart #cart_widget #cart_widget_count {
   background: #fff;
   height: 100%;
   display: grid;
@@ -9016,12 +9021,12 @@ button.close {
   text-decoration: none;
 }
 
-#storefront #storefront-main #search_and_cart #cart_widget #cart_widget_count:hover {
+#storefront #search_and_cart #cart_widget #cart_widget_count:hover {
   opacity: 0.7;
   cursor: pointer;
 }
 
-#storefront #storefront-main #search_and_cart #cart_widget #cart_widget_total {
+#storefront #search_and_cart #cart_widget #cart_widget_total {
   height: 100%;
   display: grid;
   -webkit-box-align: center;
@@ -9031,6 +9036,73 @@ button.close {
   background: #007BFF;
   border-left: 1px solid #ddd;
   color: #fff;
+}
+
+#storefront #recently_added_products {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#storefront #recently_added_products .recently_added_product {
+  height: 216px;
+  background-size: cover !important;
+  background-position: center !important;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+}
+
+#storefront #recently_added_products .recently_added_product .recently_added_product_name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 123, 255, 0.7);
+  color: #fff;
+  padding: 5px 15px;
+}
+
+#storefront #recently_added_products .recently_added_product .recently_added_product_name .name {
+  font-size: 16px;
+}
+
+#storefront #recently_added_products .recently_added_product .recently_added_product_name .artist {
+  font-size: 12px;
+}
+
+#search_results_wrapper #search_results {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin-top: 15px;
+}
+
+#search_results_wrapper #search_results .search_result {
+  height: 216px;
+  background-size: cover !important;
+  background-position: center !important;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+}
+
+#search_results_wrapper #search_results .search_result .search_result_name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 123, 255, 0.7);
+  color: #fff;
+  padding: 5px 15px;
+}
+
+#search_results_wrapper #search_results .search_result .search_result_name .name {
+  font-size: 16px;
+}
+
+#search_results_wrapper #search_results .search_result .search_result_name .artist {
+  font-size: 12px;
 }
 
 #cart-total {

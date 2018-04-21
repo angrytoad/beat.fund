@@ -34,7 +34,11 @@ Breadcrumbs::register('post', function ($breadcrumbs, $post) {
 
 
 Breadcrumbs::register('home', function ($breadcrumbs) {
-   $breadcrumbs->push('Home', route('home'));
+    if(!Auth::user()){
+        $breadcrumbs->push('Home', route('welcome'));
+    }else{
+        $breadcrumbs->push('Home', route('home'));
+    }
 });
 
 /**
@@ -42,6 +46,11 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
  */
 Breadcrumbs::register('storefront', function ($breadcrumbs) {
    $breadcrumbs->push('Store', route('storefront'));
+});
+
+Breadcrumbs::register('storefront.search', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront');
+    $breadcrumbs->push('Search', route('storefront.search'));
 });
 
 Breadcrumbs::register('storefront.cart', function ($breadcrumbs) {
