@@ -6,7 +6,7 @@
         <a href="{{ route('artist.store.product',[$search_result->store_slug, $search_result->id]) }}">
             <div class="search_result"
                  @if($search_result->image_url)
-                 style="background:url({{ $search_result->image_url }});"
+                 style="background:url({{ $search_result->downsizedImage() }});"
                  @else
                  style="background:url('/images/storefront/storefront_no_product_image.jpg');"
                     @endif
