@@ -12,4 +12,8 @@ interface StorefrontRepository{
     
     public function getAllProducts();
     
+    public function getRecentProducts();
+    
+    public function searchForProducts($search);
+    
 }

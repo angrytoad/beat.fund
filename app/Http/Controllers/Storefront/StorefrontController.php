@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Library\Contracts\CartInterface;
 use App\Library\Repositories\StorefrontRepository;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class StorefrontController extends Controller
 {
@@ -29,8 +30,10 @@ class StorefrontController extends Controller
     }
 
     public function show(){
-        return view('storefront.storefront')->with([
-            'products' => $this->storefrontRepository->getAllProducts()
+        return view('storefront.storefront_BASIC')->with([
+            'products' => $this->storefrontRepository->getAllProducts(),
+            'recent_products' => $this->storefrontRepository->getRecentProducts(),
+            'cart' => $this->cartInterface->getFormattedCart()
         ]);
     }
 
@@ -47,6 +50,18 @@ class StorefrontController extends Controller
 
     public function checkout(){
         return view('storefront.checkout.checkout')->with([
+            'cart' => $this->cartInterface->getFormattedCart()
+        ]);
+    }
+
+    public function search(Request $request){
+        $request->validate([
+            'search' => 'required'
+        ]);
+
+        return view('storefront.search_results')->with([
+            'search_results' => $this->storefrontRepository->searchForProducts($request->get('search')),
+            'search' => $request->get('search'),
             'cart' => $this->cartInterface->getFormattedCart()
         ]);
     }

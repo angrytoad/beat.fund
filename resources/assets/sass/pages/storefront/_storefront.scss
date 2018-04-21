@@ -1,0 +1,59 @@
+#storefront{
+  padding-bottom:50rem;
+
+
+  #storefront-main{
+    display:grid;
+    grid-gap:15px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "featured_albums search_and_cart search_and_cart"
+    "featured_albums artist_recommendation product_recommendation"
+    "featured_artists_banner featured_artists_banner featured_artists_banner"
+    "best_selling_products best_selling_products best_selling_artists"
+    "random_artist_product popular_tags popular_tags"
+    "random_artist_product random_artist_bio random_artist_bio"
+    "recently_bought recently_bought recently_bought"
+    "recently_added_products recently_added_products recently_added_products";
+
+    #featured_albums{ grid-area: featured_albums; }
+    #search_and_cart{ grid-area: search_and_cart; }
+    #artist_recommendation{ grid-area: artist_recommendation; }
+    #product_recommendation{ grid-area: product_recommendation; }
+    #featured_artists_banner{ grid-area: featured_artists_banner; }
+    #best_selling_products{ grid-area: best_selling_products; }
+    #best_selling_artists{ grid-area: best_selling_artists; }
+    #random_artist_product{ grid-area: random_artist_product; }
+    #popular_tags{ grid-area: popular_tags; }
+    #random_artist_bio{ grid-area: random_artist_bio; }
+    #recently_bought{ grid-area: recently_bought; }
+    #recently_added_products{ grid-area: recently_added_products; }
+
+    > div{
+      //background:$white;
+
+      h1{
+        margin:0;
+      }
+    }
+  }
+
+  &.storefront-basic{
+    #recently_added_products{
+      margin-top:15px;
+    }
+  }
+
+  @import "_storefront_partials/featured_albums";
+  @import '_storefront_partials/search_and_cart';
+  @import "_storefront_partials/artist_recommendation";
+  @import "_storefront_partials/product_recommendation";
+  @import "_storefront_partials/featured_artists_banner";
+  @import "_storefront_partials/best_selling_products";
+  @import "_storefront_partials/best_selling_artists";
+  @import "_storefront_partials/random_artist_product";
+  @import "_storefront_partials/popular_tags";
+  @import "_storefront_partials/random_artist_bio";
+  @import "_storefront_partials/recently_bought";
+  @import "_storefront_partials/recently_added_products";
+}

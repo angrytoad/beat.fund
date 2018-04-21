@@ -89,6 +89,9 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
  */
 Route::group(['prefix' => 'store'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
+    Route::get('/search','Storefront\StorefrontController@search')->name('storefront.search');
+
+
     Route::get('/random','Storefront\StorefrontController@random')->name('storefront.random');
     Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
 
