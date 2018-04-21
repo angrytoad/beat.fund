@@ -3,7 +3,7 @@
         <a href="{{ route('artist.store.product',[$recent_product->store_slug, $recent_product->id]) }}">
             <div class="recently_added_product"
                  @if($recent_product->image_url)
-                 style="background:url({{ $recent_product->image_url }});"
+                 style="background:url({{ $recent_product->downsizedImage() }});"
                  @else
                  style="background:url('/images/storefront/storefront_no_product_image.jpg');"
                     @endif
