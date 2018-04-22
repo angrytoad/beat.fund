@@ -8483,6 +8483,7 @@ button.close {
 
 #welcome #welcome-banner #welcome-container {
   display: table;
+  position: relative;
   top: 0;
   bottom: 0;
   right: 0;
@@ -8496,10 +8497,28 @@ button.close {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  color: #fff;
 }
 
-#welcome #welcome-banner #welcome-container #welcome-container-child #title {
-  color: #007BFF;
+#welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+#welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container h1,
+#welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container h3 {
+  margin: 0;
+}
+
+#welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container h3 {
+  font-weight: 300;
+}
+
+#welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container #title {
+  font-weight: 500;
+  margin-bottom: 15px;
 }
 
 #welcome #welcome-banner #welcome-background {
