@@ -82,6 +82,9 @@
           display: inline-block;
           position: relative;
           opacity:0.4;
+          margin:5px;
+          border-radius:4px;
+          overflow:hidden;
 
           .welcome-background-item-key{
             font-size:18px;
