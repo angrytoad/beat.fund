@@ -77,7 +77,9 @@ class VerificationController extends Controller
                 
                 $email_verification->delete();
 
-                return redirect(route('welcome'))->with([
+                Auth::login($user);
+
+                return redirect(route('home'))->with([
                     'alert-success' => 'You\'re account has been verified successfully, welcome to Beat Fund!'
                 ]);
             }else{

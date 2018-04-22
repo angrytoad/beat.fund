@@ -31,7 +31,7 @@
     <div id="app">
         @yield('content')
     </div>
-
+    @include('layouts.footer')
 
     @include('scripts')
 </body>

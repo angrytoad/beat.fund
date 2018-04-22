@@ -18,15 +18,16 @@
                         <div class="alert alert-warning">This product is currently PENDING. (It is not showing on your store page)</div>
                         <div id="product-details">
                             <div id="product-image">
-                                @if($product->image_key)
-                                    <img src="{{ $product->image_url }}" />
-                                @else
-                                    <img src="/images/no_image.png" />
-                                @endif
-
-                                <form action="{{ route('store.products.create.image') }}" class="dropzone" id="product-image-dropzone">
-                                    {{ csrf_field() }}
-                                </form>
+                                <div id="product-image-clipper">
+                                    @if($product->image_key)
+                                        <img src="{{ $product->image_url }}" />
+                                    @else
+                                        <img src="/images/no_image.png" />
+                                    @endif
+                                        <form action="{{ route('store.products.create.image') }}" class="dropzone" id="product-image-dropzone">
+                                            {{ csrf_field() }}
+                                        </form>
+                                </div>
                                 <div id="product-status-button">
                                     @if(!$product->live)
                                         <form method="POST" action="{{ route('store.products.product.set_live',$product->id) }}">
@@ -100,7 +101,13 @@
                         <div class="alert alert-success">This product is currently LIVE.</div>
                         <div id="product-details">
                             <div id="product-image">
-                                <img src="{{ $product->image_url }}" />
+                                <div id="product-image-clipper">
+                                    @if($product->image_key)
+                                        <img src="{{ $product->image_url }}" />
+                                    @else
+                                        <img src="/images/no_image.png" />
+                                    @endif
+                                </div>
                             </div>
                             <div id="product-information">
                                 <form method="POST" action="{{ route('store.products.product.set_pending',$product->id) }}" class="pull-right">

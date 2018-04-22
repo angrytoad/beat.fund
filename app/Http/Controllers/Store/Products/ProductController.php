@@ -53,6 +53,8 @@ class ProductController extends Controller
 
         $product->save();
 
+
+
         if($request->has('image') && $request->get('image') !== null){
 
             try{
@@ -69,11 +71,14 @@ class ProductController extends Controller
                     ),
                 ));
 
-                Storage::delete($request->get('image'),'s3');
                 Storage::delete($product->image_key, 's3');
 
                 $product->image_url = $result->get('ObjectURL');
                 $product->image_key = $image_key;
+
+                Storage::delete($request->get('image'),'s3');
+
+                $product->save();
 
             }catch(\Exception $e){
                 return back()->withErrors([
@@ -81,13 +86,14 @@ class ProductController extends Controller
                 ])->withInput();
             }
         }
-        
-        
-        foreach($request->get('genres') as $genre){
-            $product->genres()->detach();
-            $found_genre = Genre::find($genre);
-            if($found_genre){
-                $product->genres()->attach($found_genre->id);
+
+        if($request->has('genres')){
+            foreach($request->get('genres') as $genre){
+                $product->genres()->detach();
+                $found_genre = Genre::find($genre);
+                if($found_genre){
+                    $product->genres()->attach($found_genre->id);
+                }
             }
         }
 

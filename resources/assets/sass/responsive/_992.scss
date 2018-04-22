@@ -27,4 +27,17 @@
     }
   }
 
+  #storefront #recently_added_products{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #footer{
+    text-align: center;
+  }
+
+  #preamble-text{
+    column-count:2;
+    column-gap:30px;
+  }
+
 }

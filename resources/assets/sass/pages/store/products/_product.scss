@@ -6,10 +6,14 @@
     grid-gap:15px;
 
     #product-image{
-      position: relative;
-      width:200px;
-      height:200px;
-      border:1px solid $border_light;
+
+      #product-image-clipper{
+        width:200px;
+        height:200px;
+        border:1px solid $border_light;
+        overflow: hidden;
+        position: relative;
+      }
 
       .dropzone{
         opacity:0;
