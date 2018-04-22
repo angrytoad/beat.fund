@@ -7,13 +7,10 @@
     <div id="welcome-banner">
         <div id="welcome-container">
             <div id="welcome-container-child">
-
-                <div class="container">
-                    @include('layouts.flash_message')
+                <div id="welcome-container-child-container">
+                    <h1 id="title">Beat Fund</h1>
+                    <h3 id="subtitle">Supporting independent artists</h3>
                 </div>
-                <h1 id="title">Beat Fund</h1>
-                <h3 id="subtitle">Supporting independent artists</h3>
-                <p id="subtitle"><a href="{{ route('storefront') }}"><button class="btn btn-primary">View the Store</button></a></p>
             </div>
         </div>
         <div id="welcome-background">
