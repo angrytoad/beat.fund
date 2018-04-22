@@ -8557,6 +8557,9 @@ button.close {
   display: inline-block;
   position: relative;
   opacity: 0.4;
+  margin: 5px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 #welcome #welcome-banner #welcome-background #welcome-background-items .welcome-background-item .welcome-background-item-key {

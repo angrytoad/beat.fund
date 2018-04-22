@@ -38,7 +38,11 @@ class StorefrontController extends Controller
     }
 
     public function random(){
-        $product = Product::inRandomOrder()->first();
+        $product = Product::join('stores', 'products.store_id', '=', 'stores.id')
+            ->where('stores.live', true)
+            ->where('products.live', true)
+            ->select('products.*')
+            ->inRandomOrder()->first();
         return redirect(route('artist.store.product',[$product->store->slug, $product->id]));
     }
 
