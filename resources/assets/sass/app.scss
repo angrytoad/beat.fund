@@ -14,6 +14,7 @@
 // Structure
 @import "layout/navbar";
 @import "layout/internal_menu";
+@import "layout/footer";
 
 // Misc
 @import "misc/is_product_in_cart";
@@ -48,10 +49,17 @@ body{
   background-color: $background;
 }
 
-#app{
+.navbar{
+  border-bottom:none;
 }
 
+#app{
+  margin-bottom:$app_bottom_margin;
+}
 
+.container{
+
+}
 
 summary{
   @include noselect;

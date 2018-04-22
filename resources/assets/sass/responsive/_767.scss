@@ -18,4 +18,25 @@
   #product #genre_select_list li:nth-child(n+5){
     display: none;
   }
+
+  #storefront #recently_added_products{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #storefront #search_and_cart{
+    grid-template-columns: 1fr;
+    height:auto;
+  }
+
+  #storefront #search_and_cart form input{
+    height:40px;
+  }
+
+  #welcome #welcome-content #double_action{
+    grid-template-columns: 1fr;
+  }
+
+  #welcome #welcome-content #double_action .double_action_item > div{
+    text-align: center;
+  }
 }

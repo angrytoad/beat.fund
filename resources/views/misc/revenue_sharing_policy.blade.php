@@ -58,15 +58,13 @@
                     <div class="jumbotron">
                         <h2>Example</h2>
                         <p>
-                            3 users each purchase £10 worth of music from your store.
+                            A user goes to checkout with &pound;10 worth of items in their cart, on checkout they are charged
+                            an additional {{ env('STRIPE_FEE') }}p which is paid to Stripe to process the payment, <strong>between 1.4% - 2.9%
+                            is also taken</strong> depending on which card was used to pay.
                         </p>
                         <p>
-                            When paying through Stripe on European
-                            cards, Beat Fund is charged <strong>1.4% + 20p</strong>, per transaction.
-                        </p>
-                        <p>
-                            Beat Fund receives <strong>£28.98</strong>, of which {{ 100 - env('BEATFUND_SALES_SHARE') }}% <strong>(£26.08)</strong> goes to
-                            you, and Beat Fund gets <strong>£2.89.</strong>
+                            Beat Fund covers this charge so the artist will still receive their full 90% (&pound;9), Beat
+                            Fund would then take &pound;1 but is charged 1.4% (14p) by Stripe so retains 86p total.
                         </p>
                     </div>
                 </div>

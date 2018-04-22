@@ -24,7 +24,8 @@ class Storefront implements StorefrontRepository
         $this->productModel = $productModel;
         $this->storeModel = $storeModel;
     }
-
+    
+    
     public function getAllProducts()
     {
         return $this->productModel
