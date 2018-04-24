@@ -52,39 +52,47 @@ class AddLineItemsController extends Controller
             'items.*.public_url' => 'required',
             'items.*.item_name' => 'required',
         ]);
-        
-        foreach($request->get('items') as $item){
-            try{
-                $product_item = new ProductLineItem();
-                $product_item->product_id = $uuid;
-                $product_item->name = $item['item_name'];
-                $product_item->item_type = 'track';
-                $product_item->order = count(Product::find($uuid)->items);
 
-                $item_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/'.str_replace('product-items/','',$item['s3_name']);
-                $item_sample_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/SAMPLE_'.str_replace('product-items/','',$item['s3_name']);
 
-                $source_file = $this->productStorageInterface->url($item['s3_name']);
+        if($request->has('items')){
+            foreach($request->get('items') as $item){
+                try{
+                    $product_item = new ProductLineItem();
+                    $product_item->product_id = $uuid;
+                    $product_item->name = $item['item_name'];
+                    $product_item->item_type = 'track';
+                    $product_item->order = count(Product::find($uuid)->items);
 
-                $this->productStorageInterface->store($item_key,$source_file);
-                $this->transcodingInterface->transcode($item_key,$item_sample_key);
-                
-                $this->productStorageInterface->delete($item['s3_name']);
+                    $item_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/'.str_replace('product-items/','',$item['s3_name']);
+                    $item_sample_key = Auth::user()->id.'/stores/'.Auth::user()->store->id.'/products/'.$uuid.'/SAMPLE_'.str_replace('product-items/','',$item['s3_name']);
 
-                $product_item->item_key = $item_key;
-                $product_item->item_sample_key = $item_sample_key;
-            }catch(\Exception $e){
-                return back()->withErrors([
-                    $e->getMessage()
-                ])->withInput();
+                    $source_file = $this->productStorageInterface->url($item['s3_name']);
+
+                    $this->productStorageInterface->store($item_key,$source_file);
+                    $this->transcodingInterface->transcode($item_key,$item_sample_key);
+
+                    $this->productStorageInterface->delete($item['s3_name']);
+
+                    $product_item->item_key = $item_key;
+                    $product_item->item_sample_key = $item_sample_key;
+                }catch(\Exception $e){
+                    return back()->withErrors([
+                        $e->getMessage()
+                    ])->withInput();
+                }
+
+                $product_item->save();
+
             }
 
-            $product_item->save();
-
+            return redirect(route('store.products.product', $uuid))->with([
+                'alert-success' => 'Items have been successfully added to your product.'
+            ]);
         }
 
-        return redirect(route('store.products.product', $uuid))->with([
-            'alert-success' => 'Items have been successfully added to your product.'
+        return redirect(route('store.products.product', $uuid))->withErrors([
+            'You need to actually add some items to this product.'
         ]);
+
     }
 }
