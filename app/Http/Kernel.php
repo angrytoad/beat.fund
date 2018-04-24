@@ -2,7 +2,7 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\Account\Admin\IsAdmin;
+use App\Http\Middleware\Admin\IsAdmin;
 use App\Http\Middleware\Account\EmailVerified;
 use App\Http\Middleware\Account\OwnsCard;
 use App\Http\Middleware\Profile\HasProfile;

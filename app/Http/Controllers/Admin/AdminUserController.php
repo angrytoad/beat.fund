@@ -6,42 +6,43 @@
  * Time: 23:17
  */
 
-namespace App\Http\Controllers\Account\Admin;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 
 
 class AdminUserController
 {
 
-    public function list(Request $request) {
+    public function users() {
 
         $paginator = User::paginate(25);
         $paginator->withPath('admin/user');
 
-        return view('account.admin.user.admin_users', [
+        return view('admin.user.users', [
             'users' => $paginator
         ]);
 
     }
 
-    public function user(Request $request, $id) {
+    public function user($id) {
 
         if (empty($id)) {
-            return redirect('/admin/users');
+            return redirect(route('admin.users'))->withErrors([
+                'That user doesn\'t exist'
+            ]);
         } else {
             $user = User::find($id);
         }
 
-        return view('account.admin.user.admin_user', [
+        return view('admin.user.user', [
             'user' => $user,
             'profile' => $user->profile
         ]);
 
     }
 
-    public function store(Request $request) {
+    public function store() {
 
     }
 

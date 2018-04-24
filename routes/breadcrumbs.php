@@ -42,6 +42,23 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
 });
 
 /**
+ * ADMIN BREADCRUMBS
+ */
+Breadcrumbs::register('admin', function ($breadcrumbs) {
+    $breadcrumbs->push('Admin', route('admin'));
+});
+
+Breadcrumbs::register('admin.users', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Users', route('admin.users'));
+});
+
+Breadcrumbs::register('admin.user', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('admin.users');
+    $breadcrumbs->push($user->first_name.' '.$user->last_name, route('admin.user', $user->id));
+});
+
+/**
  * STORE BREADCRUMBS
  */
 Breadcrumbs::register('storefront', function ($breadcrumbs) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware\Account\Admin;
+namespace App\Http\Middleware\Admin;
 
 use Closure;
 
@@ -15,10 +15,9 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->admin === 0) {
-            return abort(404);
+        if (auth()->check() && auth()->user()->admin === 1) {
+            return $next($request);
         }
-
-        return $next($request);
+        return abort(404);
     }
 }
