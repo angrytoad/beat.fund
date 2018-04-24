@@ -12,7 +12,7 @@ class HasLineItem
     {
         $line_item = ProductLineItem::find($request->item_uuid);
 
-        if($line_item->product->store->user->id === Auth::user()->id){
+        if($line_item && $line_item->product->store->user->id === Auth::user()->id){
             return $next($request);
         }
 
