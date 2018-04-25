@@ -40,4 +40,21 @@
     column-gap:30px;
   }
 
+  #register #register-sample-artists #register-sample-artists-list{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #register #register-sample-artists #register-sample-artists-list .artist{
+    max-width:150px;
+    margin:auto;
+  }
+
+  #register #register-form-name #register-form-first-name{
+    margin-right:-15px;
+  }
+
+  #register #register-form-name #register-form-last-name{
+    margin-left:-15px;
+  }
+
 }

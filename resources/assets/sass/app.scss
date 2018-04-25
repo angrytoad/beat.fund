@@ -36,6 +36,8 @@
 @import "pages/store/cards/cards";
 @import "pages/store/cards/card";
 
+@import "pages/auth/register";
+
 @import "pages/storefront/storefront";
 @import "pages/storefront/search_results";
 @import "pages/storefront/cart";
@@ -46,6 +48,7 @@
 @import "pages/admin/home";
 @import "pages/admin/users";
 @import "pages/admin/user";
+
 
 
 body{
