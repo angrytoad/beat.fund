@@ -6,8 +6,8 @@
                     <a href="{{ route('login') }}"><li>Login</li></a>
                     <a href="{{ route('register') }}"><li>Register</li></a>
                     <a href="{{ route('password.request') }}"><li>Forgotten Your Password?</li></a>
-                    <a href="{{ route('store_terms_and_conditions') }}"><li>Terms & Conditions</li></a>
-                    <a href="{{ route('privacy_policy') }}"><li>Privacy Policy</li></a>
+                    <a target="_blank" href="https://app.termly.io/document/terms-of-use-for-online-marketplace/4e5e4414-ca36-49d2-9c69-98b3fee09eae"><li>Terms & Conditions</li></a>
+                    <a target="_blank" href="https://www.iubenda.com/privacy-policy/85876449"><li>Privacy Policy</li></a>
                     <a href="{{ route('revenue_sharing_policy') }}"><li>Revenue Sharing Policy</li></a>
                 </ul>
             </div>

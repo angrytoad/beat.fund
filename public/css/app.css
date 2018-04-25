@@ -9089,6 +9089,33 @@ button.close {
   margin-left: 5px;
 }
 
+#register #register-sample-artists #register-sample-artists-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  -ms-flex-line-pack: start;
+      align-content: start;
+}
+
+#register #register-sample-artists #register-sample-artists-list .artist {
+  text-align: center;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+#register #register-sample-artists #register-sample-artists-list .artist img {
+  width: 100%;
+}
+
+#register #register-form-name #register-form-first-name {
+  margin-right: 0;
+}
+
+#register #register-form-name #register-form-last-name {
+  margin-left: 0;
+}
+
 #storefront #storefront-main {
   display: grid;
   grid-gap: 15px;
@@ -9833,6 +9860,23 @@ summary:hover {
             column-count: 2;
     -webkit-column-gap: 30px;
             column-gap: 30px;
+  }
+
+  #register #register-sample-artists #register-sample-artists-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #register #register-sample-artists #register-sample-artists-list .artist {
+    max-width: 150px;
+    margin: auto;
+  }
+
+  #register #register-form-name #register-form-first-name {
+    margin-right: -15px;
+  }
+
+  #register #register-form-name #register-form-last-name {
+    margin-left: -15px;
   }
 }
 

@@ -9,6 +9,7 @@
 namespace App\Helpers;
 
 use App\Models\Genre;
+use App\Models\Store;
 use Illuminate\Support\Facades\Route;
 use FFMpeg;
 use AWS;
@@ -95,6 +96,11 @@ class Helper
         return (
             'https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&client_id='.env('STRIPE_CLIENT_ID')
         );
+    }
+
+    public static function getArtistStoresSampler()
+    {
+        return Store::where('live',true)->inRandomOrder()->limit(12)->get();
     }
 
 }

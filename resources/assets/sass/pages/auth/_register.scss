@@ -1,0 +1,35 @@
+#register{
+  #register-sample-artists{
+
+    #register-sample-artists-list{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap:15px;
+      align-content: start;
+
+      .artist{
+        text-align: center;
+        border-radius: 4px;
+        overflow: hidden;
+        border:1px solid $border_light;
+
+        img{
+          width:100%;
+        }
+      }
+    }
+
+  }
+
+  #register-form-name{
+
+    #register-form-first-name{
+      margin-right:0;
+    }
+
+    #register-form-last-name{
+      margin-left:0;
+    }
+
+  }
+}
