@@ -90,12 +90,15 @@ class ProductCreationController extends Controller
 
         $product->genres()->detach();
 
-        foreach($request->get('genres') as $genre){
-            $found_genre = Genre::find($genre);
-            if($found_genre){
-                $product->genres()->attach($found_genre->id);
+        if($request->has('genres')){
+            foreach($request->get('genres') as $genre){
+                $found_genre = Genre::find($genre);
+                if($found_genre){
+                    $product->genres()->attach($found_genre->id);
+                }
             }
         }
+
         
         return redirect(route('store.products.product', $product->id))->with([
             'alert-success' => $product->name.' has been successfully created.'
