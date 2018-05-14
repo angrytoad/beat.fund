@@ -39,4 +39,9 @@
   #welcome #welcome-content #double_action .double_action_item > div{
     text-align: center;
   }
+
+  #tickets #ticket-store-requirements,
+  #store_products #store-live-requirements{
+    grid-template-columns: 1fr;
+  }
 }

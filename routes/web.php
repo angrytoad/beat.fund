@@ -307,6 +307,18 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     });
                 });
             });
+
+            /**
+             * Routes for all ticket stuff
+             */
+            Route::group(['prefix' => 'tickets'], function () {
+                Route::get('/', 'Store\Tickets\TicketsController@show')->name('store.tickets');
+
+                Route::group(['middleware' => ['user.ticket_store.']], function () {
+
+                });
+                Route::get('/enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
+            });
         });
     });
 });

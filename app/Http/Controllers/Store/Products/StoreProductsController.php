@@ -27,6 +27,8 @@ class StoreProductsController extends Controller
             'live_products_count' => Auth::user()->store->products()->where('live',true)->get()->count(),
             'pending_products_count' => Auth::user()->store->products()->where('live',false)->get()->count(),
             'recent_products' => Auth::user()->store->products()->orderBy('created_at','DESC')->get(),
+            'profile' => Auth::user()->profile,
+            'store' => Auth::user()->store
         ]);
     }
 

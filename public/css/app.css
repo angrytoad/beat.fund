@@ -8693,6 +8693,95 @@ button.close {
   margin: 0;
 }
 
+#cards #cards-display .card-display {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#cards #cards-display .card-display .card-actions {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 4px 0 0 0;
+}
+
+#cards #cards-display .card-display .card-actions svg {
+  margin: 0 2px;
+}
+
+#cards #cards-display .card-display .card-display-name {
+  font-weight: bold;
+}
+
+#cards #cards-display .card-display p {
+  margin: 0;
+}
+
+#cards #cards-display .card-display hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#cards #cards-display .card-display .default-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 18px;
+  background: #F4F9FF;
+  border-radius: 0 0 0 4px;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-right: none;
+}
+
+#card #card-delete {
+  margin-left: 5px;
+}
+
+#store_products #store-live-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#store_products #store-live-requirements > div {
+  padding: 2rem;
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#store_products #store-live-requirements > div > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#store_products #store-live-requirements > div > div svg {
+  font-size: 32px;
+}
+
+#store_products #store-live-requirements > div > div p {
+  margin: 0;
+}
+
 #store_products #store_products_clickthrough {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8986,59 +9075,38 @@ button.close {
   background: #d9534f !important;
 }
 
-#cards #cards-display .card-display {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  position: relative;
-  margin-bottom: 15px;
+#tickets #ticket-store-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
 }
 
-#cards #cards-display .card-display .card-actions {
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-bottom: none;
-  border-right: none;
-  border-radius: 4px 0 0 0;
-}
-
-#cards #cards-display .card-display .card-actions svg {
-  margin: 0 2px;
-}
-
-#cards #cards-display .card-display .card-display-name {
-  font-weight: bold;
-}
-
-#cards #cards-display .card-display p {
-  margin: 0;
-}
-
-#cards #cards-display .card-display hr {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-#cards #cards-display .card-display .default-card {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-  font-size: 18px;
-  line-height: 18px;
+#tickets #ticket-store-requirements > div {
+  padding: 2rem;
   background: #F4F9FF;
-  border-radius: 0 0 0 4px;
   border: 1px solid #ddd;
-  border-top: none;
-  border-right: none;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
 }
 
-#card #card-delete {
-  margin-left: 5px;
+#tickets #ticket-store-requirements > div > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#tickets #ticket-store-requirements > div > div svg {
+  font-size: 32px;
+}
+
+#tickets #ticket-store-requirements > div > div p {
+  margin: 0;
 }
 
 #register #register-sample-artists #register-sample-artists-list {
@@ -9887,6 +9955,11 @@ summary:hover {
 
   #welcome #welcome-content #double_action .double_action_item > div {
     text-align: center;
+  }
+
+  #tickets #ticket-store-requirements,
+  #store_products #store-live-requirements {
+    grid-template-columns: 1fr;
   }
 }
 

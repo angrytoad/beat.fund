@@ -50,6 +50,11 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Store');
     }
+    
+    public function ticket_store()
+    {
+        return $this->hasOne('App\Models\TicketStore');
+    }
 
     public function stripe_account()
     {

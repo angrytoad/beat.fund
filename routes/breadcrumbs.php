@@ -246,3 +246,11 @@ Breadcrumbs::register('store.products.product.item.delete', function ($breadcrum
     $breadcrumbs->parent('store.products.product.item',$product, $line_item);
     $breadcrumbs->push('Delete', route('store.products.product.item.delete',[$product->id,$line_item->id]));
 });
+
+/**
+ * TICKETS BREADCRUMBS
+ */
+Breadcrumbs::register('store.tickets', function ($breadcrumbs) {
+    $breadcrumbs->parent('store');
+    $breadcrumbs->push('Tickets', route('store.tickets'));
+});

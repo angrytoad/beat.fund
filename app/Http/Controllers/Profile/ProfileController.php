@@ -38,7 +38,7 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         /**
-         * We need to make srue that the website and email are the right format if not null.
+         * We need to make sure that the website and email are the right format if not null.
          */
         $request->validate([
             'artist_name' => 'required',
@@ -65,6 +65,26 @@ class ProfileController extends Controller
                 'favourite_genre.required' => 'You cannot clear the Favourite Genre field whilst you\'re store is live, please turn disable it first.',
                 'artist_website.required' => 'You cannot clear the Artist Website field whilst you\'re store is live, please turn disable it first.',
                 'business_email.required' => 'You cannot clear the Business Email field whilst you\'re store is live, please turn disable it first.',
+            ];
+
+            $request->validate($rules, $messages);
+        }
+
+        if($user->ticket_store && $user->ticket_store->live){
+            $rules = [
+                'artist_name' => 'required',
+                'artist_bio' => 'required',
+                'favourite_genre' => 'required',
+                'artist_website' => 'required',
+                'business_email' => 'required'
+            ];
+
+            $messages = [
+                'artist_name.required' => 'You cannot clear the Artist Name field whilst you\'re ticket store is live, please turn disable it first.',
+                'artist_bio.required' => 'You cannot clear the Artist Bio field whilst you\'re ticket store is live, please turn disable it first.',
+                'favourite_genre.required' => 'You cannot clear the Favourite Genre field whilst you\'re ticket store is live, please turn disable it first.',
+                'artist_website.required' => 'You cannot clear the Artist Website field whilst you\'re ticket store is live, please turn disable it first.',
+                'business_email.required' => 'You cannot clear the Business Email field whilst you\'re ticket store is live, please turn disable it first.',
             ];
 
             $request->validate($rules, $messages);
