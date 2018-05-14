@@ -71,14 +71,14 @@
                             <div class="row">
                                 <div class="col-md-4 text-center">
                                     <p>
-                                        Set up a new gig or event, and let the public purchase digital tickets.
+                                        Set up a new gig or event, and allow the public purchase tickets from you.
                                     </p>
                                     <button class="btn btn-primary">Create Tickets</button>
                                     <hr />
                                 </div>
                                 <div class="col-md-4 text-center">
                                     <p>
-                                        View all current tickets you have created for gig and events.
+                                        View all current tickets you have created for gigs and events.
                                     </p>
                                     <button class="btn btn-primary">View Tickets</button>
                                     <hr />
