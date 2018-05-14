@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\Admin\AccountRegistered;
 use App\Models\EmailVerification;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -130,5 +131,6 @@ class RegisterController extends Controller
         $email_verification->save();
 
         Mail::to($user->email)->send(new Verify($user));
+        Mail::to(env('ADMIN_EMAIL','support@beat.fund'))->send(new AccountRegistered($user));
     }
 }
