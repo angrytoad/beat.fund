@@ -52,7 +52,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="create_store_checkbox" id="create_store_checkbox">
                                 <label class="form-check-label" for="create_store_checkbox">
-                                    I have and read and accept Beat Funds <a target="_blank" href="{{ route('store_terms_and_conditions') }}">Terms & Conditions</a> on opening a store.
+                                    I have and read and accept Beat Funds <a target="_blank" href="https://termsfeed.com/terms-conditions/c26e18e24eb4e014fc316451d02c19ca">Terms & Conditions.</a>
                                 </label>
                             </div>
                         </div>

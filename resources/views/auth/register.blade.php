@@ -117,7 +117,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="terms_and_conditions">
                                     <label class="form-check-label" for="create_store_checkbox">
-                                        I have and read and accept Beat Funds <a target="_blank" href="https://app.termly.io/document/terms-of-use-for-online-marketplace/4e5e4414-ca36-49d2-9c69-98b3fee09eae">Terms & Conditions.</a>
+                                        I have and read and accept Beat Funds <a target="_blank" href="https://termsfeed.com/terms-conditions/c26e18e24eb4e014fc316451d02c19ca">Terms & Conditions.</a>
                                     </label>
                                 </div>
                             </div>
