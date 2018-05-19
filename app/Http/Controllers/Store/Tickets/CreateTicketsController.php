@@ -51,7 +51,7 @@ class CreateTicketsController extends Controller
         $ticket->ticket_store_id = Auth::user()->ticket_store->id;
         $ticket->name = $request->get('name');
         $ticket->description = $request->get('description');
-        $ticket->description_delta = $request->get('delta');
+        $ticket->description_delta = $request->get('description_delta');
         $ticket->start = Carbon::parse($request->get('start'));
         $ticket->end = Carbon::parse($request->get('end'));
         $ticket->live = false;
