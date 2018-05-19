@@ -26,9 +26,7 @@
                         <div class="col-md-6">
                             <h4 class="text-success">Tickets</h4>
                             <p>Offer a digital solution for free and paid ticketing at your events.</p>
-                            <a href="{{ route('store.tickets') }}">
-                                <button class="btn-primary btn">Tickets Manager</button>
-                            </a>
+                            <button class="btn-primary btn disabled">Tickets Manager</button>
                             <hr />
                         </div>
                     </div>
