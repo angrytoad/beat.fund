@@ -53,4 +53,15 @@
 <!-- Fuse -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.min.js"></script>
 
+<!-- Datetime Picker -->
+<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- Google Maps -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlDaSvfZy7a6KNKQ3yFWh4QojT48cn92w"></script>
+<script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+
+<!-- Notify -->
+<script src="/js/notify.min.js"></script>
+
 @yield('scripts')

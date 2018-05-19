@@ -73,7 +73,9 @@
                                     <p>
                                         Set up a new gig or event, and allow the public purchase tickets from you.
                                     </p>
-                                    <button class="btn btn-primary">Create Tickets</button>
+                                    <a href="{{ route('store.tickets.create') }}">
+                                        <button class="btn btn-primary">Create Tickets</button>
+                                    </a>
                                     <hr />
                                 </div>
                                 <div class="col-md-4 text-center">

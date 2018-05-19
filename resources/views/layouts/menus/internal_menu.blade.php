@@ -20,7 +20,8 @@
             'store.products.product.tag_items',
             'store.products.product.item',
             'store.products.product.item.delete',
-            'store.tickets'
+            'store.tickets',
+            'store.tickets.ticket',
             ]) }}">
                 <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
                     My Store <span class="caret"></span>
@@ -44,6 +45,7 @@
                     </li>
                     <li class="{{ Helper::areActiveRoutes([
                     'store.tickets',
+                    'store.tickets.ticket',
                     ]) }}">
                             <a href="{{ route('store.tickets') }}">Tickets</a>
                         </li>

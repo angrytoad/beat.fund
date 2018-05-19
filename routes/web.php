@@ -313,11 +313,18 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
              */
             Route::group(['prefix' => 'tickets'], function () {
                 Route::get('/', 'Store\Tickets\TicketsController@show')->name('store.tickets');
+                Route::get('enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
 
-                Route::group(['middleware' => ['user.ticket_store.']], function () {
+                Route::group(['middleware' => ['user.ticket_store.has_ticket_store']], function () {
+                    Route::get('create', 'Store\Tickets\CreateTicketsController@show')->name('store.tickets.create');
+                    Route::post('create', 'Store\Tickets\CreateTicketsController@create');
+                    Route::post('create/image', 'Store\Tickets\CreateTicketsImageController@upload')->name('store.tickets.create.image');
 
+                    Route::group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
+                        Route::get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
+                    });
                 });
-                Route::get('/enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
+
             });
         });
     });

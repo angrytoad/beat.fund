@@ -1,0 +1,53 @@
+#create-tickets{
+  #map{
+    width:100%;
+    height:500px;
+    margin-bottom:15px;
+  }
+
+  #page-preview{
+    background:#F4F9FF;
+    border:1px solid $border_light;
+    padding:45px;
+
+    #page-preview-inner{
+      background:#fff;
+      padding:15px;
+    }
+
+    img{
+      max-width:100%;
+    }
+
+    #page-preview-banner{
+      margin-left:-15px;
+      margin-right:-15px;
+      margin-top:-15px;
+
+      height: 85px;
+      overflow: hidden;
+      position: relative;
+      background:$blue;
+      display:grid;
+      align-items: center;
+      text-align: center;
+      color:$white;
+      font-weight: bold;
+      border:1px solid $border_light;
+
+      img{
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+
+    #page-preview-event-name{
+      margin-top:15px;
+      font-weight: bold;
+    }
+  }
+}

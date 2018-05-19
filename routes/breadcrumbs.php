@@ -254,3 +254,13 @@ Breadcrumbs::register('store.tickets', function ($breadcrumbs) {
     $breadcrumbs->parent('store');
     $breadcrumbs->push('Tickets', route('store.tickets'));
 });
+
+Breadcrumbs::register('store.tickets.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('store.tickets');
+    $breadcrumbs->push('Create Tickets', route('store.tickets'));
+});
+
+Breadcrumbs::register('store.tickets.ticket', function ($breadcrumbs, $ticket) {
+    $breadcrumbs->parent('store.tickets');
+    $breadcrumbs->push($ticket->name, route('store.tickets.ticket', $ticket->id));
+});

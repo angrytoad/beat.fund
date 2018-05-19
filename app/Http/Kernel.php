@@ -19,6 +19,8 @@ use App\Http\Middleware\Store\Product\UserHasProduct;
 use App\Http\Middleware\Storefront\Artist\Product\ProductIsLive;
 use App\Http\Middleware\Storefront\Artist\StoreExists;
 use App\Http\Middleware\Storefront\HasItemsInCart;
+use App\Http\Middleware\TicketStore\HasTicketStore;
+use App\Http\Middleware\TicketStore\Ticket\UserHasTicket;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -90,6 +92,8 @@ class Kernel extends HttpKernel
         'user.owns_card' => OwnsCard::class,
         'user.has_items_in_cart' => HasItemsInCart::class,
         'purchases.has_order' => HasOrder::class,
-        'purchases.has_order_item' => HasOrderItem::class
+        'purchases.has_order_item' => HasOrderItem::class,
+        'user.ticket_store.has_ticket_store' => HasTicketStore::class,
+        'user.ticket_store.has_ticket' => UserHasTicket::class
     ];
 }
