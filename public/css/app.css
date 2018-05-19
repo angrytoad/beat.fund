@@ -8693,6 +8693,95 @@ button.close {
   margin: 0;
 }
 
+#cards #cards-display .card-display {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#cards #cards-display .card-display .card-actions {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 4px 0 0 0;
+}
+
+#cards #cards-display .card-display .card-actions svg {
+  margin: 0 2px;
+}
+
+#cards #cards-display .card-display .card-display-name {
+  font-weight: bold;
+}
+
+#cards #cards-display .card-display p {
+  margin: 0;
+}
+
+#cards #cards-display .card-display hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#cards #cards-display .card-display .default-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 18px;
+  line-height: 18px;
+  background: #F4F9FF;
+  border-radius: 0 0 0 4px;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-right: none;
+}
+
+#card #card-delete {
+  margin-left: 5px;
+}
+
+#store_products #store-live-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#store_products #store-live-requirements > div {
+  padding: 2rem;
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+#store_products #store-live-requirements > div > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#store_products #store-live-requirements > div > div svg {
+  font-size: 32px;
+}
+
+#store_products #store-live-requirements > div > div p {
+  margin: 0;
+}
+
 #store_products #store_products_clickthrough {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8986,59 +9075,92 @@ button.close {
   background: #d9534f !important;
 }
 
-#cards #cards-display .card-display {
-  padding: 15px;
+#tickets #ticket-store-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+#tickets #ticket-store-requirements > div {
+  padding: 2rem;
+  background: #F4F9FF;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  position: relative;
-  margin-bottom: 15px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
 }
 
-#cards #cards-display .card-display .card-actions {
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-bottom: none;
-  border-right: none;
-  border-radius: 4px 0 0 0;
+#tickets #ticket-store-requirements > div > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#cards #cards-display .card-display .card-actions svg {
-  margin: 0 2px;
+#tickets #ticket-store-requirements > div > div svg {
+  font-size: 32px;
 }
 
-#cards #cards-display .card-display .card-display-name {
-  font-weight: bold;
-}
-
-#cards #cards-display .card-display p {
+#tickets #ticket-store-requirements > div > div p {
   margin: 0;
 }
 
-#cards #cards-display .card-display hr {
-  margin-top: 5px;
-  margin-bottom: 5px;
+#create-tickets #map {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 15px;
 }
 
-#cards #cards-display .card-display .default-card {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-  font-size: 18px;
-  line-height: 18px;
+#create-tickets #page-preview {
   background: #F4F9FF;
-  border-radius: 0 0 0 4px;
   border: 1px solid #ddd;
-  border-top: none;
-  border-right: none;
+  padding: 45px;
 }
 
-#card #card-delete {
-  margin-left: 5px;
+#create-tickets #page-preview #page-preview-inner {
+  background: #fff;
+  padding: 15px;
+}
+
+#create-tickets #page-preview img {
+  max-width: 100%;
+}
+
+#create-tickets #page-preview #page-preview-banner {
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  height: 85px;
+  overflow: hidden;
+  position: relative;
+  background: #007BFF;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+#create-tickets #page-preview #page-preview-banner img {
+  width: 100%;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+#create-tickets #page-preview #page-preview-event-name {
+  margin-top: 15px;
+  font-weight: bold;
 }
 
 #register #register-sample-artists #register-sample-artists-list {
@@ -9887,6 +10009,11 @@ summary:hover {
 
   #welcome #welcome-content #double_action .double_action_item > div {
     text-align: center;
+  }
+
+  #tickets #ticket-store-requirements,
+  #store_products #store-live-requirements {
+    grid-template-columns: 1fr;
   }
 }
 

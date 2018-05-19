@@ -26,6 +26,10 @@
 @import "pages/store/create";
 @import "pages/store/add_banner";
 @import "pages/store/add_avatar";
+
+@import "pages/store/cards/cards";
+@import "pages/store/cards/card";
+
 @import "pages/store/products/products";
 @import "pages/store/products/create";
 @import "pages/store/products/product";
@@ -33,8 +37,9 @@
 @import "pages/store/products/line_item/rearrange_items";
 @import "pages/store/products/line_item/tag_items";
 @import "pages/store/products/line_item/line_item";
-@import "pages/store/cards/cards";
-@import "pages/store/cards/card";
+
+@import "pages/store/tickets/tickets";
+@import "pages/store/tickets/create";
 
 @import "pages/auth/register";
 

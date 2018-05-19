@@ -31,28 +31,23 @@
                     <div class="jumbotron">
                         <p>
                             Our revenue share policy is aimed to be plain and simple. Beat Fund gives you <strong>{{ 100 - env('BEATFUND_SALES_SHARE') }}%</strong> of
-                            all your music sales (after payment/payout fees) for you to do with as you please.
+                            all your music sales for you to do with as you please.
                         </p>
                     </div>
                     <p>
                         See, we told you it was simple!
                     </p>
-                    <h4>What are payment/payout fees?</h4>
+                    <h4>What are payment fees?</h4>
                     <p>
                         Payment fees are what are charged by 3rd party payment providers for the processing of
-                        purchases from your store. Payout fees are what is charged for us to send money directly to your
-                        back account.
+                        purchases from your store. This is typically absorbed by both the customer and Beat Fund, so you'll always
+                        keep 90% of your sales.
                     </p>
                     <p>
                         When a user goes to purchase some music they are charged a fee by the payment handler (E.G Paypal
                         or Stripe) and this is included in the purchase of the music. The payment provider will take a cut to
                         process the transaction and Beat Fund is then given the remainder of the total purchase cost. This is
                         known as a <strong>Purchase Fee</strong>
-                    </p>
-                    <p>
-                        Because payment providers charge on a per transaction basis, when paying out, we tend to do it in
-                        increments of £25 (you will be able to change this), this is to avoid making lots of smaller payouts
-                        and have your revenue eaten up by fees. This is known as the <strong>Payout Fee</strong>
                     </p>
                     <hr />
                     <div class="jumbotron">

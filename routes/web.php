@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
     Route::get('users', 'Admin\AdminUserController@users')->name('admin.users');
     Route::get('user/{id}', 'Admin\AdminUserController@user')->name('admin.user');
     Route::get('user/{id}/store', 'Admin\AdminUserController@store')->name('admin.user.store');
+    Route::get('user/{id}/profile', 'Admin\AdminUserController@profile')->name('admin.user.profile');
     Route::post('user/{id}/purge', 'Admin\AdminUserController@purge')->name('admin.user.purge');
 
     Route::get('store', 'Admin\AdminUserController@store')->name('admin.store');
@@ -306,6 +307,25 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
                     });
                 });
+            });
+
+            /**
+             * Routes for all ticket stuff
+             */
+            Route::group(['prefix' => 'tickets'], function () {
+                Route::get('/', 'Store\Tickets\TicketsController@show')->name('store.tickets');
+                Route::get('enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
+
+                Route::group(['middleware' => ['user.ticket_store.has_ticket_store']], function () {
+                    Route::get('create', 'Store\Tickets\CreateTicketsController@show')->name('store.tickets.create');
+                    Route::post('create', 'Store\Tickets\CreateTicketsController@create');
+                    Route::post('create/image', 'Store\Tickets\CreateTicketsImageController@upload')->name('store.tickets.create.image');
+
+                    Route::group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
+                        Route::get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
+                    });
+                });
+
             });
         });
     });

@@ -14,107 +14,36 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $profile->artist_name }}'s Store</div>
                 <div class="panel-body">
-                    @if(!$store->live)
-                        <div class="alert alert-warning">Your store is NOT LIVE. (You have no public store page at present)</div>
-                    @else
-                        <div class="alert alert-success">This store is currently LIVE. (You have a public store page)</div>
-                    @endif
-                        <div id="store-live-requirements">
-                            <div>
-                                @if($profile->getCompletionPercentage() === 100)
-                                    <div>
-                                        <i class="fas fa-check text-primary"></i>
-                                        <p>Have a complete profile <a href="{{ route('profile') }}">Update.</a></p>
-                                    </div>
-                                @else
-                                    <div>
-                                        <i class="fas fa-times text-danger"></i>
-                                        <p>You do not have a complete profile ({{ $profile->getCompletionPercentage() }}%). <a href="{{ route('profile') }}">Add one.</a></p>
-                                    </div>
-                                @endif
-                            </div>
-                            <div>
-                                @if(count($store->liveProducts()) > 0)
-                                    <div>
-                                        <i class="fas fa-check text-primary"></i>
-                                        <p>You have {{ count($store->liveProducts()) }} live product(s). <a href="{{ route('store.products') }}">View products.</a></p>
-                                    </div>
-                                @else
-                                    <div>
-                                        <i class="fas fa-times text-danger"></i>
-                                        <p>You do not have any live products set up. <a href="{{ route('store.products') }}">View products.</a></p>
-                                    </div>
-                                @endif
-                            </div>
-                            <div>
-                                @if($store->banner_key !== null)
-                                    <div>
-                                        <i class="fas fa-check text-primary"></i>
-                                        <p>You have a storefront banner. <a href="{{ route('store.banner.add') }}">Change it.</a></p>
-                                    </div>
-                                @else
-                                    <div>
-                                        <i class="fas fa-times text-danger"></i>
-                                        <p>You do not have a storefront banner. <a href="{{ route('store.banner.add') }}">Add one here.</a></p>
-                                    </div>
-                                @endif
-                            </div>
-                            <div>
-                                @if($store->avatar_key !== null)
-                                    <div>
-                                        <i class="fas fa-check text-primary"></i>
-                                        <p>You have a storefront avatar. <a href="{{ route('store.avatar.add') }}">Change it.</a></p>
-                                    </div>
-                                @else
-                                    <div>
-                                        <i class="fas fa-times text-danger"></i>
-                                        <p>You do not have a storefront avatar. <a href="{{ route('store.avatar.add') }}">Add one here.</a></p>
-                                    </div>
-                                @endif
-                            </div>
-                            <div>
-                                @if(Auth::user()->stripe_account)
-                                    <div>
-                                        <i class="fas fa-check text-primary"></i>
-                                        <p>You have a Stripe Account. <a href="{{ route('account.stripe') }}">Update it.</a></p>
-                                    </div>
-                                @else
-                                    <div>
-                                        <i class="fas fa-times text-danger"></i>
-                                        <p>You are not set up to take payments via Stripe. <a href="{{ route('account.stripe') }}">Set up Stripe Account.</a></p>
-                                    </div>
-                                @endif
-                            </div>
-                            @if(!$store->live)
-                                @if(
-                                  $store->banner_key !== null &&
-                                  $store->avatar_key !== null &&
-                                  Auth::user()->stripe_account &&
-                                  $profile->getCompletionPercentage() === 100 &&
-                                  count($store->liveProducts()) > 0
-                                )
-                                    <div>
-                                        <form method="POST" action="{{ route('store.set_live') }}">
-                                            {{ csrf_field() }}
-                                            <button class="btn btn-success">Set Store Live</button>
-                                        </form>
-                                    </div>
-                                @else
-                                    <div>
-                                        <button class="btn btn-disabled">Set Store Live</button>
-                                    </div>
-                                @endif
-                            @else
-                                <div>
-                                    <a href="{{ route('artist.store',$store->slug) }}">
-                                        <button class="btn btn-primary">View Store</button>
-                                    </a>
-                                </div>
-                            @endif
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="text-success">Music</h4>
+                            <p>Upload songs, albums and EP's sell your music online through your own Beat Fund store!</p>
+                            <a href="{{ route('store.products') }}">
+                                <button class="btn-primary btn">Music Store</button>
+                            </a>
+                            <hr />
                         </div>
-
-
+                        <div class="col-md-6">
+                            <h4 class="text-success">Tickets</h4>
+                            <p>Offer a digital solution for free and paid ticketing at your events.</p>
+                            <button class="btn-primary btn disabled">Tickets Manager</button>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="text-muted">Synchronization</h4>
+                            <p class="text-muted">Allow businesses to purchase Synchronization rights to use your music in Ads, Films and more!</p>
+                            <button class="btn-disabled btn">Coming soon...</button>
+                            <hr />
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-muted">Aggregation</h4>
+                            <p class="text-muted">Freely distribute your catalogue across popular platforms such as iTunes, Spotify and more!</p>
+                            <button class="btn-disabled btn">Coming soon...</button>
+                            <hr />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

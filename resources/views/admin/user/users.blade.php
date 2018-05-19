@@ -41,7 +41,7 @@
                                         @if(!$user->profile)
                                             <p><i title="This user has no profile." class="fas fa-ban"></i></p>
                                         @else
-                                            <p><i class="fas fa-check"></i></p>
+                                            <p><i class="fas fa-check"></i>&nbsp;&nbsp;<a href="{{ route('admin.user.profile', $user->id) }}">Profile</a></p>
                                         @endif
                                     </td>
                                     <td>
