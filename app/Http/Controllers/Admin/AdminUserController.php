@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Library\Contracts\ProductStorageInterface;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 
 class AdminUserController
@@ -50,8 +51,24 @@ class AdminUserController
 
     }
 
-    public function store() {
+    public function store(Request $request, $uuid) {
+        $user = User::find($uuid);
+        $request->session()->flash('alert-warning','YOU ARE VIEWING ANOTHER USERS STORE, PLEASE DO NOT CHANGE ANYTHING');
+        return view('store.products.products')->with([
+            'live_products_count' => $user->store->products()->where('live',true)->get()->count(),
+            'pending_products_count' => $user->store->products()->where('live',false)->get()->count(),
+            'recent_products' => $user->store->products()->orderBy('created_at','DESC')->get(),
+            'profile' => $user->profile,
+            'store' => $user->store,
+        ]);
+    }
 
+    public function profile(Request $request, $uuid) {
+        $user = User::find($uuid);
+        $request->session()->flash('alert-warning','YOU ARE VIEWING ANOTHER USERS PROFILE, PLEASE DO NOT CHANGE ANYTHING');
+        return view('profile.profile')->with([
+            'profile' => $user->profile,
+        ]);
     }
 
     public function purge($user_id) {

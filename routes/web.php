@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
     Route::get('users', 'Admin\AdminUserController@users')->name('admin.users');
     Route::get('user/{id}', 'Admin\AdminUserController@user')->name('admin.user');
     Route::get('user/{id}/store', 'Admin\AdminUserController@store')->name('admin.user.store');
+    Route::get('user/{id}/profile', 'Admin\AdminUserController@profile')->name('admin.user.profile');
     Route::post('user/{id}/purge', 'Admin\AdminUserController@purge')->name('admin.user.purge');
 
     Route::get('store', 'Admin\AdminUserController@store')->name('admin.store');
