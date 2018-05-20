@@ -14,10 +14,14 @@
                 <div class="search_result_name">
                     <div class="name">{{ $search_result->name }}</div>
                     <div class="artist"><strong>By {{ $search_result->artist_name }}</strong> |
-                        @if(!$search_result->price)
+                        @if($search_result->price === null)
                             PWYW
                         @else
-                            £{{ number_format($search_result->price/100,2) }}
+                            @if($search_result->price === 0)
+                                &pound;FREE
+                            @else
+                                &pound;{{ number_format($search_result->price/100,2) }}
+                            @endif
                         @endif
 
                     </div>
