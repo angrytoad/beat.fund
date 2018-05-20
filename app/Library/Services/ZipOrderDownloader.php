@@ -43,7 +43,7 @@ class ZipOrderDownloader implements OrderDownloadInterface{
                     // Get the file name in S3 key so we can save it to the zip
                     //file using the same name.
                     preg_match('/\.[^\.]+$/i',$item->item_key,$ext);
-
+                    
                     dd($ext);
 
                     $fileName = str_slug($item->name, '_').(is_array($ext) ? $ext[0] : '.mp3');
