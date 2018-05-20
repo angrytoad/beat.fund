@@ -44,7 +44,9 @@ class ZipOrderDownloader implements OrderDownloadInterface{
                     //file using the same name.
                     preg_match('/\.[^\.]+$/i',$item->item_key,$ext);
 
-                    $fileName = str_slug($item->name, '_').(is_array($ext[0]) ? $ext[0] : '.mp3');
+                    dd($ext);
+
+                    $fileName = str_slug($item->name, '_').(is_array($ext) ? $ext[0] : '.mp3');
 
 
                     $s3path = "s3://" . $this->bucket . "/" . $item->item_key;
