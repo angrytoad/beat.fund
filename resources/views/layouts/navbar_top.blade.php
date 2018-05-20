@@ -24,7 +24,7 @@
 
             <!-- Right Side Of Navbar -->
             <ul id="navbar-top-right" class="nav navbar-nav navbar-right">
-                <li class="{{ \App\Helpers\Helper::areActiveRoutes(['storefront']) }}"><a href="{{ route('storefront') }}">Store</a></li>
+                <li class="{{ \App\Helpers\Helper::areActiveRoutes(['storefront','storefront.search']) }}"><a href="{{ route('storefront') }}">Store</a></li>
                 @guest
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>

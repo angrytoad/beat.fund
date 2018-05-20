@@ -11,10 +11,15 @@
                 <div class="recently_added_product_name">
                     <div class="name">{{ $recent_product->name }}</div>
                     <div class="artist"><strong>By {{ $recent_product->artist_name }}</strong> |
-                        @if(!$recent_product->price)
+                        @if($recent_product->price === null)
                             PWYW
                         @else
-                            £{{ number_format($recent_product->price/100,2) }}
+                            @if($recent_product->price === 0)
+                                &pound;FREE
+                            @else
+                                &pound;{{ number_format($recent_product->price/100,2) }}
+                            @endif
+
                         @endif
 
                     </div>

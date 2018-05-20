@@ -62,7 +62,8 @@ Breadcrumbs::register('admin.user', function ($breadcrumbs, $user) {
  * STORE BREADCRUMBS
  */
 Breadcrumbs::register('storefront', function ($breadcrumbs) {
-   $breadcrumbs->push('Store', route('storefront'));
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Store', route('storefront'));
 });
 
 Breadcrumbs::register('storefront.search', function ($breadcrumbs) {
