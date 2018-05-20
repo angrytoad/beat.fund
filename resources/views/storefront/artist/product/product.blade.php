@@ -67,8 +67,13 @@
                         <div id="artist-product-price" class="panel-body">
                             <form id="add-to-cart" method="POST" action="{{ route('artist.store.product.add_to_cart',[$product->store->slug,$product->id]) }}">
                                 {{ csrf_field() }}
-                                @if($product->price)
-                                    Price: <strong>&pound;{{ number_format($product->price/100,2) }}</strong>
+                                @if($product->price !== null)
+                                    @if($product->price === 0)
+                                        Price: <strong>&pound;FREE</strong>
+                                    @else
+                                        Price: <strong>&pound;{{ number_format($product->price/100,2) }}</strong>
+                                    @endif
+
                                     <input type="hidden" id="amount" readonly name="amount" value="{{ number_format($product->price/100,2) }}" />
                                 @else
                                     Price: <strong>&pound;<span id="amount_price_display">{{ number_format((count($product->items)*60)/100,2) }}</span></strong> <br />
