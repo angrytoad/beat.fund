@@ -57,10 +57,11 @@ class StripeCheckout implements CheckoutInterface
     }
 
     private function calculateBillableAmount($total){
+
         $cut = env('BEATFUND_SALES_SHARE',10);
         $cut /= 100;
         $cut = 1 - $cut;
-        return (int) $total*$cut;
+        return (int) round($total*$cut, 0, PHP_ROUND_HALF_DOWN);
     }
 
     private function createTransfer($billable, $charge_id){
@@ -72,22 +73,24 @@ class StripeCheckout implements CheckoutInterface
         ));
     }
 
-    public function processCart($cart, $card, $email = null)
+    public function processCart($cart, $card = null, $email = null)
     {
         $this->createBillingArray($cart);
 
-        try{
+        if($card !== null){
+            try{
 
-            $billables = $this->createBillingArray($cart);
-            $charge = $this->initialOrderCharge($cart, $card);
+                $billables = $this->createBillingArray($cart);
+                $charge = $this->initialOrderCharge($cart, $card);
 
-            foreach($billables as $billable){
-                $transfer = $this->createTransfer($billable, $charge->id);
+                foreach($billables as $billable){
+                    $transfer = $this->createTransfer($billable, $charge->id);
+                }
+
+            }catch(\Stripe\Error\Base $e){
+                Bugsnag::notifyException($e);
+                throw new CheckoutProcessingException('We cannot process your payment at the moment, please try again at a later date.');
             }
-
-        }catch(\Stripe\Error\Base $e){
-            Bugsnag::notifyException($e);
-            throw new CheckoutProcessingException('We cannot process your payment at the moment, please try again at a later date.');
         }
     }
 

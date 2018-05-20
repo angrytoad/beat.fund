@@ -19,9 +19,16 @@
     <div class="content">
         <h2 class="title">Thanks for supporting independent artists!</h2>
         <div>
-            <p>
-                Thanks for your recent order from Beat Fund. Your card has been charged a total of <strong>&pound;{{ number_format(($cart['total'] + (int) env('STRIPE_FEE'))/100,2) }}</strong>.
-            </p>
+            @if($cart['total'] === 0)
+                <p>
+                    Thanks for your recent order from Beat Fund. Your FREE order is ready for download from your account.
+                </p>
+            @else
+                <p>
+                    Thanks for your recent order from Beat Fund. Your card has been charged a total of <strong>&pound;{{ number_format(($cart['total'] + (int) env('STRIPE_FEE'))/100,2) }}</strong>.
+                </p>
+            @endif
+
             <p>
                 A summary of your purchase is shown below.
             </p>
@@ -50,14 +57,21 @@
                         <td>Subtotal:</td>
                         <td><strong>&pound;{{ number_format($cart['total']/100,2) }}</strong></td>
                     </tr>
-                    <tr>
-                        <td>Stripe Fees:</td>
-                        <td class="blue"><strong>+&pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Total:</td>
-                        <td><strong>&pound;{{ number_format(($cart['total'] + (int) env('STRIPE_FEE'))/100,2) }}</strong></td>
-                    </tr>
+                    @if($cart['total'] === 0)
+                        <tr>
+                            <td>Total:</td>
+                            <td><strong>&pound;{{ number_format($cart['total']/100,2) }}</strong></td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td>Stripe Fees:</td>
+                            <td class="blue"><strong>+&pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Total:</td>
+                            <td><strong>&pound;{{ number_format(($cart['total'] + (int) env('STRIPE_FEE'))/100,2) }}</strong></td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>

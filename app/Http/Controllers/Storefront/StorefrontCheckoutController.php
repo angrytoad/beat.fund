@@ -48,54 +48,95 @@ class StorefrontCheckoutController extends Controller
     }
 
     public function process(Request $request){
-        $request->validate([
-            'card' => 'required'
-        ]);
 
-        try{
-            $card = StripeCustomerAccountCard::find($request->get('card'));
-            if(!$card){
-                throw new CheckoutProcessingException('We don\'t have that card on file.');
+        $cart = $this->cartInterface->getFormattedCart();
+
+        if($cart['total'] === 0){
+            try{
+                $this->checkoutInterface->processCart($cart);
+
+                $user = Auth::user();
+
+                $order = new Order();
+                if($request->has('email')){
+                    $order->email = $request->get('email');
+                }else{
+                    $order->user_id = $user->id;
+                    $order->email = $user->email;
+                }
+                $order->save();
+
+                foreach($cart['products'] as $product_id => $product){
+                    $orderItem = new OrderItem();
+                    $orderItem->order_id = $order->id;
+                    $orderItem->product_id = $product['product']->id;
+                    $orderItem->price_paid = $product['price'];
+                    $orderItem->save();
+                }
+
+                session()->remove('cart');
+
+                Mail::to($order->email)->send(new OrderCompleted($order, $cart));
+                return redirect(route('purchases'))->with([
+                    'alert-success' => 'Thanks for your order, we\'ve sent you an email to confirm your purchase'
+                ]);
+
+            }catch(CheckoutProcessingException $e){
+                return back()->withErrors([
+                    $e->getMessage()
+                ]);
             }
-
-            if($card->stripe_customer_account->user->id !== Auth::user()->id){
-                throw new CheckoutProcessingException('We don\'t have that card on file.');
-            }
-
-            $cart = $this->cartInterface->getFormattedCart();
-            $this->checkoutInterface->processCart($cart, $card);
-
-            $user = Auth::user();
-
-            $order = new Order();
-            if($request->has('email')){
-                $order->email = $request->get('email');
-            }else{
-                $order->user_id = $user->id;
-                $order->email = $user->email;
-            }
-            $order->save();
-
-            foreach($cart['products'] as $product_id => $product){
-                $orderItem = new OrderItem();
-                $orderItem->order_id = $order->id;
-                $orderItem->product_id = $product['product']->id;
-                $orderItem->price_paid = $product['price'];
-                $orderItem->save();
-            }
+        }else{
+            $request->validate([
+                'card' => 'required'
+            ]);
             
-            session()->remove('cart');
+            try{
+                $card = StripeCustomerAccountCard::find($request->get('card'));
+                if(!$card){
+                    throw new CheckoutProcessingException('We don\'t have that card on file.');
+                }
 
-            Mail::to($order->email)->send(new OrderCompleted($order, $cart));
-            return redirect(route('purchases'))->with([
-                'alert-success' => 'Thanks for your order, we\'ve sent you an email to confirm your purchase'
-            ]);
+                if($card->stripe_customer_account->user->id !== Auth::user()->id){
+                    throw new CheckoutProcessingException('We don\'t have that card on file.');
+                }
 
-        }catch(CheckoutProcessingException $e){
-            return back()->withErrors([
-                $e->getMessage()
-            ]);
+                $this->checkoutInterface->processCart($cart, $card);
+
+                $user = Auth::user();
+
+                $order = new Order();
+                if($request->has('email')){
+                    $order->email = $request->get('email');
+                }else{
+                    $order->user_id = $user->id;
+                    $order->email = $user->email;
+                }
+                $order->save();
+
+                foreach($cart['products'] as $product_id => $product){
+                    $orderItem = new OrderItem();
+                    $orderItem->order_id = $order->id;
+                    $orderItem->product_id = $product['product']->id;
+                    $orderItem->price_paid = $product['price'];
+                    $orderItem->save();
+                }
+
+                session()->remove('cart');
+
+                Mail::to($order->email)->send(new OrderCompleted($order, $cart));
+                return redirect(route('purchases'))->with([
+                    'alert-success' => 'Thanks for your order, we\'ve sent you an email to confirm your purchase'
+                ]);
+
+            }catch(CheckoutProcessingException $e){
+                return back()->withErrors([
+                    $e->getMessage()
+                ]);
+            }   
         }
+        
+
     }
     
 }

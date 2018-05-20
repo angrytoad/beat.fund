@@ -53,14 +53,22 @@
                                     <td>Subtotal:</td>
                                     <td><strong>&pound;{{ number_format($cart['total']/100,2) }}</strong></td>
                                 </tr>
-                                <tr>
-                                    <td>Stripe Fees:</td>
-                                    <td><strong>+ &pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Total:</td>
-                                    <td id="cart-total-total"><strong>&pound;{{ number_format(($cart['total']+50)/100,2) }}</strong></td>
-                                </tr>
+                                @if($cart['total'] === 0)
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td id="cart-total-total"><strong>&pound;{{ number_format(($cart['total'])/100,2) }}</strong></td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>Stripe Fees:</td>
+                                        <td><strong>+ &pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td id="cart-total-total"><strong>&pound;{{ number_format(($cart['total']+env('STRIPE_FEE'))/100,2) }}</strong></td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
                         <a href="{{ route('storefront.checkout') }}">

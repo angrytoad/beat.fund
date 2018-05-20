@@ -54,14 +54,22 @@
                             <td>Subtotal:</td>
                             <td><strong>&pound;{{ number_format($cart['total']/100,2) }}</strong></td>
                         </tr>
-                        <tr>
-                            <td>Stripe Fees:</td>
-                            <td><strong>+ &pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Total:</td>
-                            <td id="cart-total-total"><strong>&pound;{{ number_format(($cart['total']+50)/100,2) }}</strong></td>
-                        </tr>
+                        @if($cart['total'] === 0)
+                            <tr>
+                                <td>Total:</td>
+                                <td id="cart-total-total"><strong>&pound;{{ number_format(($cart['total'])/100,2) }}</strong></td>
+                            </tr>
+                        @else
+                            <tr>
+                                <td>Stripe Fees:</td>
+                                <td><strong>+ &pound;{{ number_format(env('STRIPE_FEE')/100,2) }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td id="cart-total-total"><strong>&pound;{{ number_format(($cart['total']+env('STRIPE_FEE'))/100,2) }}</strong></td>
+                            </tr>
+                        @endif
+
                         </tbody>
                     </table>
                 </div>
@@ -71,39 +79,52 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Your Cards</div>
                 <div class="panel-body">
-                    @if(Auth::user()->stripe_customer_account)
+                    @if($cart['total'] === 0)
                         <p>
-                            Please select the card you'd like to use from the dropdown below.
+                            This order has no cost, you may complete your order right away.
                         </p>
                         <form method="POST" action="{{ route('storefront.checkout') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <select class="form-control" name="card">
-                                    @foreach(Auth::user()->stripe_customer_account->cards as $card)
-                                        @if($card->isDefaultCard())
-                                            <option value="{{ $card->id }}" selected>(Default) {{ $card->name }} | {{ $card->brand }} | {{ $card->last4 }} | {{ $card->exp_month }}/{{ $card->exp_year }}</option>
-                                        @else
-                                            <option value="{{ $card->id }}">{{ $card->name }} | {{ $card->brand }} | {{ $card->last4 }} | {{ $card->exp_month }}/{{ $card->exp_year }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <button class="btn btn-primary">Complete Order</button>
                             </div>
                         </form>
-                        <hr />
-                        <p>
-                            Want to use a different card? No problem, just head over to your account settings
-                            and <a href="{{ route('account.cards') }}">add a new card.</a>
-                        </p>
                     @else
-                        <h4>Adding a card</h4>
-                        <p>
-                            It looks like you don't have any cards added to your account yet, in order to checkout we
-                            require you to add a card to your account, <a href="{{ route('account.cards') }}">you can do that here.</a>
-                        </p>
+                        @if(Auth::user()->stripe_customer_account)
+                            <p>
+                                Please select the card you'd like to use from the dropdown below.
+                            </p>
+                            <form method="POST" action="{{ route('storefront.checkout') }}">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <select class="form-control" name="card">
+                                        @foreach(Auth::user()->stripe_customer_account->cards as $card)
+                                            @if($card->isDefaultCard())
+                                                <option value="{{ $card->id }}" selected>(Default) {{ $card->name }} | {{ $card->brand }} | {{ $card->last4 }} | {{ $card->exp_month }}/{{ $card->exp_year }}</option>
+                                            @else
+                                                <option value="{{ $card->id }}">{{ $card->name }} | {{ $card->brand }} | {{ $card->last4 }} | {{ $card->exp_month }}/{{ $card->exp_year }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary">Complete Order</button>
+                                </div>
+                            </form>
+                            <hr />
+                            <p>
+                                Want to use a different card? No problem, just head over to your account settings
+                                and <a href="{{ route('account.cards') }}">add a new card.</a>
+                            </p>
+                        @else
+                            <h4>Adding a card</h4>
+                            <p>
+                                It looks like you don't have any cards added to your account yet, in order to checkout we
+                                require you to add a card to your account, <a href="{{ route('account.cards') }}">you can do that here.</a>
+                            </p>
+                        @endif
                     @endif
+
                 </div>
             </div>
         </div>
