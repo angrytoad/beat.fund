@@ -85,6 +85,10 @@
     }
   }
 
+  #artist-product-description_tiny, #artist-product-description{
+    word-break: break-word;
+  }
+
   #artist-product-other-products{
     display:grid;
     grid-template-columns: 1fr;

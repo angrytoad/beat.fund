@@ -9463,6 +9463,10 @@ button.close {
   font-size: 22px;
 }
 
+#artist-store #artist-store-bio {
+  word-break: break-word;
+}
+
 #artist-store #artist-store-bio img {
   max-height: 300px;
   max-width: 100%;
@@ -9708,6 +9712,11 @@ button.close {
 
 #artist-product #artist-product-items .artist-product-item .sample audio {
   width: 100%;
+}
+
+#artist-product #artist-product-description_tiny,
+#artist-product #artist-product-description {
+  word-break: break-word;
 }
 
 #artist-product #artist-product-other-products {
