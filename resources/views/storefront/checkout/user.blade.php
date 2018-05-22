@@ -7,6 +7,12 @@
     @include('layouts.flash_message')
     {{ Breadcrumbs::render('storefront.checkout.user') }}
     <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                This checkout is secured by <strong>128-Bit SSL Encryption</strong>.
+            </div>
+        </div>
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Your Basket</div>
@@ -86,8 +92,9 @@
                         <form method="POST" action="{{ route('storefront.checkout') }}">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <button class="btn btn-primary">Complete Order</button>
+                                <button class="btn btn-primary"><i class="fas fa-lock"></i> Complete Order</button>
                             </div>
+                            <img class="pull-right" src="/images/checkout/powered_by_stripe.png" />
                         </form>
                     @else
                         @if(Auth::user()->stripe_customer_account)
@@ -108,8 +115,9 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-primary">Complete Order</button>
+                                    <button class="btn btn-primary"><i class="fas fa-lock"></i> Complete Order</button>
                                 </div>
+                                <img class="pull-right" src="/images/checkout/powered_by_stripe.png" />
                             </form>
                             <hr />
                             <p>
