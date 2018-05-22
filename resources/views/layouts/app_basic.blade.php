@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@yield('meta_description')">
 
+    <!-- OG GRAPH -->
+    <meta property="og:title" content="@yield('og:title')" />
+    <meta property="og:description" content="@yield('og:description')" />
+    <meta property="og:type" content="@yield('og:type','website')" />
+    <meta property="og:url" content="@yield('og:url',url()->current())" />
+    <meta property="og:image" content="@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg'))" />
+    <meta property="og:audio" content="@yield('og:audio')" />
+    <meta property="og:audio:type" content="@yield('og:audio:type')" />
+    <meta property="og:music:musician" content="@yield('og:music:musician')" />
+    <meta property="og:site_name" content="@yield('og:site_name','Beat Fund')" />
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
 

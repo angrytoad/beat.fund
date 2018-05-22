@@ -3,6 +3,11 @@
 @section('title', $artist->artist_name.'\'s Store')
 @section('meta_description', $artist->plaintextBio())
 
+@section('og:title', $artist->artist_name.'\'s Store')
+@section('og:description', $artist->plaintextBio())
+@section('og:type', 'website')
+@section('og:image', $store->downsizedAvatar())
+
 @section('content')
 <div id="artist-store" class="container">
     @include('layouts.flash_message')
