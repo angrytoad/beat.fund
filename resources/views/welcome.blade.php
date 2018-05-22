@@ -1,9 +1,5 @@
 @extends('layouts.app_basic')
 
-@section('title', 'Beat Fund - Supporting Independent Artists')
-@section('meta_description','One music lovers dream to support independent artists across the globe with a fairer deal and a range tools to sell and manage your music easily.')
-@section('og:image', url()->to('/images/beatfund/beat_fund_banner.jpg'))
-
 @section('content')
 <div id="welcome">
     <div id="welcome-banner">

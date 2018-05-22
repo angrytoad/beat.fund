@@ -9,6 +9,7 @@
 @section('og:audio:type','audio/vnd.facebook.bridge')
 @section('og:audio',$product->items()->orderBy('order','ASC')->get()[0]->sampleUrl())
 @section('og:music:musician', route('artist.store',$product->store->slug)))
+@section('twitter:card','player')
 
 @if($product->image_key)
     @section('og:image', $product->downsizedImage())

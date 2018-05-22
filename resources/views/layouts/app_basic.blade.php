@@ -17,13 +17,21 @@
     <meta property="og:music:musician" content="@yield('og:music:musician')" />
     <meta property="og:site_name" content="@yield('og:site_name','Beat Fund')" />
 
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="@yield('twitter:card','summary_large_image')">
+    <meta name="twitter:site" content="@yield('twitter:site','@TFreeborough')">
+    <meta name="twitter:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')">
+    <meta name="twitter:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')">
+    <meta name="twitter:image" content=@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg')))">
+    <meta name="twitter:player" content="@yield('og:audio')" />
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Beat Fund - Supporting Independent Artists') }}</title>
 
 
     <!-- Styles -->
