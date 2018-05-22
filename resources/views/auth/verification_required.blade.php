@@ -26,3 +26,9 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        fbq('track', 'CompleteRegistration');
+    </script>
+
+@endsection
