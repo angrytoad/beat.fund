@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('meta_description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')">
+    <meta name="description" content="@yield('meta_description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')" />
 
     <!-- OG GRAPH -->
     <meta property="og:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')" />
@@ -18,11 +18,11 @@
     <meta property="og:site_name" content="@yield('og:site_name','Beat Fund')" />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:card" content="@yield('twitter:card','summary_large_image')">
-    <meta name="twitter:site" content="@yield('twitter:site','@TFreeborough')">
-    <meta name="twitter:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')">
-    <meta name="twitter:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')">
-    <meta name="twitter:image" content=@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg')))">
+    <meta name="twitter:card" content="@yield('twitter:card','summary_large_image')" />
+    <meta name="twitter:site" content="@yield('twitter:site','@TFreeborough')" />
+    <meta name="twitter:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')" />
+    <meta name="twitter:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')" />
+    <meta name="twitter:image" content="@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg'))" />
     <meta name="twitter:player" content="@yield('og:audio')" />
     <meta name="twitter:player:height" content="@yield('twitter:player:height')" />
     <meta name="twitter:player:width" content="@yield('twitter:player:width')" />
