@@ -24,6 +24,8 @@
     <meta name="twitter:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')">
     <meta name="twitter:image" content=@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg')))">
     <meta name="twitter:player" content="@yield('og:audio')" />
+    <meta name="twitter:player:height" content="@yield('twitter:player:height')" />
+    <meta name="twitter:player:width" content="@yield('twitter:player:width')" />
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/favicon.png') }}">
