@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('meta_description')">
+    <meta name="description" content="@yield('meta_description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')">
 
     <!-- OG GRAPH -->
-    <meta property="og:title" content="@yield('og:title')" />
-    <meta property="og:description" content="@yield('og:description')" />
+    <meta property="og:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')" />
+    <meta property="og:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')" />
     <meta property="og:type" content="@yield('og:type','website')" />
     <meta property="og:url" content="@yield('og:url',url()->current())" />
     <meta property="og:image" content="@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg'))" />

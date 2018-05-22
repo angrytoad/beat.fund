@@ -4,7 +4,7 @@
 @section('meta_description', $artist->plaintextBio())
 
 @section('og:title', $artist->artist_name.'\'s Store')
-@section('og:description', $artist->plaintextBio())
+@section('og:description', str_limit($artist->plaintextBio(),150, '...'))
 @section('og:type', 'website')
 @section('og:image', $store->downsizedAvatar())
 

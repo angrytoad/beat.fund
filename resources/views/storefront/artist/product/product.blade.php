@@ -4,7 +4,7 @@
 @section('meta_description', $product->plaintextDescription())
 
 @section('og:title', $product->name)
-@section('og:description', $product->plaintextDescription())
+@section('og:description', str_limit($product->plaintextDescription(),150,'...'))
 @section('og:type', 'music.song')
 @section('og:audio:type','audio/vnd.facebook.bridge')
 @section('og:audio',$product->items()->orderBy('order','ASC')->get()[0]->sampleUrl())
