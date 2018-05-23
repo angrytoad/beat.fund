@@ -11,4 +11,12 @@
   #storefront #recently_added_products{
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  #welcome #roadmap-wrap{
+    grid-template-columns: 1fr 1fr;
+
+    .roadmap-item:last-child{
+      grid-column: 1 / 3;
+    }
+  }
 }

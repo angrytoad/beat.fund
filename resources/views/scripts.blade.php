@@ -64,4 +64,7 @@
 <!-- Notify -->
 <script src="/js/notify.min.js"></script>
 
+<!-- Share This -->
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5b04bae43e4a630011ba7115&product=inline-share-buttons"></script>
+
 @yield('scripts')

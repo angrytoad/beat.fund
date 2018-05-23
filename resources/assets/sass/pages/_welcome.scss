@@ -1,16 +1,17 @@
 #welcome{
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  overflow-y:auto;
+  margin-top:-20px;
 
   #welcome-banner{
-    position: relative;
-    height:100%;
+    height:calc(100vh - 50px);
+    margin-bottom:60px;
     background:$blue;
     color:$text_light;
+    position: relative;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow-y:auto;
 
     #welcome-container{
       display:table;
@@ -100,6 +101,68 @@
 
       }
 
+      #welcome-container-arrow{
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        color:$white;
+        text-align: center;
+
+        p{
+          font-size:24px;
+          font-weight: 300;
+        }
+
+        .fa-chevron-down{
+          font-size: 80px;
+        }
+      }
+
+    }
+  }
+
+  .container{
+    > .row{
+      margin-bottom:60px;
+
+      h1{
+        margin-top:0;
+      }
+    }
+  }
+
+  .community-features{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:15px;
+
+    .jumbotron{
+      height:100%;
+
+      svg{
+        font-size:36px;
+        vertical-align: top;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .col-md-3{
+    > svg{
+      width:100%;
+      height:100%;
+      color:$blue;
+    }
+  }
+
+  #roadmap-wrap{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:15px;
+
+    .roadmap-item{
+      margin-bottom:0;
     }
   }
 }
