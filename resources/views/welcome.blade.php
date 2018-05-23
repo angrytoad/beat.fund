@@ -120,7 +120,7 @@
                 <h1>Roadmap</h1>
                 <p class="lead">
                     I feel that its not only important to know where you've gone, but also where you are going, Beat Fund is going to take
-                    a monumental amount of work to make it the world best platform for independent Artists, but with your support we
+                    a monumental amount of work to make it the worlds best platform for independent artists, but with your support we
                     can damn well get it there!
                 </p>
                 <p class="lead">
