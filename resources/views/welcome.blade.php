@@ -33,7 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-xs-12">
-                <h1>Manage and Sell your music online, for free.</h1>
+                <h2>Manage and Sell your music online, for free.</h2>
                 <p class="lead">
                     Beat Fund gives you the tools to manage and sell your music online, for free, forever. The one guiding principle
                     for Beat Fund has always been to offer the service for free at the point of use, this means its free to set up a store,
@@ -51,7 +51,7 @@
                 <blockquote class="text-muted"><i>Look at how happy the people in this stock photo are!</i></blockquote>
             </div>
             <div class="col-md-9 col-xs-12">
-                <h1>Built for the community, driven by the community.</h1>
+                <h2>Built for the community, driven by the community.</h2>
                 <p class="lead">
                     Beat Fund was never meant to be just another corporate platform, unlike many other larger music distribution tools, I'm trying to create
                     a real music community of great and talented musicians. There is a whole heap of community-orientated features planned, why not take a look
@@ -101,7 +101,7 @@
         </div>
         <div class="row">
             <div class="col-md-9 col-xs-12">
-                <h1>A Fairer Deal for all.</h1>
+                <h2>A Fairer Deal for all.</h2>
                 <p class="lead">
                     Not only do I believe in supporting independent Artists and Bands, but I also believe in fair pricing. With
                     a simple and flat 10% revenue share policy across all tools and services, you can keep more of what you earn
@@ -117,7 +117,7 @@
         </div>
         <div class="row" id="roadmap">
             <div class="col-xs-12">
-                <h1>Roadmap</h1>
+                <h2>Roadmap</h2>
                 <p class="lead">
                     I feel that its not only important to know where you've gone, but also where you are going, Beat Fund is going to take
                     a monumental amount of work to make it the worlds best platform for independent artists, but with your support we
@@ -199,7 +199,7 @@
         </div>
         <div class="row">
             <div class="col-md-9 col-xs-12">
-                <h1>About Me</h1>
+                <h2>About Me</h2>
                 <p class="lead">
                     I'm a Web Developer from Nottinghamshire in the UK, if you don't know where that is then its easier to remember it as
                     where <a href="https://en.wikipedia.org/wiki/Robin_Hood" target="_blank">Robin Hood</a> is from. I work full time as
