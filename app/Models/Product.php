@@ -62,7 +62,6 @@ class Product extends Model
     }
 
     public function getItemsBeforeDate($date){
-        // 2018-04-14 02:21:48.0 UTC (+00:00)
         return $this->items()
             ->withTrashed()
             ->where('created_at','<',$date)

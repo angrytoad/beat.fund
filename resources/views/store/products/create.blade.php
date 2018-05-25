@@ -69,7 +69,7 @@
                                         <div class="input-group-addon">
                                             <span class="input-group-text" id="basic-addon1">&pound;</span>
                                         </div>
-                                        <input type="number" name="price" class="form-control" placeholder="Enter a price E.G. £0.69" min="0" value="{{ old('price') }}" />
+                                        <input type="number" name="price" class="form-control" placeholder="Enter a price E.G. £0.69" min="0" step=".01" value="{{ old('price') }}" />
                                     </div>
                                 </div>
                             </div>

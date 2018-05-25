@@ -59,7 +59,7 @@
                             <div class="col-md-6">
                                 <div class="jumbotron text-center" style="background:url('/images/misc/store.jpg') center center / cover;">
                                     <a href="{{ route('store') }}">
-                                        <button class="btn btn-primary">Edit my Store</button>
+                                        <button class="btn btn-primary">My Store</button>
                                     </a>
                                 </div>
                             </div>
