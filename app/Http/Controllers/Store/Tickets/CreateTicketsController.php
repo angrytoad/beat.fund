@@ -60,6 +60,21 @@ class CreateTicketsController extends Controller
         $ticket->location = $request->get('location');
         $ticket->background_color = $request->get('background_color');
 
+        $profile = Auth::user()->profile;
+        $count = Ticket::select('tickets.*')
+            ->join('ticket_stores','ticket_stores.id', '=', 'tickets.ticket_store_id')
+            ->join('stores', 'stores.user_id', '=', 'ticket_stores.user_id')
+            ->where('tickets.slug',str_slug($request->get('name'),'-'))
+            ->where('stores.slug',str_slug($profile->artist_name,'-'))
+            ->count();
+
+        if($count > 0){
+            $slug = str_slug($request->get('name').'-'.$count,'-');
+        }else{
+            $slug = str_slug($request->get('name'),'-');
+        }
+
+        $ticket->slug = $slug;
         $ticket->save();
 
         if($request->has('pricing_type')){

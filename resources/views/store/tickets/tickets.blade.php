@@ -66,7 +66,14 @@
                     <hr />
                     <div>
                         @if($user->ticket_store)
-                            <h3 class="text-center">{{ $user->first_name }}'s Ticket Store <i class="fas fa-ticket-alt"></i></h3>
+                            <h3 class="text-center">
+                                {{ $user->first_name }}'s Ticket Store <i class="fas fa-ticket-alt"></i>
+                                @if($user->ticket_store->live)
+                                    &nbsp;<span class="text-success">(LIVE)</span>
+                                @else
+                                    &nbsp;<span class="text-danger">(NOT LIVE)</span>
+                                @endif
+                            </h3>
                             <hr />
                             <div class="row">
                                 <div class="col-md-4 text-center">
@@ -82,14 +89,16 @@
                                     <p>
                                         View all current tickets you have created for gigs and events.
                                     </p>
-                                    <button class="btn btn-primary">View Tickets</button>
+                                    <a href="{{ route('store.tickets.all') }}">
+                                        <button class="btn btn-primary">View Tickets</button>
+                                    </a>
                                     <hr />
                                 </div>
                                 <div class="col-md-4 text-center">
                                     <p>
                                         Look at overall ticket sales across the entire store as well as attendance.
                                     </p>
-                                    <button class="btn btn-primary">Ticket Stats</button>
+                                    <button class="btn btn-primary disabled">Ticket Stats</button>
                                     <hr />
                                 </div>
                             </div>

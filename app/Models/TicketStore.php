@@ -30,4 +30,8 @@ class TicketStore extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+
+    public function tickets(){
+        return $this->hasMany('App\Models\Ticket');
+    }
 }

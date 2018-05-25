@@ -22,6 +22,10 @@
             'store.products.product.item.delete',
             'store.tickets',
             'store.tickets.ticket',
+            'store.tickets.all',
+            'store.tickets.live',
+            'store.tickets.pending',
+            'store.tickets.expired',
             ]) }}">
                 <a href="#" class="dropdown-toggle list-group-item-heading" data-toggle="dropdown" role="button" aria-expanded="false">
                     My Store <span class="caret"></span>
@@ -46,6 +50,10 @@
                     <li class="{{ Helper::areActiveRoutes([
                     'store.tickets',
                     'store.tickets.ticket',
+                    'store.tickets.all',
+                    'store.tickets.live',
+                    'store.tickets.pending',
+                    'store.tickets.expired',
                     ]) }}">
                             <a href="{{ route('store.tickets') }}">Tickets</a>
                         </li>

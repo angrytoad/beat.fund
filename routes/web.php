@@ -317,12 +317,32 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                 Route::get('enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
 
                 Route::group(['middleware' => ['user.ticket_store.has_ticket_store']], function () {
+
+                    /**
+                     * Routes for displaying different ticket views.
+                     */
+                    Route::get('all', 'Store\Tickets\TicketsController@all')->name('store.tickets.all');
+                    Route::get('live', 'Store\Tickets\TicketsController@live')->name('store.tickets.live');
+                    Route::get('pending', 'Store\Tickets\TicketsController@pending')->name('store.tickets.pending');
+                    Route::get('expired', 'Store\Tickets\TicketsController@expired')->name('store.tickets.expired');
+
+                    /**
+                     * Routes for creating a ticket
+                     */
                     Route::get('create', 'Store\Tickets\CreateTicketsController@show')->name('store.tickets.create');
                     Route::post('create', 'Store\Tickets\CreateTicketsController@create');
                     Route::post('create/image', 'Store\Tickets\CreateTicketsImageController@upload')->name('store.tickets.create.image');
 
                     Route::group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
                         Route::get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
+
+
+                        /**
+                         * Routes for a specific item that requires the ticket to be pending
+                         */
+                        Route::group(['middleware' => ['user.store.ticket_not_live']], function () {
+                            Route::post('delete', 'Store\Tickets\Ticket\TicketController@delete')->name('store.tickets.ticket.delete');
+                        });
                     });
                 });
 

@@ -52,4 +52,12 @@
       grid-column: 1 / 2;
     }
   }
+
+  #all-tickets #store_tickets_clickthrough{
+    grid-template-columns: 1fr;
+  }
+
+  #all-tickets #store_tickets_clickthrough > a div{
+    height:100px;
+  }
 }

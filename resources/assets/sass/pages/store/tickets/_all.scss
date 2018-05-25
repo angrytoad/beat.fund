@@ -1,0 +1,51 @@
+#all-tickets{
+  #store_tickets_clickthrough{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:15px;
+    margin-bottom:15px;
+
+    > a{
+      &:hover{
+        text-decoration: none;
+
+        div{
+          opacity:0.8;
+        }
+      }
+    }
+
+    > a div{
+      height:150px;
+      display:grid;
+      align-items: center;
+      justify-items: center;
+      font-size:3rem;
+
+      svg{
+
+      }
+
+      span{
+        line-height: 20px;
+      }
+
+      small{
+        font-size:18px;
+      }
+    }
+
+    > a div{
+      background:$background;
+      border:1px solid $border_light;
+      padding:15px;
+    }
+
+    > a:first-child div{
+      background:$blue;
+      color:$text_light;
+    }
+
+
+  }
+}

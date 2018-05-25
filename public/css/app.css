@@ -9223,6 +9223,50 @@ button.close {
   font-weight: bold;
 }
 
+#all-tickets #store_tickets_clickthrough {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  margin-bottom: 15px;
+}
+
+#all-tickets #store_tickets_clickthrough > a:hover {
+  text-decoration: none;
+}
+
+#all-tickets #store_tickets_clickthrough > a:hover div {
+  opacity: 0.8;
+}
+
+#all-tickets #store_tickets_clickthrough > a div {
+  height: 150px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  font-size: 3rem;
+}
+
+#all-tickets #store_tickets_clickthrough > a div span {
+  line-height: 20px;
+}
+
+#all-tickets #store_tickets_clickthrough > a div small {
+  font-size: 18px;
+}
+
+#all-tickets #store_tickets_clickthrough > a div {
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+
+#all-tickets #store_tickets_clickthrough > a:first-child div {
+  background: #007BFF;
+  color: #fff;
+}
+
 #register #register-sample-artists #register-sample-artists-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -10103,6 +10147,14 @@ summary:hover {
 
   #welcome #roadmap-wrap .roadmap-item:last-child {
     grid-column: 1 / 2;
+  }
+
+  #all-tickets #store_tickets_clickthrough {
+    grid-template-columns: 1fr;
+  }
+
+  #all-tickets #store_tickets_clickthrough > a div {
+    height: 100px;
   }
 }
 

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Store\Tickets;
 
 use App\Http\Controllers\Controller;
 use App\Models\TicketStore;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class TicketsController extends Controller
@@ -24,6 +25,20 @@ class TicketsController extends Controller
     public function show(){
         return view('store.tickets.tickets')->with([
             'user' => Auth::user()
+        ]);
+    }
+    
+    public function all(){
+
+        $ticket_store = Auth::user()->ticket_store;
+
+        return view('store.tickets.all')->with([
+            'user' => Auth::user(),
+            'ticket_store' => $ticket_store,
+            'live_tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '<', Carbon::now())->get(),
+            'pending_tickets' => $ticket_store->tickets()->where('live', '=', false)->get(),
+            'expired_tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '>', Carbon::now())->get(),
+            'tickets' => $ticket_store->tickets
         ]);
     }
     
