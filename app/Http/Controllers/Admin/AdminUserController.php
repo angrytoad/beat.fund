@@ -25,7 +25,7 @@ class AdminUserController
 
     public function users() {
 
-        $paginator = User::where('email_verified',true)->paginate(100);
+        $paginator = User::where('email_verified',true)->orderBy('created_at','ASC')->paginate(100);
         $paginator->withPath('admin/user');
 
         return view('admin.user.users', [
@@ -60,6 +60,7 @@ class AdminUserController
             'recent_products' => $user->store->products()->orderBy('created_at','DESC')->get(),
             'profile' => $user->profile,
             'store' => $user->store,
+            'user' => $user
         ]);
     }
 

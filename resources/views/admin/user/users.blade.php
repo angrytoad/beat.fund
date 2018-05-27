@@ -68,6 +68,7 @@
     <script>
         $('#admin-users-table').dataTable({
             "pageLength": 25,
+            "order": []
         });
     </script>
 @endsection

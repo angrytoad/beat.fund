@@ -30,6 +30,8 @@
                 </div>
                 <ul id="footer-social">
                     <li><a href="https://www.instagram.com/beatfund/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://www.facebook.com/BeatFundStore" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://open.spotify.com/user/duenna/playlist/0yXzk5Fv0tAt7qy2N7bFFy?si=eTzx6770TRyJIBLT0mfe6A" target="_blank"><i class="fab fa-spotify"></i></a></li>
                 </ul>
                 <div>
                     If you need to get in touch directly, you can email: <br /> <a href="mailto:support@beat.fund">support@beat.fund</a>

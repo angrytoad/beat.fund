@@ -75,7 +75,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    @if(Auth::user()->stripe_account)
+                                    @if($user->stripe_account)
                                         <div>
                                             <i class="fas fa-check text-primary"></i>
                                             <p>You have a Stripe Account. <a href="{{ route('account.stripe') }}">Update it.</a></p>
@@ -91,7 +91,7 @@
                                     @if(
                                       $store->banner_key !== null &&
                                       $store->avatar_key !== null &&
-                                      Auth::user()->stripe_account &&
+                                      $user->stripe_account &&
                                       $profile->getCompletionPercentage() === 100 &&
                                       count($store->liveProducts()) > 0
                                     )

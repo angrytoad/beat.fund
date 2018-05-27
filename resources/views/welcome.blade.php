@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Welcome')
+@section('title','The Revolution will be Digitized')
 
 @section('content')
 <div id="welcome">
@@ -22,12 +22,6 @@
                     </div>
                 </div>
             </div>
-            <div id="welcome-container-arrow" class="animated bounce">
-                <p>
-                    Psst... down here.
-                </p>
-                <i class="fas fa-chevron-down"></i>
-            </div>
         </div>
     </div>
     <div class="container">
@@ -43,60 +37,6 @@
             </div>
             <div class="col-md-3 col-sm-4 col-sm-offset-4 col-md-offset-0 col-xs-6 col-xs-offset-3">
                 <img src="/images/beatfund/beat_fund_square.jpg" width="100%" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 hidden-xs hidden-sm">
-                <img src="/images/misc/community.jpg" width="100%" />
-                <blockquote class="text-muted"><i>Look at how happy the people in this stock photo are!</i></blockquote>
-            </div>
-            <div class="col-md-9 col-xs-12">
-                <h2>Built for the community, driven by the community.</h2>
-                <p class="lead">
-                    Beat Fund was never meant to be just another corporate platform, unlike many other larger music distribution tools, I'm trying to create
-                    a real music community of great and talented musicians. There is a whole heap of community-orientated features planned, why not take a look
-                    at some of what's coming soon, below...
-                </p>
-            </div>
-            <div class="col-xs-12">
-                <div class="community-features">
-                    <div class="jumbotron">
-                        <p><i class="fas fa-bullhorn"></i> <strong>Weekly Guest Blog</strong></p>
-                        <p>
-                            Each week a Beat Fund Artist/Band will be invited to write about what they care about the most, whether its
-                            supporting independent music, talking about what they've been working on, or just their favourite types of cheese.
-                        </p>
-                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
-                    </div>
-                    <div class="jumbotron">
-                        <p><i class="fas fa-microphone"></i> <strong>Global Recording Network</strong></p>
-                        <p>
-                            Provide the tools for Artists and Bands to find and collaborate with local recording houses and studios.
-                        </p>
-                        <p>
-                            Artists and Bands will be able to rate and provide recommendations to other Beat Fund bands.
-                        </p>
-                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
-                    </div>
-                    <div class="jumbotron">
-                        <p><i class="fas fa-building"></i> <strong>Gig notices</strong></p>
-                        <p>
-                            Nothing is better and more exciting than performing live, what's bad is that sometimes its hard
-                            to find gigs and venues in your area, Gig Notices will let you team up with other Independent artists
-                            and Bands to organise and play gigs.
-                        </p>
-                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
-                    </div>
-                    <div class="jumbotron">
-                        <p><i class="fas fa-broadcast-tower"></i> <strong>Beat Fund Radio</strong></p>
-                        <p>
-                            We can't get you beamed down into your local radio station, but Beat Fund radio will give you the air
-                            time you deserve, I'm working on setting up a live internet radio station to showcase the best
-                            music Beat Fund has to offer. Bear with me on this one, its complicated!
-                        </p>
-                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row">
@@ -194,6 +134,56 @@
                     </div>
                     <br />
                     <div class="sharethis-inline-share-buttons"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>Built for the community, driven by the community.</h2>
+                <p class="lead">
+                    Beat Fund was never meant to be just another corporate platform, unlike many other larger music distribution tools, I'm trying to create
+                    a real music community of great and talented musicians. There is a whole heap of community-orientated features planned, why not take a look
+                    at some of what's coming soon, below...
+                </p>
+            </div>
+            <div class="col-xs-12">
+                <div class="community-features">
+                    <div class="jumbotron">
+                        <p><i class="fas fa-bullhorn"></i> <strong>Weekly Guest Blog</strong></p>
+                        <p>
+                            Each week a Beat Fund Artist/Band will be invited to write about what they care about the most, whether its
+                            supporting independent music, talking about what they've been working on, or just their favourite types of cheese.
+                        </p>
+                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
+                    </div>
+                    <div class="jumbotron">
+                        <p><i class="fas fa-microphone"></i> <strong>Global Recording Network</strong></p>
+                        <p>
+                            Provide the tools for Artists and Bands to find and collaborate with local recording houses and studios.
+                        </p>
+                        <p>
+                            Artists and Bands will be able to rate and provide recommendations to other Beat Fund bands.
+                        </p>
+                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
+                    </div>
+                    <div class="jumbotron">
+                        <p><i class="fas fa-building"></i> <strong>Gig notices</strong></p>
+                        <p>
+                            Nothing is better and more exciting than performing live, what's bad is that sometimes its hard
+                            to find gigs and venues in your area, Gig Notices will let you team up with other Independent artists
+                            and Bands to organise and play gigs.
+                        </p>
+                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
+                    </div>
+                    <div class="jumbotron">
+                        <p><i class="fas fa-broadcast-tower"></i> <strong>Beat Fund Radio</strong></p>
+                        <p>
+                            We can't get you beamed down into your local radio station, but Beat Fund radio will give you the air
+                            time you deserve, I'm working on setting up a live internet radio station to showcase the best
+                            music Beat Fund has to offer. Bear with me on this one, its complicated!
+                        </p>
+                        <p class="text-info text-left"><small>STATUS: <strong>In Development</strong></small></p>
+                    </div>
                 </div>
             </div>
         </div>
