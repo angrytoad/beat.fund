@@ -103,4 +103,12 @@ class Helper
         return Store::where('live',true)->inRandomOrder()->limit(12)->get();
     }
 
+    public static function getArtistCut($total)
+    {
+        $cut = env('BEATFUND_SALES_SHARE',10);
+        $cut /= 100;
+        $cut = 1 - $cut;
+        return $total*$cut;
+    }
+
 }

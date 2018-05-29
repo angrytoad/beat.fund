@@ -248,6 +248,8 @@ Breadcrumbs::register('store.products.product.item.delete', function ($breadcrum
     $breadcrumbs->push('Delete', route('store.products.product.item.delete',[$product->id,$line_item->id]));
 });
 
+
+
 /**
  * TICKETS BREADCRUMBS
  */
@@ -270,3 +272,19 @@ Breadcrumbs::register('store.tickets.ticket', function ($breadcrumbs, $ticket) {
     $breadcrumbs->parent('store.tickets');
     $breadcrumbs->push($ticket->name, route('store.tickets.ticket', $ticket->id));
 });
+
+
+
+/**
+ * SALES AND ANALYTICS
+ */
+Breadcrumbs::register('store.sales_and_analytics', function ($breadcrumbs) {
+    $breadcrumbs->parent('store');
+    $breadcrumbs->push('Sales and Analytics', route('store.sales_and_analytics'));
+});
+
+Breadcrumbs::register('store.sales_and_analytics.music_store', function ($breadcrumbs) {
+    $breadcrumbs->parent('store.sales_and_analytics');
+    $breadcrumbs->push('Music Store', route('store.sales_and_analytics.music_store'));
+});
+

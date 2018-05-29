@@ -1,0 +1,42 @@
+#music-store{
+
+  #music-store-top-stats{
+    display:grid;
+    grid-gap:15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom:15px;
+
+    > div{
+      background:$background;
+      border:1px solid $border_light;
+      padding:15px;
+      text-align: center;
+
+      .big{
+        font-size: 32px;
+        line-height: 32px;
+        color: #007BFF;
+      }
+    }
+  }
+
+  #music-sales-chart{
+    height:250px;
+
+    .ct-series-a{
+      .ct-line, .ct-point{
+        stroke: $blue;
+      }
+    }
+
+    .ct-legend{
+      .ct-series-0{
+        &::before{
+          border-color: $blue;
+          background:$blue;
+
+        }
+      }
+    }
+  }
+}

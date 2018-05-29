@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Library\Services\AWS\S3ProductStorage;
+use App\Library\Services\Store\SalesAndAnalytics\MusicStore;
+use App\Library\Services\Store\SalesAndAnalytics\SalesAndAnalytics;
 use App\Library\Services\Store\SessionCart;
 use App\Library\Services\Store\Storefront;
 use App\Models\Product;
@@ -14,16 +16,18 @@ class StoreServiceProvider extends ServiceProvider
 
     public $product;
     public $store;
+    public $musicStore;
 
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-    public function boot(Product $product, Store $store)
+    public function boot(Product $product, Store $store, MusicStore $musicStore)
     {
         $this->product = $product;
         $this->store = $store;
+        $this->musicStore = $musicStore;
     }
 
     /**
@@ -43,6 +47,10 @@ class StoreServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Library\Repositories\StorefrontRepository', function(){
             return new Storefront($this->product, $this->store);
+        });
+
+        $this->app->bind('App\Library\Contracts\SalesAndAnalyticsInterface', function(){
+            return new SalesAndAnalytics($this->musicStore);
         });
     }
 }

@@ -1,0 +1,27 @@
+#sales_and_analytics{
+  .analytic-wrapper{
+    display:grid;
+    grid-gap:15px;
+    align-items: center;
+    grid-template-columns: 4fr 8fr;
+
+    .analytic-numbering{
+      text-align: center;
+      height:100%;
+      display:grid;
+      align-items:center;
+      background:$background;
+      border:1px solid $border_light;
+
+      .big{
+        font-size:64px;
+        line-height: 64px;
+        color:$blue;
+      }
+    }
+
+    .analytic-text{
+
+    }
+  }
+}

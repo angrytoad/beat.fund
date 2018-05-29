@@ -193,7 +193,6 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     Route::group(['prefix' => 'store', 'middleware' => ['user.has_profile']], function () {
 
 
-
         /**
          * Routes that require the user to not have a store
          */
@@ -211,6 +210,16 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
             // Show the store front
             Route::get('/', 'Store\StoreController@show')->name('store');
+
+            /**
+             * Sales and Analytics
+             */
+            Route::group(['prefix' => 'sales-and-analytics'], function () {
+                Route::get('/','Store\SalesAndAnalytics\SalesAndAnalyticsController@show')->name('store.sales_and_analytics');
+                Route::get('music-store','Store\SalesAndAnalytics\MusicStoreController@show')->name('store.sales_and_analytics.music_store');
+            });
+
+
             
             Route::get('/banner/add', 'Store\StoreBannerController@show')->name('store.banner.add');
             Route::post('/banner/add', 'Store\StoreBannerController@add');

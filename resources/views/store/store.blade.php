@@ -44,6 +44,18 @@
                             <hr />
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h4 class="text-info">Sales & Analytics</h4>
+                            <p>
+                                Look at the performance of your stores across your account.
+                            </p>
+                            <a href="{{ route('store.sales_and_analytics') }}">
+                                <button class="btn btn-default">View Sales & Analytics</button>
+                            </a>
+                            <hr />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

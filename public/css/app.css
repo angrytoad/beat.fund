@@ -9267,6 +9267,66 @@ button.close {
   color: #fff;
 }
 
+#sales_and_analytics .analytic-wrapper {
+  display: grid;
+  grid-gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-template-columns: 4fr 8fr;
+}
+
+#sales_and_analytics .analytic-wrapper .analytic-numbering {
+  text-align: center;
+  height: 100%;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+}
+
+#sales_and_analytics .analytic-wrapper .analytic-numbering .big {
+  font-size: 64px;
+  line-height: 64px;
+  color: #007BFF;
+}
+
+#music-store #music-store-top-stats {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 15px;
+}
+
+#music-store #music-store-top-stats > div {
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+#music-store #music-store-top-stats > div .big {
+  font-size: 32px;
+  line-height: 32px;
+  color: #007BFF;
+}
+
+#music-store #music-sales-chart {
+  height: 250px;
+}
+
+#music-store #music-sales-chart .ct-series-a .ct-line,
+#music-store #music-sales-chart .ct-series-a .ct-point {
+  stroke: #007BFF;
+}
+
+#music-store #music-sales-chart .ct-legend .ct-series-0::before {
+  border-color: #007BFF;
+  background: #007BFF;
+}
+
 #register #register-sample-artists #register-sample-artists-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9990,6 +10050,43 @@ summary:hover {
 
 #navbar-top #navbar-top-right #cart-menu-item a {
   text-decoration: none !important;
+}
+
+.ct-legend {
+  position: relative;
+  z-index: 10;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.ct-legend li {
+  position: relative;
+  padding-left: 23px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
+.ct-legend li:before {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  left: 0;
+  content: '';
+  border: 3px solid transparent;
+  border-radius: 2px;
+  top: 5px;
+}
+
+.ct-legend li.inactive:before {
+  background: transparent;
+}
+
+.ct-legend.ct-legend-inside {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 @media screen and (max-width: 1200px) {

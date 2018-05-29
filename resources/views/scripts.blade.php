@@ -67,4 +67,12 @@
 <!-- Share This -->
 <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5b04bae43e4a630011ba7115&product=inline-share-buttons"></script>
 
+<!-- MomentJS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+
+<!-- Chartist -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chartist-plugin-legend/0.6.2/chartist-plugin-legend.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.11.0/chartist.min.css" rel="stylesheet" />
+
 @yield('scripts')
