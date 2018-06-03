@@ -29,16 +29,45 @@ class TicketsController extends Controller
     }
     
     public function all(){
-
         $ticket_store = Auth::user()->ticket_store;
 
         return view('store.tickets.all')->with([
             'user' => Auth::user(),
             'ticket_store' => $ticket_store,
-            'live_tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '<', Carbon::now())->get(),
+            'live_tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '>', Carbon::now())->get(),
             'pending_tickets' => $ticket_store->tickets()->where('live', '=', false)->get(),
-            'expired_tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '>', Carbon::now())->get(),
+            'expired_tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '<', Carbon::now())->get(),
             'tickets' => $ticket_store->tickets
+        ]);
+    }
+
+    public function live(){
+        $ticket_store = Auth::user()->ticket_store;
+
+        return view('store.tickets.live')->with([
+            'user' => Auth::user(),
+            'ticket_store' => $ticket_store,
+            'tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '>', Carbon::now())->get(),
+        ]);
+    }
+
+    public function pending(){
+        $ticket_store = Auth::user()->ticket_store;
+
+        return view('store.tickets.pending')->with([
+            'user' => Auth::user(),
+            'ticket_store' => $ticket_store,
+            'tickets' => $ticket_store->tickets()->where('live', '=', false)->get(),
+        ]);
+    }
+
+    public function expired(){
+        $ticket_store = Auth::user()->ticket_store;
+
+        return view('store.tickets.')->with([
+            'user' => Auth::user(),
+            'ticket_store' => $ticket_store,
+            'tickets' => $ticket_store->tickets()->where('live', '=', true)->where('end', '<', Carbon::now())->get(),
         ]);
     }
     

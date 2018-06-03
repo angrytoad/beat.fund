@@ -6,28 +6,30 @@
  * Time: 21:55
  */
 
-namespace App\Http\Middleware\Storefront\Artist;
+namespace App\Http\Middleware\Storefront\Tickets;
 
 use App\Exceptions\ArtistStoreNotFoundException;
+use App\Exceptions\TicketNotFoundException;
 use App\Models\Store;
+use App\Models\Ticket;
 use Closure;
 
-class StoreExists
+class TicketIsLive
 {
     public function handle($request, Closure $next)
     {
         try{
             if($request->slug === null){
-                throw new ArtistStoreNotFoundException();
+                throw new TicketNotFoundException();
             }
-            
-            if(!Store::where('slug',$request->slug)->where('live','=',true)->first()){
-                throw new ArtistStoreNotFoundException();
+
+            if(!Ticket::where('slug',$request->slug)->where('live','=',true)->first()){
+                throw new TicketNotFoundException();
             }
 
             return $next($request);
 
-        }catch(ArtistStoreNotFoundException $exception){
+        }catch(TicketNotFoundException $exception){
             if($exception->getMessage()){
                 return back()->withErrors([
                     $exception->getMessage()

@@ -125,6 +125,11 @@ Route::group(['prefix' => 'artist'], function () {
     });
 });
 
+Route::group(['prefix' => 'tickets'], function () {
+    Route::group(['middleware' => ['storefront.tickets.ticket_exists','storefront.tickets.ticket_is_live'], 'prefix' => '{slug}'], function () {
+        Route::get('/','Storefront\Tickets\Ticket\StorefrontTicketController@show')->name('storefront.tickets.ticket');
+    });
+});
 
 
 
@@ -344,13 +349,18 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
                     Route::group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
                         Route::get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
+                        Route::get('preview', 'Store\Tickets\Ticket\TicketPreviewController@show')->name('store.tickets.ticket.preview');
 
 
                         /**
                          * Routes for a specific item that requires the ticket to be pending
                          */
-                        Route::group(['middleware' => ['user.store.ticket_not_live']], function () {
-                            Route::post('delete', 'Store\Tickets\Ticket\TicketController@delete')->name('store.tickets.ticket.delete');
+                        Route::group(['middleware' => ['user.ticket_store.ticket_not_live']], function () {
+                            Route::post('/', 'Store\Tickets\Ticket\TicketController@edit')->name('store.tickets.ticket');
+                            Route::post('live', 'Store\Tickets\Ticket\TicketStatusController@live')->name('store.tickets.ticket.set_live');
+                            Route::post('pending', 'Store\Tickets\Ticket\TicketStatusController@pending')->name('store.tickets.ticket.set_pending');
+                            Route::get('delete', 'Store\Tickets\Ticket\TicketDeleteController@show')->name('store.tickets.ticket.delete');
+                            Route::post('delete', 'Store\Tickets\Ticket\TicketDeleteController@delete');
                         });
                     });
                 });

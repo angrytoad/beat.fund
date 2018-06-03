@@ -268,9 +268,29 @@ Breadcrumbs::register('store.tickets.all', function ($breadcrumbs) {
     $breadcrumbs->push('All Tickets', route('store.tickets.all'));
 });
 
+Breadcrumbs::register('store.tickets.live', function ($breadcrumbs) {
+    $breadcrumbs->parent('store.tickets.all');
+    $breadcrumbs->push('Live Tickets', route('store.tickets.live'));
+});
+
+Breadcrumbs::register('store.tickets.pending', function ($breadcrumbs) {
+    $breadcrumbs->parent('store.tickets.all');
+    $breadcrumbs->push('Pending Tickets', route('store.tickets.pending'));
+});
+
+Breadcrumbs::register('store.tickets.expired', function ($breadcrumbs) {
+    $breadcrumbs->parent('store.tickets.all');
+    $breadcrumbs->push('Expired Tickets', route('store.tickets.expired'));
+});
+
 Breadcrumbs::register('store.tickets.ticket', function ($breadcrumbs, $ticket) {
-    $breadcrumbs->parent('store.tickets');
+    $breadcrumbs->parent('store.tickets.all');
     $breadcrumbs->push($ticket->name, route('store.tickets.ticket', $ticket->id));
+});
+
+Breadcrumbs::register('store.tickets.ticket.delete', function ($breadcrumbs, $ticket) {
+    $breadcrumbs->parent('store.tickets.ticket', $ticket);
+    $breadcrumbs->push('Delete '.$ticket->name, route('store.tickets.ticket.delete', $ticket->id));
 });
 
 

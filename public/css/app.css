@@ -8540,7 +8540,7 @@ button.close {
 
 #welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container #store-sampler .artist {
   background: #fff;
-  border-radius: 50%;
+  border-radius: 4px;
   overflow: hidden;
   opacity: 0.5;
   -webkit-transition: all 0.25s;
@@ -9267,6 +9267,170 @@ button.close {
   color: #fff;
 }
 
+#live-tickets #live-tickets-topper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 15px;
+  margin-bottom: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#live-tickets #live-tickets-topper div:first-child {
+  background: #007BFF;
+  color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  height: 150px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  font-size: 3rem;
+}
+
+#live-tickets #live-tickets-topper div:first-child span {
+  line-height: 20px;
+}
+
+#live-tickets #live-tickets-topper div:first-child small {
+  font-size: 18px;
+}
+
+#pending-tickets #pending-tickets-topper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 15px;
+  margin-bottom: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#pending-tickets #pending-tickets-topper div:first-child {
+  background: #007BFF;
+  color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  height: 150px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  font-size: 3rem;
+}
+
+#pending-tickets #pending-tickets-topper div:first-child span {
+  line-height: 20px;
+}
+
+#pending-tickets #pending-tickets-topper div:first-child small {
+  font-size: 18px;
+}
+
+#expired-tickets #expired-tickets-topper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 15px;
+  margin-bottom: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#expired-tickets #expired-tickets-topper div:first-child {
+  background: #007BFF;
+  color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  height: 150px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  font-size: 3rem;
+}
+
+#expired-tickets #expired-tickets-topper div:first-child span {
+  line-height: 20px;
+}
+
+#expired-tickets #expired-tickets-topper div:first-child small {
+  font-size: 18px;
+}
+
+#edit-ticket #map {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 15px;
+}
+
+#edit-ticket #page-preview {
+  background: #F4F9FF;
+  border: 1px solid #ddd;
+  padding: 45px;
+}
+
+#edit-ticket #page-preview #page-preview-inner {
+  background: #fff;
+  padding: 15px;
+}
+
+#edit-ticket #page-preview img {
+  max-width: 100%;
+}
+
+#edit-ticket #page-preview #page-preview-banner {
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-top: -15px;
+  height: 85px;
+  overflow: hidden;
+  position: relative;
+  background: #007BFF;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+#edit-ticket #page-preview #page-preview-banner img {
+  width: 100%;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+#edit-ticket #page-preview #page-preview-event-name {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#edit-ticket #ticket-image .dz-default {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+#edit-ticket #set-live-form,
+#edit-ticket #set-pending-form {
+  display: inline-block;
+}
+
+#delete-ticket h2 {
+  margin-top: 0;
+}
+
 #sales_and_analytics .analytic-wrapper {
   display: grid;
   grid-gap: 15px;
@@ -9931,6 +10095,104 @@ button.close {
   margin-top: 5px;
 }
 
+#storefront-ticket-page #ticket {
+  background: #fff;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+#storefront-ticket-page #ticket #ticket-banner {
+  min-height: 250px;
+  background: #007BFF;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 1px solid #F4F9FF;
+  border-left: 1px solid #F4F9FF;
+  border-right: 1px solid #F4F9FF;
+  overflow: hidden;
+}
+
+#storefront-ticket-page #ticket #ticket-banner h1 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 72px;
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  opacity: 0.4;
+}
+
+#storefront-ticket-page #ticket #ticket-banner #ticket-banner-image {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+#storefront-ticket-page #ticket #ticket-times .jumbotron {
+  margin-bottom: 0;
+}
+
+#storefront-ticket-page #ticket #ticket-times p {
+  margin-bottom: 0;
+  color: #007BFF;
+}
+
+#storefront-ticket-page #ticket #ticket-times h3 {
+  margin-top: 0;
+}
+
+#storefront-ticket-page #ticket #ticket-content {
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+#storefront-ticket-page #ticket #ticket-content .jumbotron {
+  margin-bottom: 0;
+}
+
+#storefront-ticket-page #ticket #ticket-content #ticket-content-title {
+  margin-top: 0;
+}
+
+#storefront-ticket-page #ticket #ticket-content #ticket-content-price {
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 6px;
+  justify-items: center;
+  text-align: center;
+  font-size: 32px;
+  line-height: 32px;
+  color: #007BFF;
+}
+
+#storefront-ticket-page #ticket #ticket-content #ticket-content-price button {
+  display: block;
+  margin: auto;
+  margin-top: 15px;
+}
+
+#storefront-ticket-page #ticket #ticket-content #ticket-content-location h2 {
+  margin-top: 0;
+}
+
+#storefront-ticket-page #ticket #ticket-content #ticket-content-location img {
+  width: 100%;
+}
+
 .align-middle {
   vertical-align: middle !important;
 }
@@ -10110,6 +10372,10 @@ summary:hover {
   #welcome #roadmap-wrap .roadmap-item:last-child {
     grid-column: 1 / 3;
   }
+
+  #storefront-ticket-page #ticket #ticket-banner {
+    min-height: 200px;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -10173,6 +10439,10 @@ summary:hover {
 
   #welcome .community-features {
     grid-template-columns: 1fr;
+  }
+
+  #storefront-ticket-page #ticket #ticket-banner {
+    min-height: 160px;
   }
 }
 
@@ -10252,6 +10522,10 @@ summary:hover {
 
   #all-tickets #store_tickets_clickthrough > a div {
     height: 100px;
+  }
+
+  #storefront-ticket-page #ticket #ticket-banner #ticket-banner-image {
+    width: auto;
   }
 }
 

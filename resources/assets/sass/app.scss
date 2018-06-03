@@ -41,6 +41,11 @@
 @import "pages/store/tickets/tickets";
 @import "pages/store/tickets/create";
 @import "pages/store/tickets/all";
+@import "pages/store/tickets/live";
+@import "pages/store/tickets/pending";
+@import "pages/store/tickets/expired";
+@import "pages/store/tickets/ticket";
+@import "pages/store/tickets/ticket/delete";
 
 @import "pages/store/sales_and_analytics/sales_and_analytics";
 @import "pages/store/sales_and_analytics/music_store";
@@ -53,6 +58,7 @@
 @import "pages/storefront/checkout";
 @import "pages/storefront/artist/store";
 @import "pages/storefront/artist/product/product";
+@import "pages/storefront/tickets/ticket";
 
 @import "pages/admin/home";
 @import "pages/admin/users";

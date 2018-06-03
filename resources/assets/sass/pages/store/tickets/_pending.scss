@@ -1,0 +1,33 @@
+#pending-tickets{
+  #pending-tickets-topper{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap:15px;
+    margin-bottom:15px;
+    align-items: center;
+
+    div:first-child{
+      background:$blue;
+      color:$text_light;
+      border:1px solid $border_light;
+      padding:15px;
+      height:150px;
+      display:grid;
+      align-items: center;
+      justify-items: center;
+      font-size:3rem;
+
+      svg{
+
+      }
+
+      span{
+        line-height: 20px;
+      }
+
+      small{
+        font-size:18px;
+      }
+    }
+  }
+}

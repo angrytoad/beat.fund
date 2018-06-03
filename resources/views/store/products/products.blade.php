@@ -15,7 +15,7 @@
                 <div class="panel-heading">Products</div>
                 <div class="panel-body">
                     @if(!$store->live)
-                        <div class="alert alert-warning">Your store is NOT LIVE. (You have no public store page at present)</div>
+                        <div class="alert alert-danger">Your store is NOT LIVE. (You have no public store page at present), please use the "Set Store Live" button to enable it.</div>
                     @else
                         <div class="alert alert-success">This store is currently LIVE. (You have a public store page)</div>
                     @endif
@@ -98,12 +98,12 @@
                                         <div>
                                             <form method="POST" action="{{ route('store.set_live') }}">
                                                 {{ csrf_field() }}
-                                                <button class="btn btn-success">Set Store Live</button>
+                                                <button class="btn btn-success btn-lg">Set Store Live</button>
                                             </form>
                                         </div>
                                     @else
                                         <div>
-                                            <button class="btn btn-disabled">Set Store Live</button>
+                                            <button class="btn btn-disabled btn-lg">Set Store Live</button>
                                         </div>
                                     @endif
                                 @else
