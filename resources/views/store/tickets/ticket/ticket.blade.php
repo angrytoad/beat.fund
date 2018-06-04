@@ -210,6 +210,9 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <button class="btn btn-primary" onclick="submitForm()">Save Changes</button>
+                                <a href="{{ route('store.tickets.ticket.delete',$ticket->id) }}">
+                                    <button class="btn btn-danger btn-xs pull-right">Delete Ticket</button>
+                                </a>
                             </div>
                         </div>
                     @endif
