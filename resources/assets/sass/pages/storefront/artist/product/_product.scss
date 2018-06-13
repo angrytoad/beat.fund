@@ -65,23 +65,44 @@
   #artist-product-items{
     .artist-product-item{
       display:grid;
-      grid-template-columns: auto 1fr 300px;
+      grid-template-columns: auto 1fr 300px 80px;
       align-items: center;
       grid-gap:2rem;
+      position: relative;
 
       .order{
         font-weight: bold;
         color:$blue;
+        position: relative;
+        z-index: 5;
       }
 
       .sample{
         display: grid;
         align-items: center;
+        position: relative;
+        z-index: 5;
 
         audio{
           width:100%;
         }
       }
+
+      .wave{
+        height:100%;
+
+        wave{
+          z-index: 10;
+          opacity: 1;
+          height:100%!important;
+        }
+      }
+
+      .name{
+        position: relative;
+        z-index: 5;
+      }
+
     }
   }
 

@@ -43,17 +43,18 @@
                 <div class="panel-body">
                     <ul id="artist-product-items" class="list-group">
                         @foreach($product->items()->orderBy('order','ASC')->get() as $line_item)
-                            <li class="artist-product-item list-group-item">
+                            <li id="line-item-{{ $line_item->id }}" class="artist-product-item list-group-item" data-sampleurl="{{ $line_item->sampleURL() }}">
                                 <div class="order">
                                     #{{ $line_item->order+1 }}
                                 </div>
                                 <div class="name">
                                     {{ $line_item->name }}
                                 </div>
+                                <div class="wave">
+
+                                </div>
                                 <div class="sample">
-                                    <audio controls preload="none">
-                                        <source src="{{ $line_item->sampleURL() }}">
-                                    </audio>
+                                    <button onclick="playItem('line-item-{{ $line_item->id }}')" class="btn btn-primary disabled">Play</button>
                                 </div>
                             </li>
                         @endforeach
@@ -138,6 +139,66 @@
 @endsection
 @section('scripts')
     <script>
+
+        var loaded_waves = [];
+
+        $('.artist-product-item').each(function(index, item){
+            var id = $(item).attr('id');
+
+            var wavesurfer = WaveSurfer.create({
+                container: '#'+id+' .wave',
+                waveColor: '#007BFF',
+                progressColor: '#0067D6',
+                scrollParent: true
+            });
+
+            wavesurfer.on('finish', function () {
+                var $button = $('#'+id+' .sample button');
+                $button.text('Play');
+                $button.attr('onclick','playItem("'+id+'")');
+                $button.addClass('btn-primary');
+                wavesurfer.stop();
+            });
+
+            wavesurfer.on('ready', function () {
+                $('#'+id+' .sample button').removeClass('disabled');
+            });
+
+            wavesurfer.load($(item).data('sampleurl'));
+
+            loaded_waves.push({
+                id: $(item).attr('id'),
+                wavesurfer: wavesurfer
+            });
+        });
+
+
+        function playItem(id){
+            loaded_waves.forEach(function(wave, index){
+                if(id === wave.id){
+                    wave.wavesurfer.play();
+                    var $button = $('#'+id+' .sample button');
+                    $button.text('Pause');
+                    $button.attr('onclick','pauseItem("'+id+'")');
+                    $button.removeClass('btn-primary');
+                }
+            });
+        }
+
+        function pauseItem(id){
+            loaded_waves.forEach(function(wave, index){
+                if(id === wave.id){
+                    wave.wavesurfer.pause();
+                    var $button = $('#'+id+' .sample button');
+                    $button.text('Play');
+                    $button.attr('onclick','playItem("'+id+'")');
+                    $button.addClass('btn-primary');
+                }
+            });
+        }
+
+
+
 
         $( "#amount_display" ).slider({
             value: "{{ number_format((count($product->items)*60)/100,2) }}",
