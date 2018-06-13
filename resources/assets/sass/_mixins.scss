@@ -10,3 +10,39 @@
 @mixin BlueGradient() {
   background: linear-gradient(135deg, #0067d6, #007bff, #429dff, #5aa8fc);
 }
+
+@mixin ScrollStyler() {
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #007bff;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #0067D6;
+  }
+  ::-webkit-scrollbar-track {
+    background: $background;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: $background;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: $background;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}

@@ -10055,6 +10055,48 @@ button.close {
   height: 100%;
 }
 
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar {
+  width: 2px;
+  height: 4px;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-thumb:hover {
+  background: #007bff;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-thumb:active {
+  background: #0067D6;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-track {
+  background: #F4F9FF;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-track:hover {
+  background: #F4F9FF;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-track:active {
+  background: #F4F9FF;
+}
+
+#artist-product #artist-product-items .artist-product-item .wave ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 #artist-product #artist-product-items .artist-product-item .wave wave {
   z-index: 10;
   opacity: 1;

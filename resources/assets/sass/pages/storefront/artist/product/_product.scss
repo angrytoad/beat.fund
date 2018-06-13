@@ -89,13 +89,16 @@
       }
 
       .wave{
+        @include ScrollStyler();
         height:100%;
 
         wave{
+
           z-index: 10;
           opacity: 1;
           height:100%!important;
         }
+
       }
 
       .name{
