@@ -175,12 +175,19 @@
 
         function playItem(id){
             loaded_waves.forEach(function(wave, index){
+
                 if(id === wave.id){
-                    wave.wavesurfer.play();
-                    var $button = $('#'+id+' .sample button');
+                    wave.wavesurfer.playPause();
+                    var $button = $('#'+wave.id+' .sample button');
                     $button.text('Pause');
-                    $button.attr('onclick','pauseItem("'+id+'")');
+                    $button.attr('onclick','pauseItem("'+wave.id+'")');
                     $button.removeClass('btn-primary');
+                }else{
+                    wave.wavesurfer.pause();
+                    var $button = $('#'+wave.id+' .sample button');
+                    $button.text('Play');
+                    $button.attr('onclick','playItem("'+wave.id+'")');
+                    $button.addClass('btn-primary');
                 }
             });
         }
@@ -188,7 +195,7 @@
         function pauseItem(id){
             loaded_waves.forEach(function(wave, index){
                 if(id === wave.id){
-                    wave.wavesurfer.pause();
+                    wave.wavesurfer.playPause();
                     var $button = $('#'+id+' .sample button');
                     $button.text('Play');
                     $button.attr('onclick','playItem("'+id+'")');

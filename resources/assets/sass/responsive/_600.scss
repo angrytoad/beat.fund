@@ -14,8 +14,8 @@
   #artist-product #artist-product-items .artist-product-item{
     grid-template-rows: 1fr 1fr;
     grid-gap:0 2rem;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: "order name""sample sample";
+    grid-template-columns: 80px 1fr;
+    grid-template-areas: "order name""sample wave";
 
     .order{
       grid-area:order;
@@ -27,6 +27,10 @@
 
     .sample{
       grid-area:sample;
+    }
+
+    .wave{
+      grid-area:wave
     }
   }
 

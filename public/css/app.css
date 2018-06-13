@@ -10483,7 +10483,7 @@ summary:hover {
   }
 
   #artist-product #artist-product-items .artist-product-item {
-    grid-template-columns: auto 1fr 200px;
+    grid-template-columns: auto 1fr 200px 80px;
   }
 }
 
@@ -10569,8 +10569,8 @@ summary:hover {
   #artist-product #artist-product-items .artist-product-item {
     grid-template-rows: 1fr 1fr;
     grid-gap: 0 2rem;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: "order name" "sample sample";
+    grid-template-columns: 80px 1fr;
+    grid-template-areas: "order name" "sample wave";
   }
 
   #artist-product #artist-product-items .artist-product-item .order {
@@ -10583,6 +10583,10 @@ summary:hover {
 
   #artist-product #artist-product-items .artist-product-item .sample {
     grid-area: sample;
+  }
+
+  #artist-product #artist-product-items .artist-product-item .wave {
+    grid-area: wave;
   }
 
   #preamble-text {
