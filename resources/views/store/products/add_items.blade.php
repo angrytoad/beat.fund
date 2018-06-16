@@ -59,7 +59,7 @@
 
         Dropzone.options.productItems = {
             paramName: 'file',
-            maxFilesize: 50, // MB
+            maxFilesize: 160, // MB
             maxFiles: 50,
             acceptedFiles: ".ogg,.wav,.aac,.mp4,.mp3,.m4a",
             init: function() {
