@@ -61,6 +61,7 @@
             paramName: 'file',
             maxFilesize: 160, // MB
             maxFiles: 50,
+            timeout: 0,
             acceptedFiles: ".ogg,.wav,.aac,.mp4,.mp3,.m4a",
             init: function() {
                 this.on("success", function(file, response) {
