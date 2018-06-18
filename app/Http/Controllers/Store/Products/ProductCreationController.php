@@ -77,8 +77,6 @@ class ProductCreationController extends Controller
                 $product->image_url = $result->get('ObjectURL');
                 $product->image_key = $image_key;
 
-                Storage::delete($request->get('image'),'s3');
-
             }catch(\Exception $e){
                 return back()->withErrors([
                         $e->getMessage()
