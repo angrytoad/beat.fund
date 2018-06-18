@@ -5,7 +5,7 @@ version: "3.1"
 services:
 
     mysql:
-      image: mysql:5.7.22
+      image: mysql:5.7
       container_name: beat-fund-mysql
       working_dir: /application
       volumes:
@@ -34,5 +34,5 @@ services:
       working_dir: /application
       volumes:
         - .:/application
-        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.1/fpm/conf.d/99-overrides.ini
 
