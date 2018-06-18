@@ -32,14 +32,16 @@ class S3ProductStorage implements ProductStorageInterface
     }
     
     public function store($destination_key, $source_file, $public = false){
-        return $this->s3->client->putObject(array(
-            'ACL' => !$public ? 'private' : 'public-read',
-            'Bucket' => $this->bucket,
-            'Key' => $destination_key,
-            'Body' => new CachingStream(
-                new Stream(fopen($source_file, 'r'))
-            ),
-        ));
+        if(fopen($source_file, 'r')){
+            return $this->s3->client->putObject(array(
+                'ACL' => !$public ? 'private' : 'public-read',
+                'Bucket' => $this->bucket,
+                'Key' => $destination_key,
+                'Body' => new CachingStream(
+                    new Stream(fopen($source_file, 'r'))
+                ),
+            ));
+        }
     }
     
     public function delete($item_key){
