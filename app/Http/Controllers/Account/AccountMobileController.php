@@ -81,7 +81,7 @@ class AccountMobileController extends Controller
 
             Mail::to($user->email)->send(new MobileNumberUpdated($user));
 
-            return redirect(route('store.create'))->with([
+            return redirect(route('home'))->with([
                 'alert-success' => 'You have successfully added the mobile number '.$user->mobile_number.' to this account.'
             ]);
 

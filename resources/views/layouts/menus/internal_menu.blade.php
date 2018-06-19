@@ -65,8 +65,10 @@
                     @endif
                 </ul>
             </li>
+        @elseif(!Auth::user()->store && Auth::user()->profile)
+            <li class="list-group-item {{ Helper::isActiveRoute('store.create') }}"><a class="list-group-item-heading" href="{{ route('store.create') }}"><strong>Create a store</strong></a></li>
         @else
-            <li class="list-group-item {{ Helper::isActiveRoute('store.create') }}"><a class="list-group-item-heading" href="{{ route('store.create') }}">Create a store</a></li>
+            <li class="list-group-item {{ Helper::isActiveRoute('profile.create') }}"><a class="list-group-item-heading" href="{{ route('store.create') }}">Set up an Artist/Band profile</a></li>
         @endif
         @if(Auth::user()->profile)
             <li class="list-group-item {{ Helper::areActiveRoutes(['profile','profile.create']) }}">
@@ -74,11 +76,9 @@
                     Profile <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="{{ Helper::isActiveRoute('profile') }}"><a href="{{ route('profile') }}">Profile</a></li>
+                    <li class="{{ Helper::isActiveRoute('profile') }}"><a href="{{ route('profile') }}">Edit my Profile</a></li>
                 </ul>
             </li>
-        @else
-            <li class="list-group-item {{ Helper::isActiveRoute('profile.create') }}"><a class="list-group-item-heading" href="{{ route('store.create') }}">Set up an Artist/Band profile</a></li>
         @endif
     </ul>
     <ul id="internal_account_menu" class="list-group">

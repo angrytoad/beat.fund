@@ -39,8 +39,8 @@ class ProfileCreationController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect(route('store.create'))->with([
-            'alert-success' => 'Your profile has been successfully set up, have fun!'
+        return redirect(route('profile'))->with([
+            'alert-success' => 'Your profile has been enabled, tell the world a little bit about your music.'
         ]);
     }
 }
