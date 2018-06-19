@@ -59,10 +59,14 @@
                         </li>
                     @endif
                     @if(Auth::user()->store === null)
-                        <li class="{{ Helper::isActiveRoute('store.create') }}"><a href="{{ route('store.create') }}">Create a store</a></li>
+                        <li class="{{ Helper::isActiveRoute('store.create') }}">
+                            <a href="{{ route('store.create') }}">Create a store</a>
+                        </li>
                     @endif
                 </ul>
             </li>
+        @else
+            <li class="list-group-item {{ Helper::isActiveRoute('store.create') }}"><a class="list-group-item-heading" href="{{ route('store.create') }}">Create a store</a></li>
         @endif
         @if(Auth::user()->profile)
             <li class="list-group-item {{ Helper::areActiveRoutes(['profile','profile.create']) }}">
@@ -73,6 +77,8 @@
                     <li class="{{ Helper::isActiveRoute('profile') }}"><a href="{{ route('profile') }}">Profile</a></li>
                 </ul>
             </li>
+        @else
+            <li class="list-group-item {{ Helper::isActiveRoute('profile.create') }}"><a class="list-group-item-heading" href="{{ route('store.create') }}">Set up an Artist/Band profile</a></li>
         @endif
     </ul>
     <ul id="internal_account_menu" class="list-group">
