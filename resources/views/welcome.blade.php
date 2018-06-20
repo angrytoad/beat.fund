@@ -40,6 +40,19 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <iframe src="https://open.spotify.com/embed/user/duenna/playlist/0yXzk5Fv0tAt7qy2N7bFFy" width="100%" height="400px" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <h2>Yes... some of us are on Spotify too!</h2>
+                <p class="lead">
+                    As part of ongoing efforts to promote some of the best independent music around, Beat Fund runs its own
+                    playlist on Spotify with 100% Beat Fund artists and bands. Come check out some of the awesome music
+                    and get updates as an when new artists are added to the site!
+                </p>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-9 col-xs-12">
                 <h2>A Fairer Deal for all.</h2>
                 <p class="lead">
@@ -206,7 +219,7 @@
                 </p>
             </div>
             <div class="col-md-3 col-sm-4 col-sm-offset-4 col-md-offset-0 col-xs-6 col-xs-offset-3">
-                <img src="/images/misc/me.jpg" width="100%" />
+                <img src="/images/misc/portrait_profile_SMALL.jpg" width="100%" />
             </div>
         </div>
     </div>
