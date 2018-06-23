@@ -8569,8 +8569,9 @@ button.close {
 
 #welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container {
   padding: 15px;
-  border-radius: 4px;
   background: rgba(0, 123, 255, 0.7);
+  display: inline-block;
+  border: 1px solid #fff;
 }
 
 #welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container h1,

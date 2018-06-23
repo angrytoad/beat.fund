@@ -84,8 +84,9 @@
 
         #welcome-container-child-container{
           padding:15px;
-          border-radius:4px;
           background:rgba($blue,0.7);
+          display: inline-block;
+          border: 1px solid $white;
 
           h1,h3{
             margin:0;
