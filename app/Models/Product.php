@@ -58,7 +58,7 @@ class Product extends Model
     
     public function downsizedImage()
     {
-        return env('SERVERLESS_IMAGE_HANDLER').'/300x300/smart/'.$this->image_key;
+        return env('SERVERLESS_IMAGE_HANDLER').'/300x300/'.$this->image_key;
     }
 
     public function getItemsBeforeDate($date){
