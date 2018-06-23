@@ -8546,7 +8546,7 @@ button.close {
   top: 0;
   left: 0;
   right: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 #welcome #welcome-banner #welcome-container {
@@ -10903,6 +10903,12 @@ summary:hover {
   #buy-ticket #ticket-banner h1,
   #ticket #ticket-banner h1 {
     font-size: 26px;
+  }
+
+  #welcome #artist-store-sampler .artist {
+    width: 120px;
+    height: 120px;
+    margin: 5px;
   }
 }
 
