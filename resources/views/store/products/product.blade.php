@@ -20,7 +20,7 @@
                             <div id="product-image">
                                 <div id="product-image-clipper">
                                     @if($product->image_key)
-                                        <img src="{{ $product->image_url }}" />
+                                        <img src="{{ $product->downsizedImage() }}" />
                                     @else
                                         <img src="/images/no_image.png" />
                                     @endif
