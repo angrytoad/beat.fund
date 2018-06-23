@@ -1,6 +1,59 @@
 #welcome{
   margin-top:-20px;
 
+  #artist-store-sampler{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .artist{
+      background:$white;
+      border-radius:4px;
+      overflow:hidden;
+      display:inline-block;
+      width:200px;
+      height:200px;
+      margin:15px;
+      opacity:1;
+      transition: all 0.25s;
+      position: relative;
+
+      img{
+        width:100%;
+      }
+
+      .artist-name{
+        opacity:0;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        color: $white;
+        background: rgba(0,0,0,0.7);
+        margin: 0;
+        padding: 7px;
+        transition: all 0.25s;
+        font-size: 12px;
+      }
+    }
+
+    a:hover{
+      .artist{
+        opacity:0.7;
+        transition: all 0.25s;
+        border-radius:0;
+
+        .artist-name{
+          opacity:0.7;
+          transition: all 0.25s;
+        }
+      }
+    }
+
+
+  }
+
   #welcome-banner{
     height:calc(100vh - 50px);
     margin-bottom:60px;
@@ -34,7 +87,6 @@
           display: inline-block;
           border-radius:4px;
           max-width: 700px;
-          margin-bottom: 125px;
 
           h1,h3{
             margin:0;
@@ -50,16 +102,28 @@
           }
 
           #store-sampler{
-            margin-top:60px;
-            display:grid;
-            grid-template-columns:1fr 1fr 1fr 1fr;
-            grid-gap:1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 3px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            overflow-y: hidden;
+            opacity: 0.60;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            justify-items: center;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
 
-            .artist{
+            .product{
               background:$white;
               border-radius:4px;
               overflow:hidden;
-              opacity:0.5;
+              opacity:1;
               transition: all 0.25s;
               position: relative;
 
@@ -67,35 +131,10 @@
                 width:100%;
               }
 
-              .artist-name{
-                opacity:0;
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                left: 0;
-                color: $white;
-                background: rgba(0,0,0,0.7);
-                margin: 0;
-                padding: 7px;
-                transition: all 0.25s;
-                font-size: 12px;
+              &:hover{
+                opacity:0.7;
               }
             }
-
-            a:hover{
-              .artist{
-                opacity:1;
-                transition: all 0.25s;
-                border-radius:0;
-
-                .artist-name{
-                  opacity:1;
-                  transition: all 0.25s;
-                }
-              }
-            }
-
-
           }
         }
 

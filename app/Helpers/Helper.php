@@ -17,6 +17,12 @@ use AWS;
 class Helper
 {
 
+
+    public static function storeHelpers()
+    {
+        return new StoreHelpers();
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Detect Active Route

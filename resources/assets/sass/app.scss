@@ -211,6 +211,16 @@ summary{
 
 }
 
+#tooltip {
+  position:absolute;
+  background:$blue;
+  color:$white;
+  padding:8px;
+  max-width:350px;
+  z-index: 10;
+  border:1px solid $white;
+}
+
 // Responsive Imports
 @import "responsive/1200";
 @import "responsive/992";

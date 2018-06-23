@@ -11,11 +11,10 @@
                     <h1 id="title">Beat Fund</h1>
                     <h3 id="subtitle">Supporting independent artists for FREE, FOREVER</h3>
                     <div id="store-sampler">
-                        @foreach(\App\Helpers\Helper::getArtistStoresSampler() as $store)
-                            <a href="{{ route('artist.store', $store->slug) }}">
-                                <div class="artist">
-                                    <p class="artist-name">{{ $store->user->profile->artist_name }}</p>
-                                    <img src="{{ $store->downsizedAvatar() }}" />
+                        @foreach(\App\Helpers\Helper::storeHelpers()->getStoreProductsSampler() as $product)
+                            <a href="{{ route('artist.store.product', [$product->store_slug, $product->id]) }}" data-tooltip title="{{ $product->name }}">
+                                <div class="product">
+                                    <img src="{{ $product->downsizedImage() }}" />
                                 </div>
                             </a>
                         @endforeach
@@ -147,6 +146,21 @@
                     </div>
                     <br />
                     <div class="sharethis-inline-share-buttons"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-center">Join the {{ \App\Helpers\Helper::storeHelpers()->getStoresCount() }} artists and bands already using Beat Fund</h2>
+                <div id="artist-store-sampler">
+                    @foreach(\App\Helpers\Helper::getArtistStoresSampler() as $store)
+                        <a href="{{ route('artist.store', $store->slug) }}">
+                            <div class="artist">
+                                <p class="artist-name">{{ $store->user->profile->artist_name }}</p>
+                                <img src="{{ $store->downsizedAvatar() }}" />
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
