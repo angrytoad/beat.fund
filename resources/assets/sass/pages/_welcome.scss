@@ -126,6 +126,9 @@
               opacity:1;
               transition: all 0.25s;
               position: relative;
+              max-width: 240px;
+              display: inline-block;
+              vertical-align: top;
 
               img{
                 width:100%;

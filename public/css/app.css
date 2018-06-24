@@ -8616,6 +8616,9 @@ button.close {
   -webkit-transition: all 0.25s;
   transition: all 0.25s;
   position: relative;
+  max-width: 240px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 #welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container #store-sampler .product img {

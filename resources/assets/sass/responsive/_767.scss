@@ -64,4 +64,20 @@
   #storefront-ticket-page #ticket #ticket-banner #ticket-banner-image{
     width:auto;
   }
+
+  #buy-ticket #ticket-banner #ticket-banner-image,
+  #ticket #ticket-banner #ticket-banner-image{
+    width:auto;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+
+  #buy-ticket #ticket-banner h1,
+  #ticket #ticket-banner h1{
+    font-size: 36px;
+    margin:0;
+  }
+
+  #welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container #store-sampler{
+    grid-template-columns:1fr 1fr 1fr 1fr;
+  }
 }

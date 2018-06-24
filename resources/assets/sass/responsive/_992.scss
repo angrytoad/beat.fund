@@ -65,4 +65,28 @@
     min-height: 160px;
   }
 
+  #buy-ticket #ticket-content #ticket-counter #ticket-map{
+    margin-top:15px;
+  }
+
+
+  #buy-ticket #ticket-banner #ticket-banner-image,
+  #ticket #ticket-banner #ticket-banner-image{
+    transform: translateX(-50%) translateY(-50%) scale(1.3);
+  }
+
+  #buy-ticket #ticket-banner,
+  #ticket #ticket-banner{
+    min-height: 175px;
+  }
+
+  #welcome #welcome-banner #welcome-container #welcome-container-child #welcome-container-child-container #store-sampler{
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+  }
+
+  #welcome #artist-store-sampler .artist{
+    width:140px;
+    height:140px;
+  }
+
 }

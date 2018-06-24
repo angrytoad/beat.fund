@@ -19,4 +19,16 @@
   #storefront #recently_added_products{
     grid-template-columns: 1fr;
   }
+
+  #buy-ticket #ticket-banner h1,
+  #ticket #ticket-banner h1{
+    font-size: 26px;
+  }
+
+  #welcome #artist-store-sampler .artist{
+    width: 120px;
+    height: 120px;
+    margin: 5px;
+  }
 }
+
