@@ -85,6 +85,10 @@ class TicketsController extends Controller
             if(Auth::user()->profile->getCompletionPercentage() < 100){
                 throw new \Exception('You cannot create a ticket store until your profile has been 100% completed.');
             }
+
+            if(!Auth::user()->stripe_account){
+                throw new \Exception('You cannot create a ticket store until you have added a bank account.');
+            }
         }catch (\Exception $e){
             return back()->withErrors([
                 $e->getMessage()
@@ -93,7 +97,6 @@ class TicketsController extends Controller
 
         $ticket_store = new TicketStore();
         $ticket_store->user_id = Auth::user()->id;
-        $ticket_store->live = false;
         $ticket_store->save();
 
         return redirect(route('store.tickets'))->with([

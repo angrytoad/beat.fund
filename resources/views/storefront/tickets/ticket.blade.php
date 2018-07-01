@@ -28,7 +28,16 @@
         <div class="col-xs-12">
             <div class="row">
                <div class="col-md-8">
-                   <h1 id="ticket-content-title">{{ $ticket->name }}</h1>
+                   <h1 id="ticket-content-title">
+                       {{ $ticket->name }}
+                   </h1>
+                   <h2 id="ticket-content-title-presented-by">
+                       @if($profile->user->store->live)
+                           <small>Presented by <a href="{{ route('artist.store', $profile->user->store->slug) }}">{{ $profile->artist_name }}</a></small>
+                       @else
+                           <small>Presented by <strong>{{ $profile->artist_name }}</strong></small>
+                       @endif
+                   </h2>
                    <div id="ticket-content-description">
                        {!! $ticket->description !!}
                    </div>
@@ -43,7 +52,9 @@
                             @else
                                 &pound;{{ number_format($ticket->price/100,2) }}
                             @endif
-                            <button class="btn btn-primary">Buy Tickets</button>
+                            <a href="{{ route('storefront.tickets.ticket.buy',$ticket->slug) }}">
+                                <button class="btn btn-primary">Buy Tickets</button>
+                            </a>
                         </div>
                     </div>
                 </div>

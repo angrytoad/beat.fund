@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Library\Services\Auth\Recaptcha;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        $this->app->bind('App\Library\Contracts\RecaptchaInterface', function(){
+            return new Recaptcha();
+        });
     }
 }

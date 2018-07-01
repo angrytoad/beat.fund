@@ -59,10 +59,15 @@
 @import "pages/storefront/artist/store";
 @import "pages/storefront/artist/product/product";
 @import "pages/storefront/tickets/ticket";
+@import "pages/storefront/tickets/ticket/buy";
+@import "pages/storefront/tickets/cart";
+@import "pages/storefront/tickets/search_results";
 
 @import "pages/admin/home";
 @import "pages/admin/users";
 @import "pages/admin/user";
+
+@import "pages/misc/suggest_a_feature";
 
 
 
@@ -83,10 +88,32 @@ body{
 
 }
 
+textarea{
+  resize: vertical;
+  min-height: 75px;
+}
+
 summary{
   @include noselect;
   &:hover{
     cursor:pointer;
+  }
+}
+
+.form-check{
+  display:grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  grid-gap:15px;
+
+  input{
+    text-align: center;
+    width:24px;
+    height:24px;
+  }
+
+  label{
+    margin:0;
   }
 }
 

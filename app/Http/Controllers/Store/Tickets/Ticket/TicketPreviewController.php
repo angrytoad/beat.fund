@@ -27,7 +27,8 @@ class TicketPreviewController extends Controller
 
         return view('storefront.tickets.ticket')->with([
             'preview' => true,
-            'ticket' => $ticket
+            'ticket' => $ticket,
+            'profile' => $ticket->ticket_store->user->profile
         ]);
     }
 }

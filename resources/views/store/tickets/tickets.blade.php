@@ -68,11 +68,6 @@
                         @if($user->ticket_store)
                             <h3 class="text-center">
                                 {{ $user->first_name }}'s Ticket Store <i class="fas fa-ticket-alt"></i>
-                                @if($user->ticket_store->live)
-                                    &nbsp;<span class="text-success">(LIVE)</span>
-                                @else
-                                    &nbsp;<span class="text-danger">(NOT LIVE)</span>
-                                @endif
                             </h3>
                             <hr />
                             <div class="row">

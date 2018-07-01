@@ -23,6 +23,11 @@ class Helper
         return new StoreHelpers();
     }
 
+    public static function ticketStoreHelpers()
+    {
+        return new TicketStoreHelpers();
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Detect Active Route

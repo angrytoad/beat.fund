@@ -19,7 +19,7 @@ class HasTicketStore
         }
 
         return redirect(route('store.tickets'))->withErrors([
-            'You need to enabled your ticket store to perform that action.'
+            'You need to enable your ticket store to perform that action.'
         ]);
     }
 }

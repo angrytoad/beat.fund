@@ -30,9 +30,9 @@
                             <hr />
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <h4>Site Health</h4>
-                            <p>Database stats, general information about user signups and other useful bits of information are kept here.</p>
-                            <a class="btn btn-primary disabled" href="{{ route('admin.users') }}">Site Health</a>
+                            <h4>Site Maintenance</h4>
+                            <p>Database stats, general information about user signups and other useful bits and bobs are kept here.</p>
+                            <a class="btn btn-primary" href="{{ route('admin.site_maintenance') }}">Site Maintenance</a>
                             <hr />
                         </div>
                         <div class="col-md-6 col-lg-4">

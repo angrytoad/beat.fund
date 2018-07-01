@@ -117,8 +117,13 @@
                         <div id="artist-store-links">
                             @foreach($artist->profile_links as $profile_link)
                                 <div class="artist-store-link">
-                                    <a href="{{ $profile_link->link }}" target="_blank">
-                                        <i class="fab fa-{{$profile_link->type}}"></i>
+                                    <a href="{{ $profile_link->link }}" target="_blank" title="{{$profile_link->link}}">
+                                        @if($profile_link->type === "other")
+                                            <i class="fab fa-bullhorn"></i>
+                                        @else
+                                            <i class="fab fa-{{$profile_link->type}}"></i>
+                                        @endif
+
                                     </a>
                                 </div>
                             @endforeach

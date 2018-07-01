@@ -1,0 +1,39 @@
+#ticket_search_results_wrapper{
+
+
+  #ticket_search_results{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:15px;
+    margin-top:15px;
+
+    .search_result{
+      height:216px;
+      background-size:cover!important;
+      background-position: center!important;
+      border:1px solid $border_light;
+      border-radius:4px;
+      position: relative;
+
+      .search_result_name{
+        position: absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        background:rgba($blue,0.7);
+        color:$text_light;
+        padding:5px 15px;
+
+        .name{
+          font-size:16px;
+        }
+
+        .artist{
+          font-size:12px;
+        }
+
+      }
+    }
+  }
+}
+

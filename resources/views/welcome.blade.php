@@ -26,12 +26,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-xs-12">
-                <h2>Manage and Sell your music online, for free.</h2>
+                <h2>Sell Music, Tickets & more, all for free.</h2>
                 <p class="lead">
-                    Beat Fund gives you the tools to manage and sell your music online, for free, forever. The one guiding principle
+                    Beat Fund gives you the tools to manage and <strong>sell your music online</strong>, for free, forever. The one guiding principle
                     for Beat Fund has always been to offer the service for free at the point of use, this means its free to set up a store,
                     free to sell gig tickets, synchronise your music, distribute your music to... This list could get long, maybe you should
                     just read the <a href="#roadmap"><strong>roadmap</strong></a> instead.
+                </p>
+                <p class="lead">
+                    Beat Fund also allows you to <strong>sell tickets to events and gig you are playing at</strong>, easily create digital tickets with complete
+                    control of pricing, all free with your Beat Fund account.
                 </p>
             </div>
             <div class="col-md-3 col-sm-4 col-sm-offset-4 col-md-offset-0 col-xs-6 col-xs-offset-3">
@@ -242,6 +246,5 @@
 @endsection
 @section('scripts')
     <script>
-
     </script>
 @endsection

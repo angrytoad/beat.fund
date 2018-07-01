@@ -81,6 +81,9 @@
                             tons of great music by the worlds best independent artists we're sure there will be something
                             you'll love. Why not <a href="{{ route('storefront') }}">Check out the store?</a>
                         </p>
+                        <a href="{{ route('storefront') }}">
+                            <button class="btn btn-primary">Adventure forth to find great music!</button>
+                        </a>
                     @endif
                 </div>
             </div>

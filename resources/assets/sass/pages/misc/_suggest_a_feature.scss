@@ -1,0 +1,45 @@
+#suggest-a-feature{
+  #suggest-a-feature-banner{
+    background: url('/images/misc/suggest_a_feature.jpg');
+    background-position: center;
+    background-size:cover;
+    height:200px;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom:15px;
+
+    #suggest-a-feature-banner-overlay{
+      position: absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      display:table;
+      height:100%;
+      width:100%;
+      padding:30px;
+      background:rgba($blue,0.9);
+
+      > div{
+        display:table-cell;
+        vertical-align: middle;
+        text-align: center;
+        color:$white;
+
+        h1,p{
+          margin:0;
+        }
+      }
+    }
+  }
+
+  #suggest-a-feature-form{
+  }
+
+  #suggestions-list{
+    .lead{
+      margin:0;
+    }
+  }
+}

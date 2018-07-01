@@ -80,12 +80,23 @@
                     </li>
                 @endguest
                 <li id="cart-menu-item" class="{{ \App\Helpers\Helper::areActiveRoutes(['storefront.cart']) }}">
-                    <a href="{{ route('storefront.cart') }}">
+                    <a href="{{ route('storefront.cart') }}" title="View your music cart">
                         @if(session()->exists('cart'))
                             <i class="fas fa-shopping-cart"></i>
                             {{ count(session()->get('cart')) }}
                         @else
                             <i class="fas fa-shopping-cart"></i>
+                            0
+                        @endif
+                    </a>
+                </li>
+                <li id="cart-menu-item" class="{{ \App\Helpers\Helper::areActiveRoutes(['storefront.tickets.cart']) }}">
+                    <a href="{{ route('storefront.tickets.cart') }}" title="View your tickets cart">
+                        @if(session()->exists('ticket_cart'))
+                            <i class="fas fa-ticket-alt"></i>
+                            {{ count(session()->get('ticket_cart')) }}
+                        @else
+                            <i class="fas fa-ticket-alt"></i>
                             0
                         @endif
                     </a>

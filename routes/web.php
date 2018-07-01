@@ -27,6 +27,9 @@ Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show'
 Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
 Route::get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
 
+Route::get('/suggest-a-feature', 'Misc\FeatureSuggestionController@show')->name('suggest_a_feature');
+Route::post('/suggest-a-feature', 'Misc\FeatureSuggestionController@post');
+
 
 Route::get('/zip-stream-test', 'Test\ZipStreamTestController@test');
 
@@ -86,6 +89,12 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
 
     Route::get('store', 'Admin\AdminUserController@store')->name('admin.store');
 
+    Route::group(['prefix' => 'site-maintenance'], function() {
+       Route::get('/', 'Admin\SiteMaintenance\SiteMaintenanceController@show')->name('admin.site_maintenance');
+       Route::get('feature-suggestions', 'Admin\SiteMaintenance\FeatureSuggestionsController@show')->name('admin.site_maintenance.feature_suggestions');
+       Route::post('feature-suggestions', 'Admin\SiteMaintenance\FeatureSuggestionsController@createSuggestion');
+    });
+
 });
 
 
@@ -93,7 +102,7 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
 /**
  * STOREFRONT ROUTES
  */
-Route::group(['prefix' => 'store'], function () {
+Route::group(['prefix' => 'music'], function () {
     Route::get('/','Storefront\StorefrontController@show')->name('storefront');
     Route::get('/search','Storefront\StorefrontController@search')->name('storefront.search');
 
@@ -126,8 +135,17 @@ Route::group(['prefix' => 'artist'], function () {
 });
 
 Route::group(['prefix' => 'tickets'], function () {
+    Route::get('/', 'Storefront\Tickets\TicketsController@show')->name('storefront.tickets');
+    Route::get('/search','Storefront\Tickets\TicketsController@search')->name('storefront.tickets.search');
+    Route::get('cart', 'Storefront\Tickets\TicketsCheckoutController@cart')->name('storefront.tickets.cart');
+    Route::get('checkout', 'Storefront\Tickets\TicketsCheckoutController@show')->name('storefront.tickets.checkout');
+
     Route::group(['middleware' => ['storefront.tickets.ticket_exists','storefront.tickets.ticket_is_live'], 'prefix' => '{slug}'], function () {
         Route::get('/','Storefront\Tickets\Ticket\StorefrontTicketController@show')->name('storefront.tickets.ticket');
+        Route::get('buy','Storefront\Tickets\Ticket\StorefrontTicketController@buy')->name('storefront.tickets.ticket.buy');
+        Route::post('buy','Storefront\Tickets\Ticket\StorefrontTicketPurchaseController@confirmDetails');
+
+        Route::post('remove-from-cart','Storefront\Tickets\TicketCartActionsController@removeFromCart')->name('storefront.tickets.ticket.remove_from_cart');
     });
 });
 
@@ -243,7 +261,7 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
             /**
              * Routes for all products
              */
-            Route::group(['prefix' => 'products'], function () {
+            Route::group(['prefix' => 'music'], function () {
 
                 // Get all products, live and pending.
                 Route::get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
@@ -350,7 +368,6 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
                     Route::group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
                         Route::get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
                         Route::get('preview', 'Store\Tickets\Ticket\TicketPreviewController@show')->name('store.tickets.ticket.preview');
-
 
                         /**
                          * Routes for a specific item that requires the ticket to be pending

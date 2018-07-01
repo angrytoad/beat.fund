@@ -79,6 +79,7 @@ class TicketController extends Controller
         $ticket->longitude = $request->get('longitude');
         $ticket->location = $request->get('location');
         $ticket->background_color = $request->get('background_color');
+        $ticket->price = null;
 
 
 

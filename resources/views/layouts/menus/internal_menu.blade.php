@@ -45,7 +45,7 @@
                     'store.products.product.item',
                     'store.products.product.item.delete',
                     ]) }}">
-                        <a href="{{ route('store.products') }}">Products</a>
+                        <a href="{{ route('store.products') }}">Music Store</a>
                     </li>
                     <li class="{{ Helper::areActiveRoutes([
                     'store.tickets',
@@ -55,7 +55,7 @@
                     'store.tickets.pending',
                     'store.tickets.expired',
                     ]) }}">
-                            <a href="{{ route('store.tickets') }}">Tickets</a>
+                            <a href="{{ route('store.tickets') }}">Tickets Store</a>
                         </li>
                     @endif
                     @if(Auth::user()->store === null)

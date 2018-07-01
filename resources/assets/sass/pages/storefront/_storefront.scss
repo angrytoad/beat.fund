@@ -1,5 +1,35 @@
 #storefront{
 
+  #storefront-picker{
+    margin-bottom:45px;
+
+    a{
+      color:$text_regular;
+      text-decoration: none;
+
+      &:hover{
+        cursor:pointer;
+
+        .holder{
+          opacity:0.7;
+        }
+      }
+
+      .holder{
+        padding:15px 30px;
+        border:1px solid $border_light;
+        border-radius:4px;
+      }
+
+      .active{
+        background:$blue;
+        border:1px solid $blue;
+        color:$white;
+      }
+    }
+
+  }
+
   #storefront-main{
     display:grid;
     grid-gap:15px;
@@ -54,4 +84,6 @@
   @import "_storefront_partials/random_artist_bio";
   @import "_storefront_partials/recently_bought";
   @import "_storefront_partials/recently_added_products";
+
+  @import "_ticket_storefront_partials/recently_added_tickets";
 }

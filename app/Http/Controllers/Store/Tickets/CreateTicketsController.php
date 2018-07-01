@@ -59,6 +59,7 @@ class CreateTicketsController extends Controller
         $ticket->longitude = $request->get('longitude');
         $ticket->location = $request->get('location');
         $ticket->background_color = $request->get('background_color');
+        $ticket->price = null;
         
         $count = Ticket::select('tickets.*')
             ->join('ticket_stores','ticket_stores.id', '=', 'tickets.ticket_store_id')

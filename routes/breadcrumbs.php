@@ -58,12 +58,21 @@ Breadcrumbs::register('admin.user', function ($breadcrumbs, $user) {
     $breadcrumbs->push($user->first_name.' '.$user->last_name, route('admin.user', $user->id));
 });
 
+Breadcrumbs::register('admin.site_maintenance', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin');
+    $breadcrumbs->push('Site Maintenance', route('admin.site_maintenance'));
+});
+
+Breadcrumbs::register('admin.site_maintenance.feature_suggestions', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.site_maintenance');
+    $breadcrumbs->push('Feature Suggestions', route('admin.site_maintenance.feature_suggestions'));
+});
+
 /**
  * STORE BREADCRUMBS
  */
 Breadcrumbs::register('storefront', function ($breadcrumbs) {
-    $breadcrumbs->parent('home');
-    $breadcrumbs->push('Store', route('storefront'));
+    $breadcrumbs->push('Music Store', route('storefront'));
 });
 
 Breadcrumbs::register('storefront.search', function ($breadcrumbs) {
@@ -99,6 +108,19 @@ Breadcrumbs::register('artist.store', function ($breadcrumbs, $artist) {
 Breadcrumbs::register('artist.store.product', function ($breadcrumbs, $artist, $product) {
     $breadcrumbs->parent('artist.store',$artist);
     $breadcrumbs->push($product->name, route('artist.store.product',[$artist->user->store->slug, $product->id]));
+});
+
+Breadcrumbs::register('storefront.tickets', function ($breadcrumbs) {
+    $breadcrumbs->push('Ticket Store', route('storefront.tickets'));
+});
+
+Breadcrumbs::register('storefront.tickets.cart', function ($breadcrumbs) {
+    $breadcrumbs->push('Tickets Cart', route('storefront.tickets.cart'));
+});
+
+Breadcrumbs::register('storefront.tickets.search', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.tickets');
+    $breadcrumbs->push('Search', route('storefront.tickets.search'));
 });
 
 /**
@@ -195,7 +217,7 @@ Breadcrumbs::register('store.add_avatar', function ($breadcrumbs) {
 
 Breadcrumbs::register('store.products', function ($breadcrumbs) {
     $breadcrumbs->parent('store');
-    $breadcrumbs->push('Products', route('store.products'));
+    $breadcrumbs->push('Music Store', route('store.products'));
 });
 
 Breadcrumbs::register('store.products.create', function ($breadcrumbs) {
@@ -255,7 +277,7 @@ Breadcrumbs::register('store.products.product.item.delete', function ($breadcrum
  */
 Breadcrumbs::register('store.tickets', function ($breadcrumbs) {
     $breadcrumbs->parent('store');
-    $breadcrumbs->push('Tickets', route('store.tickets'));
+    $breadcrumbs->push('Tickets Store', route('store.tickets'));
 });
 
 Breadcrumbs::register('store.tickets.create', function ($breadcrumbs) {

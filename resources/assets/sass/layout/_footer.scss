@@ -19,6 +19,7 @@
   }
 
   #footer-social{
+    text-align: center;
 
     a{
       color:$blue;
@@ -27,6 +28,7 @@
     li{
       font-size:30px;
       display: inline-block;
+      margin:0 5px;
     }
   }
 }

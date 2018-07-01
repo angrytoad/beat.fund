@@ -1,5 +1,6 @@
 @media screen and (max-width:800px){
-  #artist-store #artist-store-all-products{
+  #artist-store #artist-store-all-products,
+  #search_results_wrapper #search_results{
     grid-template-columns: 1fr 1fr 1fr;
   }
 

@@ -25,7 +25,18 @@ class StorefrontTicketController extends Controller
 
         return view('storefront.tickets.ticket')->with([
             'preview' => false,
-            'ticket' => $ticket
+            'ticket' => $ticket,
+            'profile' => $ticket->ticket_store->user->profile
+        ]);
+    }
+
+    public function buy($slug){
+        $ticket = Ticket::where('slug','=',$slug)->first();
+
+        return view('storefront.tickets.ticket.buy')->with([
+            'preview' => false,
+            'ticket' => $ticket,
+            'profile' => $ticket->ticket_store->user->profile
         ]);
     }
 

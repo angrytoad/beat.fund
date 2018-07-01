@@ -23,6 +23,7 @@ use App\Http\Middleware\Storefront\Tickets\TicketExists;
 use App\Http\Middleware\Storefront\Tickets\TicketIsLive;
 use App\Http\Middleware\TicketStore\HasTicketStore;
 use App\Http\Middleware\TicketStore\Ticket\UserHasTicket;
+use App\Http\Middleware\TicketStore\TicketStoreLive;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -97,6 +98,7 @@ class Kernel extends HttpKernel
         'purchases.has_order_item' => HasOrderItem::class,
         
         'user.ticket_store.has_ticket_store' => HasTicketStore::class,
+        'user.ticket_store.ticket_store_live' => TicketStoreLive::class,
         'user.ticket_store.has_ticket' => UserHasTicket::class,
         'user.ticket_store.ticket_not_live' => UserHasTicket::class,
         

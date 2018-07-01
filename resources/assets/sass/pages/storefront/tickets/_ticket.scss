@@ -2,8 +2,8 @@
 
   #ticket{
     background: $white;
-    margin-top:90px;
-    margin-bottom:90px;
+    margin-top:30px;
+    margin-bottom:30px;
     border-radius:6px;
     overflow:hidden;
     border:1px solid $border_light;
@@ -25,7 +25,7 @@
       h1{
         color:$white;
         font-weight: 300;
-        font-size:72px;
+        font-size: 50px;
         text-align:center;
         padding-left:30px;
         padding-right:30px;
@@ -68,6 +68,11 @@
 
       #ticket-content-title{
         margin-top:0;
+        margin-bottom:0;
+      }
+
+      #ticket-content-title-presented-by{
+        margin-top:-1rem;
       }
 
       #ticket-content-description{

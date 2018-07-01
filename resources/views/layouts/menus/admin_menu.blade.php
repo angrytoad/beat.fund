@@ -9,6 +9,12 @@
         ]) }}">
             <a class="list-group-item-heading" href="{{ route('admin.users') }}">Users</a>
         </li>
+        <li class="list-group-item {{ Helper::areActiveRoutes([
+        'admin.site_maintenance',
+        'admin.site_maintenance.feature_suggestion'
+        ]) }}">
+            <a class="list-group-item-heading" href="{{ route('admin.site_maintenance') }}">Site Maintenance</a>
+        </li>
     </ul>
     <ul id="internal_account_menu" class="list-group">
         <li class="list-group-item dropdown {{ Helper::areActiveRoutes([
