@@ -81,7 +81,7 @@
 
                                 </tbody>
                             </table>
-                            <a href="{{ route('storefront.checkout') }}">
+                            <a href="{{ route('storefront.tickets.checkout') }}">
                                 <button class="btn btn-primary pull-right checkout-button">Proceed to Checkout</button>
                             </a>
                             <a href="{{ route('storefront.tickets') }}">
@@ -98,6 +98,22 @@
                             </p>
                             <a href="{{ route('storefront.tickets') }}"><button class="btn btn-primary">Take me to the tickets page!</button></a>
                         @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        A small thank you
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            This is just a little message to say thanks for supporting independent music.
+                        </p>
+                        <p>
+                            Every ticket purchase helps the Artists and Bands you support keep creating all the
+                            awesome music you love!
+                        </p>
                     </div>
                 </div>
             </div>

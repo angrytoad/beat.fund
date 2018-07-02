@@ -115,6 +115,7 @@ Breadcrumbs::register('storefront.tickets', function ($breadcrumbs) {
 });
 
 Breadcrumbs::register('storefront.tickets.cart', function ($breadcrumbs) {
+    $breadcrumbs->parent('storefront.tickets');
     $breadcrumbs->push('Tickets Cart', route('storefront.tickets.cart'));
 });
 
