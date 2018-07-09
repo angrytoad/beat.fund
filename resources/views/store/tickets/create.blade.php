@@ -20,25 +20,25 @@
                         <h4>Event/Gig Details</h4>
                         <div class="form-group">
                             <label>Name<span class="text-danger">&#42;</span></label>
-                            <input id="event-name-input" type="text" class="form-control" name="name" placeholder="Event name" required onkeyup="changeEventName(event)"/>
+                            <input id="event-name-input" type="text" class="form-control" name="name" value="{{ old('name') }}"placeholder="Event name" required onkeyup="changeEventName(event)"/>
                         </div>
                         <div class="form-group">
                             <label>Event Description<span class="text-danger">&#42;</span></label>
                             <div id="description"></div>
-                            <input type="hidden" name="description" />
-                            <input type="hidden" name="description_delta" />
+                            <input type="hidden" name="description" value="{{ old('description') }}" />
+                            <input type="hidden" name="description_delta" value="{{ old('description_delta') }}" />
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Start Time<span class="text-danger">&#42;</span></label>
-                                    <input size="16" type="text" name="start" value="" placeholder="Enter a start time" readonly class="form-control form_datetime" required>
+                                    <input size="16" type="text" name="start" value="{{ old('start') }}" placeholder="Enter a start time" readonly class="form-control form_datetime" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>End Time<span class="text-danger">&#42;</span></label>
-                                    <input size="16" type="text" name="end" value="" placeholder="Enter a end time" readonly class="form-control form_datetime" required>
+                                    <input size="16" type="text" name="end" value="{{ old('end') }}" placeholder="Enter a end time" readonly class="form-control form_datetime" required>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <p>
                                         To help buyers, please enter an identifiable name of where your Event is located, E.G The Five Swans, NE1 7PG
                                     </p>
-                                    <input type="text" name="location" class="form-control" placeholder="Location name" required />
+                                    <input type="text" name="location" class="form-control" placeholder="Location name" required  value="{{ old('location') }}"/>
                                     <hr />
                                     <label>Location on Map<span class="text-danger">&#42;</span> | <button type="button" id="map-button" class="btn btn-primary btn-xs">Select Location</button></label>
                                     <div id="map"></div>
@@ -60,8 +60,8 @@
                                         <br />
                                         <strong>Longitude: </strong><span id="longitude-label"></span>
                                     </div>
-                                    <input class="form-control" id="latitude" type="hidden" name="latitude" />
-                                    <input class="form-control" id="longitude" type="hidden" name="longitude" />
+                                    <input class="form-control" id="latitude" type="hidden" name="latitude" value="{{ old('latitude') }}"/>
+                                    <input class="form-control" id="longitude" type="hidden" name="longitude" value="{{ old('longitude') }}"/>
                                 </div>
                             </div>
                         </div>
@@ -92,14 +92,14 @@
                                         <p>
                                             Currently selected: <strong><span id="pricing_type">Fixed Pricing</span></strong>
                                         </p>
-                                        <input type="checkbox" data-on-text="Fixed Pricing" data-off-text="Pay what you want" data-off-color="primary" name="pricing_type" checked data-toggle="toggle" data-size="small">
+                                        <input type="checkbox" data-on-text="Fixed Pricing" value="{{ old('pricing_type') }}" data-off-text="Pay what you want" data-off-color="primary" name="pricing_type" checked data-toggle="toggle" data-size="small">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <hr />
                         <input id="banner-image-input" type="hidden" name="image" value="{{ old('image') }}" />
-                        <input id="background_color" type="hidden" value="#F4F9FF" name="background_color" value="{{ old('background_color') }}" />
+                        <input id="background_color" type="hidden" value="{{ old('background_color') or '#F4F9FF' }}" name="background_color" />
                     </form>
                     <div class="row">
                         <div class="col-md-6">

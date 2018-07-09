@@ -50,7 +50,9 @@
                     @endif
                     <hr />
                     @if($ticket->live)
-
+                        <p class="lead">
+                            Ticket analytics and check in rates coming soon!
+                        </p>
                     @else
                         <form id="edit-ticket-form" action="{{ route('store.tickets.ticket', $ticket->id) }}" method="POST">
                             {{ csrf_field() }}
