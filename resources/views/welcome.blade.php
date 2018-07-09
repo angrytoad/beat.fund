@@ -104,7 +104,7 @@
                     <div>
                         Artists and bands can create and sell gig tickets online for their events, completely free of charge!
                     </div>
-                    <p class="text-warning text-left"><small>STATUS: <strong>Releasing Soon</strong></small></p>
+                    <p class="text-success text-left"><small>STATUS: <strong>Completed</strong></small></p>
                 </div>
                 <div class="roadmap-item jumbotron">
                     <p><strong><i class="fas fa-film"></i> Synchronisation Rights</strong></p>
