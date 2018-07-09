@@ -78,4 +78,9 @@
 <!-- Tooltip -->
 <script src="{{ asset('js/tooltip.js') }}"></script>
 
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
 @yield('scripts')

@@ -19,6 +19,7 @@ use App\Http\Middleware\Store\Product\UserHasProduct;
 use App\Http\Middleware\Storefront\Artist\Product\ProductIsLive;
 use App\Http\Middleware\Storefront\Artist\StoreExists;
 use App\Http\Middleware\Storefront\HasItemsInCart;
+use App\Http\Middleware\Storefront\Tickets\TicketCanCheckin;
 use App\Http\Middleware\Storefront\Tickets\TicketExists;
 use App\Http\Middleware\Storefront\Tickets\TicketIsLive;
 use App\Http\Middleware\TicketStore\HasTicketStore;
@@ -104,5 +105,6 @@ class Kernel extends HttpKernel
         
         'storefront.tickets.ticket_exists' => TicketExists::class,
         'storefront.tickets.ticket_is_live' => TicketIsLive::class,
+        'storefront.tickets.ticket.ticket_can_checkin' => TicketCanCheckin::class
     ];
 }

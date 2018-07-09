@@ -8,14 +8,7 @@
 
 namespace App\Http\Middleware\Storefront;
 
-use App\Mail\Account\Verify;
-use App\Models\EmailVerification;
-use App\Models\StripeCustomerAccountCard;
-use App\Models\User;
 use Closure;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use Webpatser\Uuid\Uuid;
 
 class HasItemsInCart
 {
@@ -30,5 +23,15 @@ class HasItemsInCart
             'You can\'t checkout without any items in your cart, silly billy!'
         ]);
 
+    }
+
+
+    public function __construct()
+    {
+        $foo = $this->foo(['foo','bar','baz']);
+    }
+
+    public function foo(String $bar){
+        return $bar;
     }
 }

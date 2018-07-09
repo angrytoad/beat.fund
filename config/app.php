@@ -172,6 +172,8 @@ return [
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
         Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -250,6 +252,7 @@ return [
         'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
         'Bugsnag' => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
         'ZipStream' => ZipStream\ZipStream::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
     ],
 
 ];

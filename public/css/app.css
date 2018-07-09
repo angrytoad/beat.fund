@@ -10497,6 +10497,59 @@ button.close {
   width: 55px;
 }
 
+#ticket-checkin {
+  background: #90DFAA;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  overflow-y: auto;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
+
+#ticket-checkin.error {
+  background: #FD8469;
+}
+
+#ticket-checkin #ticket-checking-failure-title {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-size: 55px;
+}
+
+#ticket-checkin svg {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: auto;
+  max-width: 300px;
+  border: 6px solid white;
+  border-radius: 50%;
+}
+
+#ticket-checkin #ticket-checkin-attendee h3 {
+  margin: 0;
+  font-weight: 300;
+}
+
+#ticket-checkin #ticket-checkin-total {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #007BFF;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 300;
+  border: 2px solid #fff;
+}
+
 #ticket-cart #ticket-cart-table .ticket-information-icon {
   text-align: center;
 }

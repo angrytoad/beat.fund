@@ -135,10 +135,15 @@ Route::group(['prefix' => 'artist'], function () {
 });
 
 Route::group(['prefix' => 'tickets'], function () {
+    Route::group(['middleware' => ['storefront.tickets.ticket.ticket_can_checkin']], function () {
+        Route::get('check-in/{ticket_id}/{ticket_order_id}/{seed}', 'Storefront\Tickets\CheckIn\TicketsCheckInController@checkIn')->name('storefront.tickets.check_in');
+    });
+    
     Route::get('/', 'Storefront\Tickets\TicketsController@show')->name('storefront.tickets');
     Route::get('/search','Storefront\Tickets\TicketsController@search')->name('storefront.tickets.search');
     Route::get('cart', 'Storefront\Tickets\TicketsCheckoutController@cart')->name('storefront.tickets.cart');
     Route::get('checkout', 'Storefront\Tickets\TicketsCheckoutController@show')->name('storefront.tickets.checkout');
+    Route::post('checkout', 'Storefront\Tickets\TicketsCheckoutController@checkout');
 
     Route::group(['middleware' => ['storefront.tickets.ticket_exists','storefront.tickets.ticket_is_live'], 'prefix' => '{slug}'], function () {
         Route::get('/','Storefront\Tickets\Ticket\StorefrontTicketController@show')->name('storefront.tickets.ticket');

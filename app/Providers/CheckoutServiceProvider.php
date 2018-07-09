@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Library\Services\StripeCheckout;
+use App\Library\Services\Stripe\StripeTicketCheckout;
 use Illuminate\Support\ServiceProvider;
 
 class CheckoutServiceProvider extends ServiceProvider
@@ -26,6 +27,10 @@ class CheckoutServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Library\Contracts\CheckoutInterface', function(){
             return new StripeCheckout();
+        });
+        
+        $this->app->bind('App\Library\Contracts\TicketCheckoutInterface', function(){
+            return new StripeTicketCheckout();
         });
     }
 }
