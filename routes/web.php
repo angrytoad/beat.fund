@@ -11,35 +11,51 @@
 |
 */
 
-Route::get('/', function () {
+$this->get('/', function () {
     return view('welcome')->with([
         'alert-success' => 'Your account has been verified',
     ]);
 })->name('welcome');
 
-Auth::routes();
+// Authentication Routes...
+$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->post('login', 'Auth\LoginController@login');
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/account/verify', 'Account\VerificationController@showVerificationRequired')->name('account.needs_verification');
-Route::get('/account/verify/resend', 'Account\VerificationController@resendVerification')->name('account.resend_verification');
-Route::get('/account/verify/{token}', 'Account\VerificationController@attemptVerification')->name('account.attempt_verification');
+// Registration Routes...
+$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+$this->post('register', 'Auth\RegisterController@register');
 
-Route::get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
-Route::get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
-Route::get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
+// Password Reset Routes...
+$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+$this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 
-Route::get('/suggest-a-feature', 'Misc\FeatureSuggestionController@show')->name('suggest_a_feature');
-Route::post('/suggest-a-feature', 'Misc\FeatureSuggestionController@post');
+$this->get('/account/verify', 'Account\VerificationController@showVerificationRequired')->name('account.needs_verification');
+$this->get('/account/verify/resend', 'Account\VerificationController@resendVerification')->name('account.resend_verification');
+$this->get('/account/verify/{token}', 'Account\VerificationController@attemptVerification')->name('account.attempt_verification');
+
+$this->get('/revenue-sharing-policy', 'Misc\RevenueSharingPolicyController@show')->name('revenue_sharing_policy');
+$this->get('/store-terms-and-conditions', 'Misc\StoreTermsAndConditionsController@show')->name('store_terms_and_conditions');
+$this->get('/privacy-policy', 'Misc\PrivacyPolicyController@show')->name('privacy_policy');
+
+$this->get('/suggest-a-feature', 'Misc\FeatureSuggestionController@show')->name('suggest_a_feature');
+$this->post('/suggest-a-feature', 'Misc\FeatureSuggestionController@post');
+
+$this->get('/beatfund-for-artists', 'Misc\RegistrationPreambleController@showForArtists')->name('beatfund_for_artists');
+$this->get('/beatfund-for-labels', 'Misc\RegistrationPreambleController@showForLabels')->name('beatfund_for_labels');
 
 
-Route::get('/zip-stream-test', 'Test\ZipStreamTestController@test');
+//$this->get('/zip-stream-test', 'Test\ZipStreamTestController@test');
 
 /**
  * All Webhooks
  */
-Route::group(['prefix' => 'webhooks'], function () {
-    Route::group(['prefix' => 'stripe'], function () {
-        Route::group(['prefix' => 'account'], function () {
-            Route::get('/deauthorized', 'Webhooks\Stripe\Account\StripeAccountDeauthorizedController@deauthorized');
+$this->group(['prefix' => 'webhooks'], function () {
+    $this->group(['prefix' => 'stripe'], function () {
+        $this->group(['prefix' => 'account'], function () {
+            $this->get('/deauthorized', 'Webhooks\Stripe\Account\StripeAccountDeauthorizedController@deauthorized');
         });
     });
 });
@@ -48,29 +64,29 @@ Route::group(['prefix' => 'webhooks'], function () {
 /**
  * All routes related to action actions
  */
-Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
-    Route::get('/', 'Account\AccountController@show')->name('account');
-    Route::get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
-    Route::post('/update-email', 'Account\AccountEmailController@postUpdate');
-    Route::get('/change-password', 'Account\AccountPasswordController@show')->name('account.change_password');
-    Route::post('/change-password', 'Account\AccountPasswordController@update')->name('account.update_password');
-    Route::get('/add-mobile-number', 'Account\AccountMobileController@show')->name('account.add_mobile_number');
-    Route::post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
-    Route::get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
-    Route::post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
-    Route::get('/cards', 'Account\AccountSavedCardsController@show')->name('account.cards');
-    Route::post('/cards/add', 'Account\AccountSavedCardsController@add')->name('account.cards.add');
+$this->group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
+    $this->get('/', 'Account\AccountController@show')->name('account');
+    $this->get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
+    $this->post('/update-email', 'Account\AccountEmailController@postUpdate');
+    $this->get('/change-password', 'Account\AccountPasswordController@show')->name('account.change_password');
+    $this->post('/change-password', 'Account\AccountPasswordController@update')->name('account.update_password');
+    $this->get('/add-mobile-number', 'Account\AccountMobileController@show')->name('account.add_mobile_number');
+    $this->post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
+    $this->get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
+    $this->post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
+    $this->get('/cards', 'Account\AccountSavedCardsController@show')->name('account.cards');
+    $this->post('/cards/add', 'Account\AccountSavedCardsController@add')->name('account.cards.add');
 
-    Route::group(['middleware' => ['user.owns_card']], function () {
-        Route::get('/cards/{card_id}', 'Account\AccountCardController@show')->name('account.cards.card');
-        Route::post('/cards/{card_id}/update', 'Account\AccountCardController@update')->name('account.cards.card.update');
-        Route::post('/cards/{card_id}/delete', 'Account\AccountCardController@delete')->name('account.cards.card.delete');
-        Route::post('/cards/{card_id}/make-default', 'Account\AccountCardController@makeDefault')->name('account.cards.card.make_default');
+    $this->group(['middleware' => ['user.owns_card']], function () {
+        $this->get('/cards/{card_id}', 'Account\AccountCardController@show')->name('account.cards.card');
+        $this->post('/cards/{card_id}/update', 'Account\AccountCardController@update')->name('account.cards.card.update');
+        $this->post('/cards/{card_id}/delete', 'Account\AccountCardController@delete')->name('account.cards.card.delete');
+        $this->post('/cards/{card_id}/make-default', 'Account\AccountCardController@makeDefault')->name('account.cards.card.make_default');
     });
 
-    Route::group(['middleware' => ['user.has_store']], function () {
-        Route::get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');
-        Route::get('/stripe/connect', 'Account\AccountStripeController@connect')->name('account.stripe.connect');
+    $this->group(['middleware' => ['user.has_store']], function () {
+        $this->get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');
+        $this->get('/stripe/connect', 'Account\AccountStripeController@connect')->name('account.stripe.connect');
     });
 });
 
@@ -79,20 +95,20 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'],
  * Admin Panel Routes
  */
 
-Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' => 'admin'], function () {
-    Route::get('/', 'Admin\AdminPanelController@show')->name('admin');
-    Route::get('users', 'Admin\AdminUserController@users')->name('admin.users');
-    Route::get('user/{id}', 'Admin\AdminUserController@user')->name('admin.user');
-    Route::get('user/{id}/store', 'Admin\AdminUserController@store')->name('admin.user.store');
-    Route::get('user/{id}/profile', 'Admin\AdminUserController@profile')->name('admin.user.profile');
-    Route::post('user/{id}/purge', 'Admin\AdminUserController@purge')->name('admin.user.purge');
+$this->group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' => 'admin'], function () {
+    $this->get('/', 'Admin\AdminPanelController@show')->name('admin');
+    $this->get('users', 'Admin\AdminUserController@users')->name('admin.users');
+    $this->get('user/{id}', 'Admin\AdminUserController@user')->name('admin.user');
+    $this->get('user/{id}/store', 'Admin\AdminUserController@store')->name('admin.user.store');
+    $this->get('user/{id}/profile', 'Admin\AdminUserController@profile')->name('admin.user.profile');
+    $this->post('user/{id}/purge', 'Admin\AdminUserController@purge')->name('admin.user.purge');
 
-    Route::get('store', 'Admin\AdminUserController@store')->name('admin.store');
+    $this->get('store', 'Admin\AdminUserController@store')->name('admin.store');
 
-    Route::group(['prefix' => 'site-maintenance'], function() {
-       Route::get('/', 'Admin\SiteMaintenance\SiteMaintenanceController@show')->name('admin.site_maintenance');
-       Route::get('feature-suggestions', 'Admin\SiteMaintenance\FeatureSuggestionsController@show')->name('admin.site_maintenance.feature_suggestions');
-       Route::post('feature-suggestions', 'Admin\SiteMaintenance\FeatureSuggestionsController@createSuggestion');
+    $this->group(['prefix' => 'site-maintenance'], function() {
+       $this->get('/', 'Admin\SiteMaintenance\SiteMaintenanceController@show')->name('admin.site_maintenance');
+       $this->get('feature-suggestions', 'Admin\SiteMaintenance\FeatureSuggestionsController@show')->name('admin.site_maintenance.feature_suggestions');
+       $this->post('feature-suggestions', 'Admin\SiteMaintenance\FeatureSuggestionsController@createSuggestion');
     });
 
 });
@@ -102,55 +118,55 @@ Route::group(['middleware' => ['auth', 'email.verified', 'is.admin'], 'prefix' =
 /**
  * STOREFRONT ROUTES
  */
-Route::group(['prefix' => 'music'], function () {
-    Route::get('/','Storefront\StorefrontController@show')->name('storefront');
-    Route::get('/search','Storefront\StorefrontController@search')->name('storefront.search');
+$this->group(['prefix' => 'music'], function () {
+    $this->get('/','Storefront\StorefrontController@show')->name('storefront');
+    $this->get('/search','Storefront\StorefrontController@search')->name('storefront.search');
 
 
-    Route::get('/random','Storefront\StorefrontController@random')->name('storefront.random');
-    Route::get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
+    $this->get('/random','Storefront\StorefrontController@random')->name('storefront.random');
+    $this->get('/cart','Storefront\StorefrontController@cart')->name('storefront.cart');
 
-    Route::group(['middleware' => ['user.has_items_in_cart']], function () {
-        Route::get('/checkout','Storefront\StorefrontController@checkout')->name('storefront.checkout');
+    $this->group(['middleware' => ['user.has_items_in_cart']], function () {
+        $this->get('/checkout','Storefront\StorefrontController@checkout')->name('storefront.checkout');
 
-        Route::get('/checkout/guest', 'Storefront\StorefrontCheckoutController@guestCheckout')->name('storefront.checkout.guest');
-        Route::group(['middleware' => ['auth','email.verified']], function () {
-            Route::get('/checkout/user', 'Storefront\StorefrontCheckoutController@userCheckout')->name('storefront.checkout.user');
-            Route::post('/checkout','Storefront\StorefrontCheckoutController@process');
+        $this->get('/checkout/guest', 'Storefront\StorefrontCheckoutController@guestCheckout')->name('storefront.checkout.guest');
+        $this->group(['middleware' => ['auth','email.verified']], function () {
+            $this->get('/checkout/user', 'Storefront\StorefrontCheckoutController@userCheckout')->name('storefront.checkout.user');
+            $this->post('/checkout','Storefront\StorefrontCheckoutController@process');
         });
     });
 
 });
 
-Route::group(['prefix' => 'artist'], function () {
-    Route::group(['middleware' => ['artist.store_exists'], 'prefix' => '{slug}'], function () {
-        Route::get('/','Storefront\Artist\ArtistStoreController@show')->name('artist.store');
+$this->group(['prefix' => 'artist'], function () {
+    $this->group(['middleware' => ['artist.store_exists'], 'prefix' => '{slug}'], function () {
+        $this->get('/','Storefront\Artist\ArtistStoreController@show')->name('artist.store');
 
-        Route::group(['middleware' => ['artist.product.is_live'], 'prefix' => '{uuid}'], function () {
-            Route::get('/','Storefront\Artist\Product\ArtistProductController@show')->name('artist.store.product');
-            Route::post('/add-to-cart','Storefront\Cart\CartActionsController@addToCart')->name('artist.store.product.add_to_cart');
-            Route::post('/remove-from-cart','Storefront\Cart\CartActionsController@removeFromCart')->name('artist.store.product.remove_from_cart');
+        $this->group(['middleware' => ['artist.product.is_live'], 'prefix' => '{uuid}'], function () {
+            $this->get('/','Storefront\Artist\Product\ArtistProductController@show')->name('artist.store.product');
+            $this->post('/add-to-cart','Storefront\Cart\CartActionsController@addToCart')->name('artist.store.product.add_to_cart');
+            $this->post('/remove-from-cart','Storefront\Cart\CartActionsController@removeFromCart')->name('artist.store.product.remove_from_cart');
         });
     });
 });
 
-Route::group(['prefix' => 'tickets'], function () {
-    Route::group(['middleware' => ['storefront.tickets.ticket.ticket_can_checkin']], function () {
-        Route::get('check-in/{ticket_id}/{ticket_order_id}/{seed}', 'Storefront\Tickets\CheckIn\TicketsCheckInController@checkIn')->name('storefront.tickets.check_in');
+$this->group(['prefix' => 'tickets'], function () {
+    $this->group(['middleware' => ['storefront.tickets.ticket.ticket_can_checkin']], function () {
+        $this->get('check-in/{ticket_id}/{ticket_order_id}/{seed}', 'Storefront\Tickets\CheckIn\TicketsCheckInController@checkIn')->name('storefront.tickets.check_in');
     });
     
-    Route::get('/', 'Storefront\Tickets\TicketsController@show')->name('storefront.tickets');
-    Route::get('/search','Storefront\Tickets\TicketsController@search')->name('storefront.tickets.search');
-    Route::get('cart', 'Storefront\Tickets\TicketsCheckoutController@cart')->name('storefront.tickets.cart');
-    Route::get('checkout', 'Storefront\Tickets\TicketsCheckoutController@show')->name('storefront.tickets.checkout');
-    Route::post('checkout', 'Storefront\Tickets\TicketsCheckoutController@checkout');
+    $this->get('/', 'Storefront\Tickets\TicketsController@show')->name('storefront.tickets');
+    $this->get('/search','Storefront\Tickets\TicketsController@search')->name('storefront.tickets.search');
+    $this->get('cart', 'Storefront\Tickets\TicketsCheckoutController@cart')->name('storefront.tickets.cart');
+    $this->get('checkout', 'Storefront\Tickets\TicketsCheckoutController@show')->name('storefront.tickets.checkout');
+    $this->post('checkout', 'Storefront\Tickets\TicketsCheckoutController@checkout');
 
-    Route::group(['middleware' => ['storefront.tickets.ticket_exists','storefront.tickets.ticket_is_live'], 'prefix' => '{slug}'], function () {
-        Route::get('/','Storefront\Tickets\Ticket\StorefrontTicketController@show')->name('storefront.tickets.ticket');
-        Route::get('buy','Storefront\Tickets\Ticket\StorefrontTicketController@buy')->name('storefront.tickets.ticket.buy');
-        Route::post('buy','Storefront\Tickets\Ticket\StorefrontTicketPurchaseController@confirmDetails');
+    $this->group(['middleware' => ['storefront.tickets.ticket_exists','storefront.tickets.ticket_is_live'], 'prefix' => '{slug}'], function () {
+        $this->get('/','Storefront\Tickets\Ticket\StorefrontTicketController@show')->name('storefront.tickets.ticket');
+        $this->get('buy','Storefront\Tickets\Ticket\StorefrontTicketController@buy')->name('storefront.tickets.ticket.buy');
+        $this->post('buy','Storefront\Tickets\Ticket\StorefrontTicketPurchaseController@confirmDetails');
 
-        Route::post('remove-from-cart','Storefront\Tickets\TicketCartActionsController@removeFromCart')->name('storefront.tickets.ticket.remove_from_cart');
+        $this->post('remove-from-cart','Storefront\Tickets\TicketCartActionsController@removeFromCart')->name('storefront.tickets.ticket.remove_from_cart');
     });
 });
 
@@ -160,18 +176,18 @@ Route::group(['prefix' => 'tickets'], function () {
 
 
 
-Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
+$this->group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
 
     // Homepage Once logged in
-    Route::get('/', 'Home\HomeController@index')->name('home');
+    $this->get('/', 'Home\HomeController@index')->name('home');
 
     /**
      * All routes for help documentation
      */
-    Route::group(['prefix' => 'help'], function () {
-       Route::group(['prefix' => 'store'], function () {
-          Route::group(['prefix' => 'products'], function() {
-              Route::get('pricing', function(){ return view('help.store.products.pricing'); })->name('help.store.products.pricing');
+    $this->group(['prefix' => 'help'], function () {
+       $this->group(['prefix' => 'store'], function () {
+          $this->group(['prefix' => 'products'], function() {
+              $this->get('pricing', function(){ return view('help.store.products.pricing'); })->name('help.store.products.pricing');
           });
        });
     });
@@ -179,21 +195,21 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     /**
      * Collection
      */
-    Route::group(['prefix' => 'collection'], function () {
-        Route::get('/', 'Collection\CollectionController@show')->name('collection');
+    $this->group(['prefix' => 'collection'], function () {
+        $this->get('/', 'Collection\CollectionController@show')->name('collection');
     });
     
     /**
      * Purchases
      */
-    Route::group(['prefix' => 'purchases'], function () {
-        Route::get('/', 'Purchases\PurchasesController@show')->name('purchases');
+    $this->group(['prefix' => 'purchases'], function () {
+        $this->get('/', 'Purchases\PurchasesController@show')->name('purchases');
 
-        Route::group(['middleware' => ['purchases.has_order'], 'prefix' => '{order_id}'], function () {
-            Route::get('/', 'Purchases\PurchasesController@showOrder')->name('purchases.order');
+        $this->group(['middleware' => ['purchases.has_order'], 'prefix' => '{order_id}'], function () {
+            $this->get('/', 'Purchases\PurchasesController@showOrder')->name('purchases.order');
 
-            Route::group(['middleware' => ['purchases.has_order_item'], 'prefix' => '{order_item_id}'], function () {
-               Route::get('/download', 'Purchases\Order\OrderItemDownloadController@download')->name('purchases.order.order_item.download'); 
+            $this->group(['middleware' => ['purchases.has_order_item'], 'prefix' => '{order_item_id}'], function () {
+               $this->get('/download', 'Purchases\Order\OrderItemDownloadController@download')->name('purchases.order.order_item.download'); 
             });
         });
 
@@ -202,13 +218,13 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     /**
      * Profile Actions
      */
-    Route::group(['prefix' => 'profile'], function () {
-        Route::get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
-        Route::post('create', 'Profile\ProfileCreationController@create');
+    $this->group(['prefix' => 'profile'], function () {
+        $this->get('create', 'Profile\ProfileCreationController@show')->name('profile.create');
+        $this->post('create', 'Profile\ProfileCreationController@create');
 
-        Route::group(['middleware' => ['user.has_profile']], function () {
-            Route::get('/', 'Profile\ProfileController@show')->name('profile');
-            Route::post('/', 'Profile\ProfileController@update');
+        $this->group(['middleware' => ['user.has_profile']], function () {
+            $this->get('/', 'Profile\ProfileController@show')->name('profile');
+            $this->post('/', 'Profile\ProfileController@update');
         });
     });
 
@@ -218,15 +234,15 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
     /**
      * Routes for store functionality
      */
-    Route::group(['prefix' => 'store', 'middleware' => ['user.has_profile']], function () {
+    $this->group(['prefix' => 'store', 'middleware' => ['user.has_profile']], function () {
 
 
         /**
          * Routes that require the user to not have a store
          */
-        Route::group(['middleware' => ['user.has_no_store']], function () {
-            Route::get('create', 'Store\StoreCreationController@show')->name('store.create');
-            Route::post('create', 'Store\StoreCreationController@create');
+        $this->group(['middleware' => ['user.has_no_store']], function () {
+            $this->get('create', 'Store\StoreCreationController@show')->name('store.create');
+            $this->post('create', 'Store\StoreCreationController@create');
         });
 
 
@@ -234,112 +250,112 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
         /**
          * Routes that require a store to exist
          */
-        Route::group(['middleware' => ['user.has_store']], function () {
+        $this->group(['middleware' => ['user.has_store']], function () {
 
             // Show the store front
-            Route::get('/', 'Store\StoreController@show')->name('store');
+            $this->get('/', 'Store\StoreController@show')->name('store');
 
             /**
              * Sales and Analytics
              */
-            Route::group(['prefix' => 'sales-and-analytics'], function () {
-                Route::get('/','Store\SalesAndAnalytics\SalesAndAnalyticsController@show')->name('store.sales_and_analytics');
-                Route::get('music-store','Store\SalesAndAnalytics\MusicStoreController@show')->name('store.sales_and_analytics.music_store');
+            $this->group(['prefix' => 'sales-and-analytics'], function () {
+                $this->get('/','Store\SalesAndAnalytics\SalesAndAnalyticsController@show')->name('store.sales_and_analytics');
+                $this->get('music-store','Store\SalesAndAnalytics\MusicStoreController@show')->name('store.sales_and_analytics.music_store');
             });
 
 
             
-            Route::get('/banner/add', 'Store\StoreBannerController@show')->name('store.banner.add');
-            Route::post('/banner/add', 'Store\StoreBannerController@add');
-            Route::post('/banner/add/image', 'Store\StoreBannerController@upload')->name('store.banner.add.image');
+            $this->get('/banner/add', 'Store\StoreBannerController@show')->name('store.banner.add');
+            $this->post('/banner/add', 'Store\StoreBannerController@add');
+            $this->post('/banner/add/image', 'Store\StoreBannerController@upload')->name('store.banner.add.image');
 
-            Route::get('/avatar/add', 'Store\StoreAvatarController@show')->name('store.avatar.add');
-            Route::post('/avatar/add', 'Store\StoreAvatarController@add');
-            Route::post('/avatar/add/image', 'Store\StoreAvatarController@upload')->name('store.avatar.add.image');
+            $this->get('/avatar/add', 'Store\StoreAvatarController@show')->name('store.avatar.add');
+            $this->post('/avatar/add', 'Store\StoreAvatarController@add');
+            $this->post('/avatar/add/image', 'Store\StoreAvatarController@upload')->name('store.avatar.add.image');
 
 
-            Route::group(['middleware' => ['store.is_not_live']], function () {
-                Route::post('/set-live', 'Store\StoreSetLiveController@live')->name('store.set_live');
+            $this->group(['middleware' => ['store.is_not_live']], function () {
+                $this->post('/set-live', 'Store\StoreSetLiveController@live')->name('store.set_live');
             });
 
 
             /**
              * Routes for all products
              */
-            Route::group(['prefix' => 'music'], function () {
+            $this->group(['prefix' => 'music'], function () {
 
                 // Get all products, live and pending.
-                Route::get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
-                Route::get('live', 'Store\Products\StoreProductsController@show_live')->name('store.products.live');
-                Route::get('pending', 'Store\Products\StoreProductsController@show_pending')->name('store.products.pending');
+                $this->get('/', 'Store\Products\StoreProductsController@show')->name('store.products');
+                $this->get('live', 'Store\Products\StoreProductsController@show_live')->name('store.products.live');
+                $this->get('pending', 'Store\Products\StoreProductsController@show_pending')->name('store.products.pending');
 
 
                 // Creating a product
-                Route::get('create', 'Store\Products\ProductCreationController@show')->name('store.products.create');
-                Route::post('create', 'Store\Products\ProductCreationController@create');
-                Route::post('create/image', 'Store\Products\ProductCreationImageController@upload')->name('store.products.create.image');
+                $this->get('create', 'Store\Products\ProductCreationController@show')->name('store.products.create');
+                $this->post('create', 'Store\Products\ProductCreationController@create');
+                $this->post('create/image', 'Store\Products\ProductCreationImageController@upload')->name('store.products.create.image');
 
 
 
                 /**
                  * Routes for a specific product
                  */
-                Route::group(['middleware' => ['user.has_product'], 'prefix' => '{uuid}'], function () {
+                $this->group(['middleware' => ['user.has_product'], 'prefix' => '{uuid}'], function () {
 
                     // Get the product page AND the item page
-                    Route::get('/', 'Store\Products\ProductController@show')->name('store.products.product');
-                    Route::get('/rearrange-items', 'Store\Products\ProductLineItems\RearrangeLineItemsController@show')->name('store.products.product.rearrange_items');
-                    Route::post('/rearrange-items', 'Store\Products\ProductLineItems\RearrangeLineItemsController@rearrange');
+                    $this->get('/', 'Store\Products\ProductController@show')->name('store.products.product');
+                    $this->get('/rearrange-items', 'Store\Products\ProductLineItems\RearrangeLineItemsController@show')->name('store.products.product.rearrange_items');
+                    $this->post('/rearrange-items', 'Store\Products\ProductLineItems\RearrangeLineItemsController@rearrange');
                     
-                    Route::get('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@show')->name('store.products.product.tag_items');
-                    Route::post('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@tag');
+                    $this->get('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@show')->name('store.products.product.tag_items');
+                    $this->post('/tag-items', 'Store\Products\ProductLineItems\TagLineItemsController@tag');
 
 
                     /**
                      * Routes for a product that require the product to not be live.
                      */
-                    Route::group(['middleware' => ['user.store.product_not_live']], function () {
+                    $this->group(['middleware' => ['user.store.product_not_live']], function () {
 
-                        Route::post('/live', 'Store\Products\ProductStatusController@live')->name('store.products.product.set_live');
+                        $this->post('/live', 'Store\Products\ProductStatusController@live')->name('store.products.product.set_live');
 
                         
-                        Route::get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
-                        Route::post('/delete', 'Store\Products\ProductDeleteController@delete');
+                        $this->get('/delete', 'Store\Products\ProductDeleteController@show')->name('store.products.product.delete');
+                        $this->post('/delete', 'Store\Products\ProductDeleteController@delete');
                         
                         // Allow items to be added and for the product to be updated
-                        Route::post('/', 'Store\Products\ProductController@update');
-                        Route::get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
-                        Route::post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
-                        Route::post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
-                        Route::post('update-genres', 'Store\Products\ProductGenreController@update')->name('store.products.product.update_genres');
+                        $this->post('/', 'Store\Products\ProductController@update');
+                        $this->get('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@show')->name('store.products.product.add_items');
+                        $this->post('add-items', 'Store\Products\ProductLineItems\AddLineItemsController@upload');
+                        $this->post('add-items/upload-file', 'Store\Products\ProductLineItems\UploadItemFileController@upload')->name('store.products.product.upload_file');
+                        $this->post('update-genres', 'Store\Products\ProductGenreController@update')->name('store.products.product.update_genres');
                     });
 
 
                     /**
                      * Routes for a product that require the product to be live
                      */
-                    Route::group(['middleware' => ['user.store.product_live']], function () {#
+                    $this->group(['middleware' => ['user.store.product_live']], function () {#
                         
-                        Route::post('/pending', 'Store\Products\ProductStatusController@pending')->name('store.products.product.set_pending');
+                        $this->post('/pending', 'Store\Products\ProductStatusController@pending')->name('store.products.product.set_pending');
                     });
 
 
                     /**
                      * Routes for a specific item
                      */
-                    Route::group(['middleware' => ['user.store.product.has_item'], 'prefix' => 'item'], function () {
-                        Route::get('{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
-                        Route::post('{item_uuid}/tags/delete', 'Store\Products\ProductLineItems\ProductLineItemTags\ProductLineItemTagsDeletionController@delete')->name('store.products.product.item.tags.delete');
+                    $this->group(['middleware' => ['user.store.product.has_item'], 'prefix' => 'item'], function () {
+                        $this->get('{item_uuid}', 'Store\Products\ProductLineItems\ProductLineItemController@show')->name('store.products.product.item');
+                        $this->post('{item_uuid}/tags/delete', 'Store\Products\ProductLineItems\ProductLineItemTags\ProductLineItemTagsDeletionController@delete')->name('store.products.product.item.tags.delete');
 
 
 
                         /**
                          * Routes for a specific item that requires the product to be pending
                          */
-                        Route::group(['middleware' => ['user.store.product_not_live']], function () {
-                            Route::get('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@show')->name('store.products.product.item.delete');
-                            Route::post('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@delete');
-                            Route::post('{item_uuid}/update_name', 'Store\Products\ProductLineItems\ProductLineItemNameController@update')->name('store.products.product.item.update_name');
+                        $this->group(['middleware' => ['user.store.product_not_live']], function () {
+                            $this->get('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@show')->name('store.products.product.item.delete');
+                            $this->post('{item_uuid}/delete', 'Store\Products\ProductLineItems\ProductLineItemDeletionController@delete');
+                            $this->post('{item_uuid}/update_name', 'Store\Products\ProductLineItems\ProductLineItemNameController@update')->name('store.products.product.item.update_name');
                         });
 
                     });
@@ -349,40 +365,40 @@ Route::group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
             /**
              * Routes for all ticket stuff
              */
-            Route::group(['prefix' => 'tickets'], function () {
-                Route::get('/', 'Store\Tickets\TicketsController@show')->name('store.tickets');
-                Route::get('enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
+            $this->group(['prefix' => 'tickets'], function () {
+                $this->get('/', 'Store\Tickets\TicketsController@show')->name('store.tickets');
+                $this->get('enable', 'Store\Tickets\TicketsController@enable')->name('store.tickets.enable');
 
-                Route::group(['middleware' => ['user.ticket_store.has_ticket_store']], function () {
+                $this->group(['middleware' => ['user.ticket_store.has_ticket_store']], function () {
 
                     /**
                      * Routes for displaying different ticket views.
                      */
-                    Route::get('all', 'Store\Tickets\TicketsController@all')->name('store.tickets.all');
-                    Route::get('live', 'Store\Tickets\TicketsController@live')->name('store.tickets.live');
-                    Route::get('pending', 'Store\Tickets\TicketsController@pending')->name('store.tickets.pending');
-                    Route::get('expired', 'Store\Tickets\TicketsController@expired')->name('store.tickets.expired');
+                    $this->get('all', 'Store\Tickets\TicketsController@all')->name('store.tickets.all');
+                    $this->get('live', 'Store\Tickets\TicketsController@live')->name('store.tickets.live');
+                    $this->get('pending', 'Store\Tickets\TicketsController@pending')->name('store.tickets.pending');
+                    $this->get('expired', 'Store\Tickets\TicketsController@expired')->name('store.tickets.expired');
 
                     /**
                      * Routes for creating a ticket
                      */
-                    Route::get('create', 'Store\Tickets\CreateTicketsController@show')->name('store.tickets.create');
-                    Route::post('create', 'Store\Tickets\CreateTicketsController@create');
-                    Route::post('create/image', 'Store\Tickets\CreateTicketsImageController@upload')->name('store.tickets.create.image');
+                    $this->get('create', 'Store\Tickets\CreateTicketsController@show')->name('store.tickets.create');
+                    $this->post('create', 'Store\Tickets\CreateTicketsController@create');
+                    $this->post('create/image', 'Store\Tickets\CreateTicketsImageController@upload')->name('store.tickets.create.image');
 
-                    Route::group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
-                        Route::get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
-                        Route::get('preview', 'Store\Tickets\Ticket\TicketPreviewController@show')->name('store.tickets.ticket.preview');
+                    $this->group(['middleware' => ['user.ticket_store.has_ticket'], 'prefix' => '{uuid}'], function () {
+                        $this->get('/', 'Store\Tickets\Ticket\TicketController@show')->name('store.tickets.ticket');
+                        $this->get('preview', 'Store\Tickets\Ticket\TicketPreviewController@show')->name('store.tickets.ticket.preview');
 
                         /**
                          * Routes for a specific item that requires the ticket to be pending
                          */
-                        Route::group(['middleware' => ['user.ticket_store.ticket_not_live']], function () {
-                            Route::post('/', 'Store\Tickets\Ticket\TicketController@edit')->name('store.tickets.ticket');
-                            Route::post('live', 'Store\Tickets\Ticket\TicketStatusController@live')->name('store.tickets.ticket.set_live');
-                            Route::post('pending', 'Store\Tickets\Ticket\TicketStatusController@pending')->name('store.tickets.ticket.set_pending');
-                            Route::get('delete', 'Store\Tickets\Ticket\TicketDeleteController@show')->name('store.tickets.ticket.delete');
-                            Route::post('delete', 'Store\Tickets\Ticket\TicketDeleteController@delete');
+                        $this->group(['middleware' => ['user.ticket_store.ticket_not_live']], function () {
+                            $this->post('/', 'Store\Tickets\Ticket\TicketController@edit')->name('store.tickets.ticket');
+                            $this->post('live', 'Store\Tickets\Ticket\TicketStatusController@live')->name('store.tickets.ticket.set_live');
+                            $this->post('pending', 'Store\Tickets\Ticket\TicketStatusController@pending')->name('store.tickets.ticket.set_pending');
+                            $this->get('delete', 'Store\Tickets\Ticket\TicketDeleteController@show')->name('store.tickets.ticket.delete');
+                            $this->post('delete', 'Store\Tickets\Ticket\TicketDeleteController@delete');
                         });
                     });
                 });

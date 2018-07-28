@@ -9,7 +9,18 @@
             <div id="welcome-container-child">
                 <div id="welcome-container-child-container">
                     <h1 id="title">Beat Fund</h1>
-                    <h3 id="subtitle">Supporting independent artists for FREE, FOREVER</h3>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <a href="{{ route('beatfund_for_artists') }}">
+                                <button class="btn btn-success btn-lg">I'm an Artist/Band</button>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a href="{{ route('beatfund_for_labels') }}">
+                                <button class="btn btn-info btn-lg">I'm a Record Label</button>
+                            </a>
+                        </div>
+                    </div>
                     <div id="store-sampler">
                         @foreach(\App\Helpers\Helper::storeHelpers()->getStoreProductsSampler() as $product)
                             <a href="{{ route('artist.store.product', [$product->store_slug, $product->id]) }}" data-tooltip title="{{ $product->name }}">

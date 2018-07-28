@@ -1,0 +1,25 @@
+#beatfund-for-artists{
+
+}
+
+#preamble-sticky{
+  position: sticky;
+  top:15px;
+  z-index: 2;
+}
+
+.preamble-image{
+  position: relative;
+  width:100%;
+  height:300px;
+  overflow: hidden;
+  border:1px solid $border_light;
+
+  img{
+    position: absolute;
+    width:100%;
+    top:50%;
+    left:50%;
+    transform: translateX(-50%) translateY(-50%) rotate(-10deg) scale(1.1);
+  }
+}

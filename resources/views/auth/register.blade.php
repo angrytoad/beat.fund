@@ -5,6 +5,18 @@
 @section('content')
 <div id="register" class="container">
     <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-warning">
+                <strong>
+                <span>
+                    If you are a label, you are in the wrong place! Please visit <a href="{{ route('beatfund_for_labels') }}">Beatfund For Labels</a> for more inforamation
+                    on setting up a label account.
+                </span>
+                </strong>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <div id="register-sample-artists" class="panel panel-default">
                 <div class="panel-body">
@@ -163,7 +175,7 @@
                 <div class="panel-body">
                     <p>
                         If you have any issues whatsoever, please let me know, via email, you can email
-                        <strong>support@beat.fund</strong> and that will go right to my personal email
+                        <strong>tom@beat.fund</strong> and that will go right to my personal email
                     </p>
                     <p>
                         As someone who cares deeply about user Privacy, no identifying information will ever be shared with
