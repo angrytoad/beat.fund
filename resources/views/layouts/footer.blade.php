@@ -79,15 +79,13 @@
                     @endif
                     <a href="{{ route('storefront') }}"><li>Music Store</li></a>
                     <a href="{{ route('storefront.tickets') }}"><li>Ticket Store</li></a>
-                    <a href="{{ route('beatfund_for_artists') }}"><li>Beat Fund for Artists</li></a>
-                    <a href="{{ route('beatfund_for_labels') }}"><li>Beat Fund for Labels</li></a>
                 </ul>
             </div>
             <div class="col-xs-12 hidden-md hidden-lg">
                 <hr class="hidden-md hidden-lg" />
             </div>
             <div class="col-md-3 col-sm-12">
-                <h4>External Links</h4>
+                <h4>More Links</h4>
                 <ul>
                     <a target="_blank" href="https://app.metriclist.com/u/beatfund">
                         <li>Metriclist</li>
@@ -95,6 +93,8 @@
                     <a target="_blank" href="https://open.spotify.com/user/duenna/playlist/0yXzk5Fv0tAt7qy2N7bFFy?si=i-MfLhiIQZGF56Y6ilFPnw">
                         <li>Beat Fund - Essentials (Spotify)</li>
                     </a>
+                    <a href="{{ route('beatfund_for_artists') }}"><li>Beat Fund for Artists</li></a>
+                    <a href="{{ route('beatfund_for_labels') }}"><li>Beat Fund for Labels</li></a>
                 </ul>
             </div>
             <div class="col-xs-12 hidden-md hidden-lg">
