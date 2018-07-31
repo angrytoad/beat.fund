@@ -10668,6 +10668,11 @@ button.close {
   margin: 0;
 }
 
+#beatfund-for-labels #beatfund-for-labels-title h3 {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
 #preamble-sticky {
   position: -webkit-sticky;
   position: sticky;
