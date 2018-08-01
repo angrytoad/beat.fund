@@ -20,8 +20,14 @@
             </div>
         </div>
         <div class="col-md-9">
+            <div class="alert alert-warning">
+                <p>
+                    Psst! If you own a label you'll want to check out more information about label
+                    accounts which <a href="{{ route('beatfund_for_labels') }}">can be found here.</a>
+                </p>
+            </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Beat Fund Revenue Sharing Policy</div>
+                <div class="panel-heading">Beat Fund Artist Revenue Sharing Policy</div>
                 <div class="panel-body">
                     <p>
                         Our ethos has always been to provide the best possible deal for artists around the world. Whether
@@ -30,8 +36,8 @@
                     </p>
                     <div class="jumbotron">
                         <p>
-                            Our revenue share policy is aimed to be plain and simple. Beat Fund gives you <strong>{{ 100 - env('BEATFUND_SALES_SHARE') }}%</strong> of
-                            all your music sales for you to do with as you please.
+                            Our revenue share policy is aimed to be plain and simple. Beat Fund gives artist accounts <strong>{{ 100 - env('BEATFUND_SALES_SHARE') }}%</strong> of
+                            all their music sales for them to do with as they please.
                         </p>
                     </div>
                     <p>

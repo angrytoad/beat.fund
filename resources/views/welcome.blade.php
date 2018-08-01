@@ -54,6 +54,9 @@
             </div>
         </div>
         <div class="row">
+            @include('misc.registration_preamble.account_type_comparison')
+        </div>
+        <div class="row">
             <div class="col-xs-12 col-md-6">
                 <iframe src="https://open.spotify.com/embed/user/duenna/playlist/0yXzk5Fv0tAt7qy2N7bFFy" width="100%" height="400px" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
@@ -70,12 +73,12 @@
             <div class="col-md-9 col-xs-12">
                 <h2>A Fairer Deal for all.</h2>
                 <p class="lead">
-                    Not only do I believe in supporting independent Artists and Bands, but I also believe in fair pricing. With
-                    a simple and flat 10% revenue share policy across all tools and services, you can keep more of what you earn
-                    whilst still using a huge suite of great tools.
+                    Individual artists and bands can enjoy a lovely {{ 100 - env('BEATFUND_SALES_SHARE') }}% of all revenue through Beat Fund.
+                    Label accounts can also enjoy an attractive {{ 100 - env('BEATFUND_LABEL_SALES_SHARE') }}% with both account types completely free
+                    to use forever.
                 </p>
                 <p class="lead">
-                    For more information and examples, please see our <a href="{{ route('revenue_sharing_policy') }}">Revenue Sharing Policy.</a>
+                    For more information and examples, please see our <a href="{{ route('revenue_sharing_policy') }}">Artist Revenue Sharing Policy.</a>
                 </p>
             </div>
             <div class="col-md-3 col-sm-4 col-sm-offset-4 col-md-offset-0 col-xs-6 col-xs-offset-3">
