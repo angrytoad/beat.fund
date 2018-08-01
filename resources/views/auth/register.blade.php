@@ -9,7 +9,7 @@
             <div class="alert alert-warning">
                 <strong>
                 <span>
-                    If you are a label, you are in the wrong place! Please visit <a href="{{ route('beatfund_for_labels') }}">Beatfund For Labels</a> for more inforamation
+                    If you are a label, you are in the wrong place! Please visit <a href="{{ route('beatfund_for_labels') }}">Beatfund For Labels</a> for more information
                     on setting up a label account.
                 </span>
                 </strong>

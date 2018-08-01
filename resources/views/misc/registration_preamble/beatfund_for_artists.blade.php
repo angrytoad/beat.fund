@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <h4>Fulfill your destiny, young skywalker...</h4>
                     <a href="{{ route('register') }}">
-                        <button class="btn btn-success btn-lg">Create an account.</button>
+                        <button class="btn btn-primary btn-lg">Create an artist account.</button>
                     </a>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3 class="text-center">Use all our tools for free, and keep a whopping 90% of revenue.</h3>
+                    <h3 id="beatfund-for-artists-preamble-title" class="text-center">Use all our tools for free, and keep a whopping {{ 100 - env("BEATFUND_SALES_SHARE") }}% of revenue.</h3>
                     <hr />
                     <p>
                         We don't believe creative tools should sit behind a paywall, we're making it easier than ever for artists and bands
@@ -86,7 +86,7 @@
                         continue to support independent music and the creative individuals who help bring it into the world.
                     </p>
                     <a href="{{ route('register') }}">
-                        <button class="btn btn-success">Create your account.</button>
+                        <button class="btn btn-primary">Create your account.</button>
                     </a>
                     <hr />
                 </div>
