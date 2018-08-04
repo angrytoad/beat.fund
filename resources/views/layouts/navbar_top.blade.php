@@ -36,7 +36,7 @@
                 <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    @if(Auth::user()->label)
+                    @if(Auth::user() && Auth::user()->label)
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <strong>{{ Auth::user()->label->name }} <span class="caret"></span></strong>
