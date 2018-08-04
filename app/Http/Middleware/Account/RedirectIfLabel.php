@@ -18,8 +18,6 @@ class RedirectIfLabel
             return $next($request);
         }
 
-        return redirect(route('label.dashboard'))->with([
-            'alert-info' => 'Label accounts cannot access artist account pages.'
-        ]);
+        return redirect(route('label.dashboard'));
     }
 }
