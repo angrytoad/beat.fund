@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            @if(Auth::user()->label)
+            @if(Auth::user() && Auth::user()->label)
                 <a class="navbar-brand" href="{{ route('label.dashboard') }}">
                     <span class="beat">Beat</span> <span class="fund">Fund</span> <span class="divider">|</span> <span class="small">Supporting independent artists.</span>
                 </a>
