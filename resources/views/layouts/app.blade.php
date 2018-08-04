@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('meta_description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')" />
+    <meta name="description" content="@yield('meta_description', env('META_DESCRIPTION'))" />
 
     <!-- OG GRAPH -->
-    <meta property="og:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')" />
-    <meta property="og:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')" />
+    <meta property="og:title" content="@yield('og:title', env('META_TITLE'))" />
+    <meta property="og:description" content="@yield('og:description', env('META_DESCRIPTION'))" />
     <meta property="og:type" content="@yield('og:type','website')" />
     <meta property="og:url" content="@yield('og:url',url()->current())" />
     <meta property="og:image" content="@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg'))" />
@@ -20,8 +20,8 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="@yield('twitter:card','summary_large_image')" />
     <meta name="twitter:site" content="@yield('twitter:site','@TFreeborough')" />
-    <meta name="twitter:title" content="@yield('og:title', 'Beat Fund - Supporting Independent Artists')" />
-    <meta name="twitter:description" content="@yield('og:description', 'One music lovers dream to support independent artists across the globe with a fairer deal and the tools to sell your music easily.')" />
+    <meta name="twitter:title" content="@yield('og:title', env('META_TITLE'))" />
+    <meta name="twitter:description" content="@yield('og:description', env('META_DESCRIPTION'))" />
     <meta name="twitter:image" content="@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg'))" />
     <meta name="twitter:player" content="@yield('og:audio')" />
     <meta name="twitter:player:height" content="@yield('twitter:player:height')" />
@@ -33,7 +33,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') | {{ config('app.name', 'Beat Fund - Supporting Independent Artists') }}</title>
+    <title>
+        @if(View::hasSection('title'))
+            @yield('title') | Beat Fund
+        @else
+            {{ env('META_TITLE') }} | Beat Fund
+        @endif
+    </title>
 
 
     <!-- Styles -->

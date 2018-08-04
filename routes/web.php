@@ -64,36 +64,6 @@ $this->group(['prefix' => 'webhooks'], function () {
 
 
 /**
- * All routes related to action actions
- */
-$this->group(['middleware' => ['auth','email.verified'], 'prefix' => 'account'], function () {
-    $this->get('/', 'Account\AccountController@show')->name('account');
-    $this->get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
-    $this->post('/update-email', 'Account\AccountEmailController@postUpdate');
-    $this->get('/change-password', 'Account\AccountPasswordController@show')->name('account.change_password');
-    $this->post('/change-password', 'Account\AccountPasswordController@update')->name('account.update_password');
-    $this->get('/add-mobile-number', 'Account\AccountMobileController@show')->name('account.add_mobile_number');
-    $this->post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
-    $this->get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
-    $this->post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
-    $this->get('/cards', 'Account\AccountSavedCardsController@show')->name('account.cards');
-    $this->post('/cards/add', 'Account\AccountSavedCardsController@add')->name('account.cards.add');
-
-    $this->group(['middleware' => ['user.owns_card']], function () {
-        $this->get('/cards/{card_id}', 'Account\AccountCardController@show')->name('account.cards.card');
-        $this->post('/cards/{card_id}/update', 'Account\AccountCardController@update')->name('account.cards.card.update');
-        $this->post('/cards/{card_id}/delete', 'Account\AccountCardController@delete')->name('account.cards.card.delete');
-        $this->post('/cards/{card_id}/make-default', 'Account\AccountCardController@makeDefault')->name('account.cards.card.make_default');
-    });
-
-    $this->group(['middleware' => ['user.has_store']], function () {
-        $this->get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');
-        $this->get('/stripe/connect', 'Account\AccountStripeController@connect')->name('account.stripe.connect');
-    });
-});
-
-
-/**
  * Admin Panel Routes
  */
 
@@ -177,8 +147,41 @@ $this->group(['prefix' => 'tickets'], function () {
 
 
 
+//                           //
+//                           //
+//   ARTIST ACCOUNT ROUTES   //
+//                           //
+//                           //
+$this->group(['middleware' => ['auth','email.verified','user.redirect_if_label'], 'prefix' => 'me'], function () {
 
-$this->group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], function () {
+    /**
+     * All routes related to account actions
+     */
+    $this->group(['prefix' => 'account'], function () {
+        $this->get('/', 'Account\AccountController@show')->name('account');
+        $this->get('/update-email', 'Account\AccountEmailController@show')->name('account.update_email');
+        $this->post('/update-email', 'Account\AccountEmailController@postUpdate');
+        $this->get('/change-password', 'Account\AccountPasswordController@show')->name('account.change_password');
+        $this->post('/change-password', 'Account\AccountPasswordController@update')->name('account.update_password');
+        $this->get('/add-mobile-number', 'Account\AccountMobileController@show')->name('account.add_mobile_number');
+        $this->post('/add-mobile-number', 'Account\AccountMobileController@addMobileNumber');
+        $this->get('/verify-mobile-number', function(){ return view('account.mobile.input_mobile_verification'); })->name('account.verify_mobile_number');
+        $this->post('/verify-mobile-number', 'Account\AccountMobileController@verifyMobileNumber');
+        $this->get('/cards', 'Account\AccountSavedCardsController@show')->name('account.cards');
+        $this->post('/cards/add', 'Account\AccountSavedCardsController@add')->name('account.cards.add');
+
+        $this->group(['middleware' => ['user.owns_card']], function () {
+            $this->get('/cards/{card_id}', 'Account\AccountCardController@show')->name('account.cards.card');
+            $this->post('/cards/{card_id}/update', 'Account\AccountCardController@update')->name('account.cards.card.update');
+            $this->post('/cards/{card_id}/delete', 'Account\AccountCardController@delete')->name('account.cards.card.delete');
+            $this->post('/cards/{card_id}/make-default', 'Account\AccountCardController@makeDefault')->name('account.cards.card.make_default');
+        });
+
+        $this->group(['middleware' => ['user.has_store']], function () {
+            $this->get('/stripe', 'Account\AccountStripeController@show')->name('account.stripe');
+            $this->get('/stripe/connect', 'Account\AccountStripeController@connect')->name('account.stripe.connect');
+        });
+    });
 
     // Homepage Once logged in
     $this->get('/', 'Home\HomeController@index')->name('home');
@@ -407,5 +410,21 @@ $this->group(['middleware' => ['auth','email.verified'], 'prefix' => 'me'], func
 
             });
         });
+    });
+});
+
+$this->group(['middleware' => ['auth','email.verified','user.is_label_account'], 'prefix' => 'label'], function () {
+    $this->get('/', 'Label\ShowLabelController@show')->name('label');
+    $this->get('/dashboard','Label\Dashboard\ShowDashboardController@show')->name('label.dashboard');
+
+    $this->group(['middleware' => [], 'prefix' => 'organisation'], function () {
+        $this->get('/', 'Label\Organisation\ShowOrganisationController@show')->name('label.organisation');
+
+        $this->group(['middleware' => [], 'prefix' => 'user-manager'], function () {
+            $this->get('/', 'Label\Organisation\UserManager\ShowUserManagerController@show')->name('label.organisation.user_manager');
+            $this->get('create-user', 'Label\Organisation\UserManager\CreateUserController@show')->name('label.organisation.user_manager.create_user');
+        });
+
+
     });
 });

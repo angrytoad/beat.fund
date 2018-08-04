@@ -1,0 +1,48 @@
+#app_label{
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  #navbar-top{
+    margin-bottom:0;
+  }
+
+  #app{
+    height:calc(100% - #{$navbar_app_height - 20});
+    margin:0;
+    display:grid;
+    grid-template-columns: 300px 1fr;
+
+    #app_side_menu{
+      padding:15px;
+      background:$white;
+      border-right:1px solid $border_light;
+      overflow-y: auto;
+    }
+
+    #app_content{
+      padding:15px;
+      overflow-y:auto;
+
+      #footer{
+        margin-left:-15px;
+        margin-right:-15px;
+        padding:15px;
+
+        .container{
+          width:100%;
+          padding:0;
+        }
+      }
+
+      #footer-copyright{
+        .container{
+          width:100%;
+          padding:0;
+        }
+      }
+    }
+  }
+}

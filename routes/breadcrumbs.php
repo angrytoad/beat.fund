@@ -331,3 +331,30 @@ Breadcrumbs::register('store.sales_and_analytics.music_store', function ($breadc
     $breadcrumbs->push('Music Store', route('store.sales_and_analytics.music_store'));
 });
 
+
+/**
+ * LABEL BREADCRUMBS
+ */
+Breadcrumbs::register('label', function ($breadcrumbs) {
+    $breadcrumbs->push('Label', route('label'));
+});
+
+Breadcrumbs::register('label.dashboard', function ($breadcrumbs) {
+    $breadcrumbs->parent('label');
+    $breadcrumbs->push('Dashboard', route('label.dashboard'));
+});
+
+Breadcrumbs::register('label.organisation', function ($breadcrumbs) {
+    $breadcrumbs->parent('label');
+    $breadcrumbs->push('Organisation', route('label.organisation'));
+});
+
+Breadcrumbs::register('label.organisation.user_manager', function ($breadcrumbs) {
+    $breadcrumbs->parent('label.organisation');
+    $breadcrumbs->push('User Manager', route('label.organisation.user_manager'));
+});
+
+Breadcrumbs::register('label.organisation.user_manager.create_user', function ($breadcrumbs) {
+    $breadcrumbs->parent('label.organisation.user_manager');
+    $breadcrumbs->push('Create a user', route('label.organisation.user_manager.create_user'));
+});

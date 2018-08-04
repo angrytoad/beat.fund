@@ -20,7 +20,7 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="@yield('twitter:card','summary_large_image')" />
     <meta name="twitter:site" content="@yield('twitter:site','@TFreeborough')" />
-    <meta name="twitter:title" content="@yield('og:title', env('META_TITLE')')" />
+    <meta name="twitter:title" content="@yield('og:title', env('META_TITLE'))" />
     <meta name="twitter:description" content="@yield('og:description', env('META_DESCRIPTION'))" />
     <meta name="twitter:image" content="@yield('og:image', url()->to('/images/storefront/beat_fund_square.jpg'))" />
     <meta name="twitter:player" content="@yield('og:audio')" />
@@ -53,9 +53,9 @@
 
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
-    @include('layouts.misc.cookie_policy')
+@include('layouts.misc.cookie_policy')
 
-    <!-- Facebook Pixel Code -->
+<!-- Facebook Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -75,11 +75,18 @@
 
 </head>
 <body>
+<div id="app_label">
     @include('layouts.navbar_top')
     <div id="app">
-        @yield('content')
+        <div id="app_side_menu">
+            @include('label.layout.side_menu')
+        </div>
+        <div id="app_content">
+            @yield('content')
+            @include('layouts.footer')
+        </div>
     </div>
-
-    @include('scripts')
+</div>
+@include('scripts')
 </body>
 </html>

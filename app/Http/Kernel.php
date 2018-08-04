@@ -2,6 +2,9 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Account\CheckIfLabel;
+use App\Http\Middleware\Account\IsLabelAccount;
+use App\Http\Middleware\Account\RedirectIfLabel;
 use App\Http\Middleware\Admin\IsAdmin;
 use App\Http\Middleware\Account\EmailVerified;
 use App\Http\Middleware\Account\OwnsCard;
@@ -105,6 +108,9 @@ class Kernel extends HttpKernel
         
         'storefront.tickets.ticket_exists' => TicketExists::class,
         'storefront.tickets.ticket_is_live' => TicketIsLive::class,
-        'storefront.tickets.ticket.ticket_can_checkin' => TicketCanCheckin::class
+        'storefront.tickets.ticket.ticket_can_checkin' => TicketCanCheckin::class,
+
+        'user.redirect_if_label' => RedirectIfLabel::class,
+        'user.is_label_account' => IsLabelAccount::class,
     ];
 }

@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@section('title','The Revolution will be Digitized')
 
 @section('content')
 <div id="welcome">

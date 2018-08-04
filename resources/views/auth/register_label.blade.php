@@ -23,77 +23,77 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <label>Label Name</label>
-                                <input class="form-control" type="text" name="label-name" placeholder="E.G. Factory Records" value="{{ old('label-name') }}" required autofocus autocomplete="off"/>
+                                <input class="form-control" type="text" name="label_name" placeholder="E.G. Factory Records" value="{{ old('label-name') }}" required autofocus autocomplete="off"/>
                             </div>
                             <hr />
                             <h4>Company Information</h4>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group{{ $errors->has('company-name') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
                                         <label>Company Name</label>
-                                        <input class="form-control" type="text" name="company-name" value="{{ old('company-name') }}" required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_name" value="{{ old('company_name') }}" required autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group{{ $errors->has('company-number') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_number') ? ' has-error' : '' }}">
                                         <label>Company Number</label>
-                                        <input class="form-control" type="text" name="company-number" value="{{ old('company-number') }}" required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_number" value="{{ old('company_number') }}" required autocomplete="off"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="form-group{{ $errors->has('company-first-line') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_first_line') ? ' has-error' : '' }}">
                                         <label>First Address Line</label>
-                                        <input class="form-control" type="text" name="company-first-line" value="{{ old('company-first-line') }}" required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_first_line" value="{{ old('company_first_line') }}" required autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <div class="form-group{{ $errors->has('company-second-line') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_second_line') ? ' has-error' : '' }}">
                                         <label>Second Address Line (OPTIONAL)</label>
-                                        <input class="form-control" type="text" name="company-second-line" value="{{ old('company-second-line') }}" autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_second_line" value="{{ old('company_second_line') }}" autocomplete="off"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group{{ $errors->has('company-postcode') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_postcode') ? ' has-error' : '' }}">
                                         <label>Postcode</label>
-                                        <input class="form-control" type="text" name="company-postcode" value="{{ old('company-postcode') }}"  required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_postcode" value="{{ old('company_postcode') }}"  required autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group{{ $errors->has('company-city') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_city') ? ' has-error' : '' }}">
                                         <label>City</label>
-                                        <input class="form-control" type="text" name="company-city" value="{{ old('company-city') }}"  required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_city" value="{{ old('company_city') }}"  required autocomplete="off"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group{{ $errors->has('company-county') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_county') ? ' has-error' : '' }}">
                                         <label>County</label>
-                                        <input class="form-control" type="text" name="company-county" value="{{ old('company-county') }}"  required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_county" value="{{ old('company_county') }}"  required autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group{{ $errors->has('company-country') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_country') ? ' has-error' : '' }}">
                                         <label>Country</label>
-                                        <input class="form-control" type="text" name="company-country" value="{{ old('company-country') }}"  required autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_country" value="{{ old('company_country') }}"  required autocomplete="off"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <div class="form-group{{ $errors->has('company-telephone') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('company_telephone') ? ' has-error' : '' }}">
                                         <label>Company Telephone Number (OPTIONAL)</label>
-                                        <input class="form-control" type="text" name="company-telephone" value="{{ old('company-telephone') }}" autocomplete="off"/>
+                                        <input class="form-control" type="text" name="company_telephone" value="{{ old('company_telephone') }}" autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
-                                    <div class="form-group{{ $errors->has('company-email') ? ' has-error' : '' }}">
-                                        <label>Company Email (OPTIONAL)</label>
-                                        <input class="form-control" type="text" name="company-email" value="{{ old('company-email') }}" autocomplete="off"/>
+                                    <div class="form-group{{ $errors->has('company_email') ? ' has-error' : '' }}">
+                                        <label>Company Email</label>
+                                        <input class="form-control" type="text" name="company_email" value="{{ old('company_email') }}" required autocomplete="off"/>
                                     </div>
                                 </div>
                             </div>

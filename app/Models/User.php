@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order');
     }
+
+    public function label()
+    {
+        return $this->hasOne('App\Models\Label', 'administrator_id');
+    }
 }

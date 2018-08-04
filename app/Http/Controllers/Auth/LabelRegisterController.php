@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Mail\Admin\AccountRegistered;
 use App\Models\EmailVerification;
+use App\Models\Label;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -72,7 +73,19 @@ class LabelRegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'terms_and_conditions' => 'required',
-            'privacy_policy' => 'required'
+            'privacy_policy' => 'required',
+            
+            'label_name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'company_number' => 'required|string|max:24',
+            'company_first_line' => 'required|string|max:255',
+            'company_second_line' => 'nullable|string|max:255',
+            'company_postcode' => 'required|string|max:24',
+            'company_city' => 'required|string|max:255',
+            'company_county' => 'required|string|max:255',
+            'company_country' => 'required|string|max:255',
+            'company_telephone' => 'nullable|string|max:255',
+            'company_email' => 'required|string|max:255',
         ]);
     }
 
@@ -101,10 +114,6 @@ class LabelRegisterController extends Controller
      */
     public function register(Request $request)
     {
-        return redirect(route('register-label'))->withErrors([
-            'alert-danger' => 'Sorry, label registration isn\'t available yet.'
-        ]);
-
 
         $this->validator($request->all())->validate();
         $client = new Client();
@@ -122,7 +131,7 @@ class LabelRegisterController extends Controller
 
             return $this->registered($request, $user)
                 ?: redirect($this->redirectPath())->with([
-                    'alert-success' => 'Thanks for registering, please check your email for a verification link.'
+                    'alert-success' => 'Thanks for registering your label, please check your email for a verification link.'
                 ]);
         }else{
             return redirect(route('register-label'))->withErrors([
@@ -144,6 +153,21 @@ class LabelRegisterController extends Controller
         $email_verification->user_id = $user->id;
         $email_verification->token = Uuid::generate();
         $email_verification->save();
+
+        $label = new Label();
+        $label->name = $request->get('label_name');
+        $label->administrator_id = $user->id;
+        $label->company_number = $request->get('company_number');
+        $label->company_name = $request->get('company_name');
+        $label->company_address_first_line = $request->get('company_first_line');
+        $label->company_address_second_line = $request->get('company_second_line');
+        $label->company_address_postcode = $request->get('company_postcode');
+        $label->company_address_city = $request->get('company_city');
+        $label->company_address_county = $request->get('company_county');
+        $label->company_address_country = $request->get('company_country');
+        $label->company_telephone_number = $request->get('company_telephone');
+        $label->company_email_address = $request->get('company_email');
+        $label->save();
 
         Mail::to($user->email)->send(new Verify($user));
         Mail::to(env('ADMIN_EMAIL','support@beat.fund'))->send(new AccountRegistered($user));
