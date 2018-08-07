@@ -24,14 +24,4 @@ class HasItemsInCart
         ]);
 
     }
-
-
-    public function __construct()
-    {
-        $foo = $this->foo(['foo','bar','baz']);
-    }
-
-    public function foo(String $bar){
-        return $bar;
-    }
 }
