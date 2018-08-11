@@ -3,7 +3,10 @@
 namespace App\Http;
 
 use App\Http\Middleware\Account\CheckIfLabel;
+use App\Http\Middleware\Account\IsAdminRole;
+use App\Http\Middleware\Account\IsEditorRole;
 use App\Http\Middleware\Account\IsLabelAccount;
+use App\Http\Middleware\Account\IsManagerRole;
 use App\Http\Middleware\Account\RedirectIfLabel;
 use App\Http\Middleware\Admin\IsAdmin;
 use App\Http\Middleware\Account\EmailVerified;
@@ -112,5 +115,8 @@ class Kernel extends HttpKernel
 
         'user.redirect_if_label' => RedirectIfLabel::class,
         'user.is_label_account' => IsLabelAccount::class,
+        'user.is_editor_role' => IsEditorRole::class,
+        'user.is_manager_role' => IsManagerRole::class,
+        'user.is_admin_role' => IsAdminRole::class,
     ];
 }

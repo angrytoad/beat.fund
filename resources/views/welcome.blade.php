@@ -7,7 +7,7 @@
         <div id="welcome-container">
             <div id="welcome-container-child">
                 <div id="welcome-container-child-container">
-                    <h1 id="title">Beat Fund</h1>
+                    <h1 id="title">Sell music, gig tickets and more for free.</h1>
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
                             <a href="{{ route('beatfund_for_artists') }}">

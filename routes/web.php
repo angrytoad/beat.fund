@@ -414,17 +414,20 @@ $this->group(['middleware' => ['auth','email.verified','user.redirect_if_label']
 });
 
 $this->group(['middleware' => ['auth','email.verified','user.is_label_account'], 'prefix' => 'label'], function () {
-    $this->get('/', 'Label\ShowLabelController@show')->name('label');
-    $this->get('/dashboard','Label\Dashboard\ShowDashboardController@show')->name('label.dashboard');
+    $this->get('/', 'Label\Dashboard\ShowDashboardController@show')->name('label.dashboard');
 
-    $this->group(['middleware' => [], 'prefix' => 'organisation'], function () {
+    $this->group(['middleware' => ['user.is_manager_role'], 'prefix' => 'organisation'], function () {
         $this->get('/', 'Label\Organisation\ShowOrganisationController@show')->name('label.organisation');
 
         $this->group(['middleware' => [], 'prefix' => 'user-manager'], function () {
             $this->get('/', 'Label\Organisation\UserManager\ShowUserManagerController@show')->name('label.organisation.user_manager');
             $this->get('create-user', 'Label\Organisation\UserManager\CreateUserController@show')->name('label.organisation.user_manager.create_user');
+            $this->post('create-user', 'Label\Organisation\UserManager\CreateUserController@create');
         });
 
 
     });
 });
+
+$this->get('/label/accept-invite/{invite_code}','Label\AcceptInviteController@show')->name('label.accept_invite');
+$this->post('/label/accept-invite/{invite_code}','Label\AcceptInviteController@acceptInvite');

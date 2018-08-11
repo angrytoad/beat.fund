@@ -336,11 +336,6 @@ Breadcrumbs::register('store.sales_and_analytics.music_store', function ($breadc
  * LABEL BREADCRUMBS
  */
 Breadcrumbs::register('label', function ($breadcrumbs) {
-    $breadcrumbs->push('Label', route('label'));
-});
-
-Breadcrumbs::register('label.dashboard', function ($breadcrumbs) {
-    $breadcrumbs->parent('label');
     $breadcrumbs->push('Dashboard', route('label.dashboard'));
 });
 

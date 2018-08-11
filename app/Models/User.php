@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'first_name', 'last_name', 'email', 'password', 'email_verified', 'mobile_number', 'admin'
+        'id', 'first_name', 'last_name', 'email', 'password', 'email_verified', 'mobile_number', 'admin', 'label_id'
     ];
 
     /**
@@ -73,6 +73,16 @@ class User extends Authenticatable
 
     public function label()
     {
-        return $this->hasOne('App\Models\Label', 'administrator_id');
+        return $this->belongsTo('App\Models\Label');
+    }
+
+    public function role()
+    {
+        return $this->hasOne('App\Models\LabelUserRole');
+    }
+
+    public function isLabelAdmin()
+    {
+        return $this->label->administrator->id === $this->id;
     }
 }

@@ -8,6 +8,7 @@
 namespace App\Http\Controllers\Label\Organisation\UserManager;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ShowUserManagerController extends Controller
 {
@@ -21,6 +22,6 @@ class ShowUserManagerController extends Controller
     }
 
     public function show(){
-        return "NOT YET";
+        return view('label.organisation.user_manager.index');
     }
 }
